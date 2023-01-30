@@ -12,30 +12,30 @@
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
 
-	<form method="post" action="<%=request.getContextPath()%>/Login">
+	<form method="post" action="<%=request.getContextPath()%>/ServletLogin">
 		<section>
 			<label for="input_nom">Identifiant :</label>
-			<input type="text" name="identifiant" />
+			<input type="text" id="identifiant" name="identifiant" />
 		</section>
 		
 		<section>
 			<label for="input_nom">Mot de passe :</label>
-			<input type="text" name="mdp" />
+			<input type="text" id="mdp" name="mdp" />
 		</section>
 		
 		<section>
-		<input type="submit" value="Connexion" name="connexion"/>
+		<input type="submit" value="Connexion" id="connexion" name="ServletConnexion"/>
 	
 		<label for="input_nom">Se souvenir de moi :</label>
-		<input type="checkbox" name="seSouvenir" unchecked>
+		<input type="checkbox" id="seSouvenir" name="seSouvenir" unchecked>
 		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
 		</section>
 		
 	</form>
 	
-	<form method="post" action="<%=request.getContextPath()%>/CreateAccount"> 
+	<form method="get" action="<%=request.getContextPath()%>/ServletCreateAccount"> 
 	
-		<input type="submit" value="Créer un compte" />
+		<input type="submit" id= "creerCompte" value="Créer un compte" />
 	
 	</form>
 
