@@ -16,17 +16,18 @@
 		<input type="text" name="mdp" />
 		
 		<input type="submit" value="Connexion" name="connexion"/>
-		
+	
 		<label for="input_nom">Se souvenir de moi :</label>
 		<input type="checkbox" name="seSouvenir" checked>
+		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
 		
-		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a> 
+	</form>
+	
+	<form method="post" action="<%=request.getContextPath()%>/CreateAccount"> 
 	
 		<input type="submit" value="Créer un compte" />
 	
-	
 	</form>
-
 
 </body>
 </html>
