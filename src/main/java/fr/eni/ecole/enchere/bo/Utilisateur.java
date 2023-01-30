@@ -20,6 +20,12 @@ public class Utilisateur {
 	private List<Articles> listArticleVendus;
 	
 	
+	public Utilisateur(String pseudo, String motDePasse) {
+		super();
+		this.pseudo = pseudo;
+		this.motDePasse = motDePasse;
+	}
+
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -112,8 +118,10 @@ public class Utilisateur {
 		return noUtilisateur;
 	}
 
+	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+			String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
+			List<Enchere> listEnchere, List<Articles> listArticleVendus) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -126,10 +134,13 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.listEnchere = listEnchere;
+		this.listArticleVendus = listArticleVendus;
 	}
 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur) {
+			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
+			List<Enchere> listEnchere, List<Articles> listArticleVendus) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -143,10 +154,10 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+		this.listEnchere = listEnchere;
+		this.listArticleVendus = listArticleVendus;
 	}
 
-	
-	
 	public Utilisateur() {
 		super();
 	}
