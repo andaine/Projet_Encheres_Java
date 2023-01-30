@@ -8,8 +8,6 @@
 </head>
 <body>
 
-
-
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
@@ -32,7 +30,6 @@
 		<input type="checkbox" name="seSouvenir" unchecked>
 		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
 		</section>
-
 		
 	</form>
 	
