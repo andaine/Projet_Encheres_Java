@@ -1,7 +1,7 @@
 package fr.eni.ecole.enchere.bo;
 
 import java.time.LocalDate;
-import java.util.List;
+
 
 public class Articles {
 
