@@ -13,7 +13,7 @@
 		<h2 id="titreListe">Liste des enchères</h2>
 	</header>
 
-	<section id="sectionFiltres">
+	<section id="filtres">
 		<h2 id="titreFiltres">Filtres :</h2>
 		<form method="post" action="<%=request.getContextPath()%>/ServletAfficherEncheres" name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
@@ -25,11 +25,7 @@
 		</form>
 	</section>
 
-	<section id="sectionEncheres">
-		<!--  TODO afficher la liste des encheres en cours   -->
-	
-	
-	</section>
+
 
 
 
