@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Connexion</title>
+</head>
+<body>
+
+	<form method="post" action="<%=request.getContextPath()%>/Login">
+		<label for="input_nom">Identifiant :</label>
+		<input type="text" name="identifiant" />
+		
+		<label for="input_nom">Mot de passe :</label>
+		<input type="text" name="mdp" />
+		
+		<input type="submit" value="Connexion" name="connexion"/>
+		
+		<label for="input_nom">Se souvenir de moi :</label>
+		<input type="checkbox" name="seSouvenir" checked>
+		
+		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a> 
+	
+		<input type="submit" value="Créer un compte" />
+	
+	
+	</form>
+
+
+</body>
+</html>
