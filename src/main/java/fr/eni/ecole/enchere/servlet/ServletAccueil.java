@@ -23,7 +23,7 @@ public class ServletAccueil extends HttpServlet {
 		System.out.println("doget - servlet accueil");
 		request.setCharacterEncoding("UTF-8");
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/JSP/accueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
 	}
 
