@@ -33,7 +33,7 @@
 		
 	</form>
 	
-	<form method="post" action="<%=request.getContextPath()%>/ServletCreateAccount"> 
+	<form method="get" action="<%=request.getContextPath()%>/ServletCreateAccount"> 
 	
 		<input type="submit" id= "creerCompte" value="Créer un compte" />
 	
