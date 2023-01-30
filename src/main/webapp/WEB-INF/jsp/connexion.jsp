@@ -8,18 +8,28 @@
 </head>
 <body>
 
+	<header>
+		<h1 id="ENI">ENI-Encheres</h1>
+	</header>
+
 	<form method="post" action="<%=request.getContextPath()%>/Login">
-		<label for="input_nom">Identifiant :</label>
-		<input type="text" name="identifiant" />
+		<section>
+			<label for="input_nom">Identifiant :</label>
+			<input type="text" name="identifiant" />
+		</section>
 		
-		<label for="input_nom">Mot de passe :</label>
-		<input type="text" name="mdp" />
+		<section>
+			<label for="input_nom">Mot de passe :</label>
+			<input type="text" name="mdp" />
+		</section>
 		
+		<section>
 		<input type="submit" value="Connexion" name="connexion"/>
 	
 		<label for="input_nom">Se souvenir de moi :</label>
-		<input type="checkbox" name="seSouvenir" checked>
+		<input type="checkbox" name="seSouvenir" unchecked>
 		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
+		</section>
 		
 	</form>
 	
