@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletCreateAccount
  */
-@WebServlet("/CreateAccount")
+@WebServlet("/ServletCreateAccount")
 public class ServletCreateAccount extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
