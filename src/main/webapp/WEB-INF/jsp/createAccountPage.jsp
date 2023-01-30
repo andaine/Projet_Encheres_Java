@@ -14,8 +14,7 @@
 	
 	<h2>Mon profil</h2>
 
-	<!--TODO ajouter l'url de la servlet "user connecté"-->
-	<form method="post" action="<%=request.getContextPath()%>/?">
+	<form method="post" action="<%=request.getContextPath()%>/ServletConnexion">
 		<section>
 			<label for="input_nom">Pseudo :</label>
 			<input type="text" id="pseudo" name="pseudo" />
