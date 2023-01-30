@@ -1,4 +1,4 @@
-package fr.eni.ecole.enchere.servlets;
+package fr.eni.ecole.enchere.servlet;
 
 import java.io.IOException;
 
