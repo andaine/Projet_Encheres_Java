@@ -18,7 +18,7 @@
 		<input type="submit" value="Connexion" name="connexion"/>
 	
 		<label for="input_nom">Se souvenir de moi :</label>
-		<input type="checkbox" name="seSouvenir" checked>
+		<input type="checkbox" name="seSouvenir" unchecked>
 		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
 		
 	</form>
