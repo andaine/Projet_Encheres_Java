@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.ecole.enchere.bo.Utilisateur" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%Utilisateur userConnecte =(Utilisateur) session.getAttribute("userConnecte") ;%>
 <!DOCTYPE html>
 
@@ -87,7 +88,9 @@
 			<!-- TODO servlet modifier profil -->
 			<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
 		</form>
-		<form method="get" action="<%=request.getContextPath()%>/ServletDelete">
+		
+		<form method="get" action="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()">
+			
 			<!--  TODO servlet delete -->
 			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte">	
 		</form>	
