@@ -23,7 +23,7 @@
 					<a href="<%=request.getContextPath() %>/ServletMonProfil" name="lienMonProfil" id="lienMonProfil">Mon profil</a>
 				</li>
 				<li>
-					<a href="<%=request.getContextPath() %>/ServletAccueil" name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a>
+					<a href="<%=request.getContextPath() %>/ServletDeconnexion" name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a>
 				</li>			
 			</ul>	
 		</nav>		
