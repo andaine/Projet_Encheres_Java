@@ -45,7 +45,7 @@
 		
 		<section>
 			<label for="input_nom">Mot de passe :</label>
-			<input type="password" id="mdp" name="mdp" />
+			<input type="password" id="motDePasse" name="motDePasse" />
 			<label for="input_nom">Confirmation :</label>
 			<input type="password" id="confirmation" name="confirmation" />
 		</section>		

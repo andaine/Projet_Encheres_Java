@@ -42,7 +42,7 @@ public class ServletCreateAccount extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("cp");
 		String ville = request.getParameter("ville");
 		String motDePasse = request.getParameter("motDePasse");
@@ -67,7 +67,7 @@ public class ServletCreateAccount extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+System.out.println("ServletCreate-doPost");
 	}
 
 }
