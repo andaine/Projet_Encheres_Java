@@ -20,7 +20,7 @@
 		
 		<section>
 			<label for="input_nom">Mot de passe :</label>
-			<input type="text" id="mdp" name="mdp" />
+			<input type="password" id="motDePasse" name="motDePasse" />
 		</section>
 		
 		<section>

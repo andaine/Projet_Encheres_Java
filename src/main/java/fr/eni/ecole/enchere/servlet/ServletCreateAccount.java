@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Utilisateur;
@@ -50,6 +51,9 @@ public class ServletCreateAccount extends HttpServlet {
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 
 		EnchereManager em = new EnchereManager();
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("userConnecte", user);
 
 		try {
 			em.insererUtilisateur(user);
