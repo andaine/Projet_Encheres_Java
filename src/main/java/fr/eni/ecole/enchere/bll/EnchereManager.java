@@ -25,6 +25,7 @@ public class EnchereManager {
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
+		System.out.println("Manager");
 		enchereDAO.insert(user);
 	}
 	

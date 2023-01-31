@@ -21,49 +21,50 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		System.out.println("dopost - servlet login");
 
-		if (!request.getParameter("identifiant").isEmpty() && !request.getParameter("motDePasse").isEmpty()) {
+		EnchereManager em = new EnchereManager();
+		Utilisateur userConnecte;
 
-			String pseudo = request.getParameter("identifiant");
-			String mdp = request.getParameter("motDePasse");
+		try {
 
-			EnchereManager em = new EnchereManager();
-			Utilisateur user;
+			if (!request.getParameter("identifiant").isEmpty() && !request.getParameter("motDePasse").isEmpty()) {
 
-			try {
-				user = em.validerUtilisateur(pseudo, mdp);
-				if(user.getMotDePasse().equals(mdp)) {
+				String pseudo = request.getParameter("identifiant");
+				String mdp = request.getParameter("motDePasse");
+
+
+					userConnecte = em.validerUtilisateur(pseudo, mdp);
 					HttpSession session = request.getSession();
-					session.setAttribute("userConnecte", user);
-				
-				
+					session.setAttribute("userConnecte", userConnecte);
+
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
 					rd.forward(request, response);
-				}
-				//TODO : erreur
-				
 
-			} catch (BusinessException e) {
-				
-				doGet(request, response);
-				System.out.println("erreur servlet");
+
+			} else {
+				// TODO : rajouter BusinessException avec message "veuillez remplir les 2 cases"
+				BusinessException be = new BusinessException();
+				be.addMessage("veuillez remplir les 2 champs");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
+				rd.forward(request, response);
 			}
-			
-		} else {
-	// TODO : rajouter BusinessException avec message "veuillez remplir les 2 cases"
-		
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
-			rd.forward(request, response);
+		} catch (BusinessException e) {
+
+			doGet(request, response);
+			System.out.println("erreur servlet");
 		}
+
 	}
 
 }

@@ -30,6 +30,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
+				
 				user.setMotDePasse(rs.getString("mot_de_passe"));
 				user.setPseudo(rs.getString("pseudo"));
 				user.setNom(rs.getString("nom"));
@@ -45,12 +46,13 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				} else {
 					user.setAdministrateur(true);
 				}
-				;
+				
 				System.out.println("connecté");
 				System.out.println(user.getEmail());
 			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("utilisateur inexistant");
+				throw businessException;
 			}
 
 		} catch (Exception e) {
