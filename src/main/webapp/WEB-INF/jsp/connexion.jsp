@@ -1,5 +1,7 @@
+<%@page import="fr.eni.ecole.enchere.exception.BusinessException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,11 +9,17 @@
 <title>Connexion</title>
 </head>
 <body>
-
+	<% BusinessException be = new BusinessException(); %>
+	
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
 
+	<p><c:forEach var="be" items="${be.getListeMessage()}">
+		${be}
+	</c:forEach></p>
+	
+	
 	<form method="post" action="<%=request.getContextPath()%>/ServletLogin">
 		<section>
 			<label for="input_nom">Identifiant :</label>
