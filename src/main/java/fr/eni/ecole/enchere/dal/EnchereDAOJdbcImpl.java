@@ -13,6 +13,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String LOGIN = "SELECT * FROM UTILISATEURS where pseudo=? and mot_de_passe=?";
 	private static final String CREATE_USER = "INSERT INTO UTILSATEURS (pseudo, nom, prenom, email, telephone, rue, code postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
+	private static final String DELETE_USER = "DELETE * FROM Utilisateurs WHERE no_utilisateur=?";
+	
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
 
@@ -93,4 +95,31 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			throw be;	
 		}
 	}
+
+	@Override
+	public void supprimerCompte(int id) throws BusinessException {
+		try(Connection con = ConnectionProvider.getConnection()){
+			con.setAutoCommit(false);
+			PreparedStatement pstmt = con.prepareStatement(DELETE_USER);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			pstmt.close();
+			con.commit();
+			con.close();
+			
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
 }
