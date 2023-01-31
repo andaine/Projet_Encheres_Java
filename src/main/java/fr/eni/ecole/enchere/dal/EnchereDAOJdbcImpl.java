@@ -11,13 +11,15 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String LOGIN = "SELECT * FROM UTILISATEURS where pseudo=? and mot_de_passe=?";
+	private static final String CREATE_USER = "INSERT INTO UTILSATEURS (pseudo, nom, prenom, email, telephone, rue, code postal, ville, mot_de_passe, credit, administrateur)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
-		
+
 		PreparedStatement stmt = null;
 		Utilisateur user = new Utilisateur();
 
-		try(Connection cnx = ConnectionProvider.getConnection()) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 
 			stmt = cnx.prepareStatement(LOGIN);
 			stmt.setString(1, pseudo);
@@ -36,30 +38,59 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				user.setCodePostal(rs.getString("code_postal"));
 				user.setVille(rs.getString("ville"));
 				user.setCredit(rs.getInt("credit"));
-				if ( rs.getByte("administrateur") ==0) {
+				if (rs.getByte("administrateur") == 0) {
 					user.setAdministrateur(false);
 				} else {
 					user.setAdministrateur(true);
-				};
+				}
+				;
 				System.out.println("connecté");
 				System.out.println(user.getEmail());
-				
 			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("utilisateur inexistant");
-				throw businessException;
 			}
 
-		} catch (SQLException e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.addMessage("problème");
+			businessException.addMessage("utilisateur inexistant");
 			throw businessException;
 		}
-		
+
 		return user;
 
-}
+	}
+	
+	@Override
+	public void insert(Utilisateur user) throws BusinessException {
 
+		Utilisateur userCree = new Utilisateur();
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+				PreparedStatement pstmt = cnx.prepareStatement(CREATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+				pstmt.setString(1, (user.getPseudo()));
+				pstmt.setString(2, (user.getNom()));
+				pstmt.setString(3, (user.getPrenom()));
+				pstmt.setString(4, (user.getEmail()));
+				pstmt.setString(5, (user.getTelephone()));
+				pstmt.setString(6, (user.getRue()));
+				pstmt.setString(7, (user.getCodePostal()));
+				pstmt.setString(8, (user.getVille()));
+				pstmt.setString(9, (user.getMotDePasse()));
+				
+				pstmt.executeUpdate();
+				ResultSet rs = pstmt.getGeneratedKeys();
+				if (rs.next()) {
+					user.setNoUtilisateur(rs.getInt(1));
+				}
+				
+		} catch (SQLException e) {
+			BusinessException be = new BusinessException();
+			be.addMessage("L'insertion d'un repas a généré une erreur");
+			//throw lance l'exception et envoie le message aux couches supérieures
+			throw be;	
+		}
+	}
 }

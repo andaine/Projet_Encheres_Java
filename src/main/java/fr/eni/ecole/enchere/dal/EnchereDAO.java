@@ -6,4 +6,6 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public interface EnchereDAO {
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException;
+	
+	public void insert(Utilisateur user) throws BusinessException;
 }

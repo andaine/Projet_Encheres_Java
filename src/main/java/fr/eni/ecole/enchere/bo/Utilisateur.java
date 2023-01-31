@@ -26,6 +26,14 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 	}
 
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+	
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -114,9 +122,6 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-	public int getNoUtilisateur() {
-		return noUtilisateur;
-	}
 
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
