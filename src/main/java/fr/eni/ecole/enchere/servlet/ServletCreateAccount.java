@@ -51,18 +51,10 @@ public class ServletCreateAccount extends HttpServlet {
 
 		EnchereManager em = new EnchereManager();
 
-		request.setAttribute("pseudo", pseudo);
-		request.setAttribute("nom", nom);
-		request.setAttribute("prenom", prenom);
-		request.setAttribute("email", email);
-		request.setAttribute("telephone", telephone);
-		request.setAttribute("rue", rue);
-		request.setAttribute("ville", ville);
-		request.setAttribute("motDePasse", motDePasse);
-
 		try {
 			em.insererUtilisateur(user);
-			doGet(request, response);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+			rd.forward(request, response);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
