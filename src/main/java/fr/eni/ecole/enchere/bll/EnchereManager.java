@@ -32,4 +32,10 @@ public class EnchereManager {
 		
 		enchereDAO.supprimerCompte(id);
 	}
+	
+	public void updateUtilisateur(Utilisateur userUpdate) throws BusinessException {
+
+		enchereDAO.updateUser(userUpdate);
+
+	}
 }

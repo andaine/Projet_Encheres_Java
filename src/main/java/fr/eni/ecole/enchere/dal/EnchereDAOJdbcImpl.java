@@ -14,7 +14,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String CREATE_USER = "INSERT INTO UTILSATEURS (pseudo, nom, prenom, email, telephone, rue, code postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE * FROM Utilisateurs WHERE no_utilisateur=?";
-	
+	private final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
 
@@ -99,6 +100,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	@Override
 	public void supprimerCompte(int id) throws BusinessException {
 		try(Connection con = ConnectionProvider.getConnection()){
+			
 			con.setAutoCommit(false);
 			PreparedStatement pstmt = con.prepareStatement(DELETE_USER);
 			pstmt.setInt(1, id);
@@ -120,6 +122,36 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	}
 	
 	
-	
+	@Override
+	public void updateUser(Utilisateur userUpdate) throws BusinessException {
+
+		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+			
+				pstmt.setString(1, userUpdate.getPseudo());
+				pstmt.setString(2, userUpdate.getNom());
+				pstmt.setString(3, userUpdate.getPrenom());
+				pstmt.setString(4, userUpdate.getEmail());
+				pstmt.setString(5, userUpdate.getTelephone());
+				pstmt.setString(6, userUpdate.getRue());
+				pstmt.setString(7, userUpdate.getCodePostal());	
+				pstmt.setString(8, userUpdate.getVille());	
+				pstmt.setString(9, userUpdate.getMotDePasse());	
+				
+				
+				pstmt.setInt(10, userUpdate.getNoUtilisateur());
+		
+				pstmt.executeUpdate();
+				
+				
+		} catch (SQLException e) {
+			BusinessException be = new BusinessException();
+			be.addMessage("l'update de l'utilisateur à généré une erreur dans jdbcImpl");
+			//throw lance l'exception et envoie le message aux couches supérieures
+			throw be;	
+		}
+	}
 	
 }

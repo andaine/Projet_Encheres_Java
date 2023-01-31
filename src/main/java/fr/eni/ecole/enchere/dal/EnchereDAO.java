@@ -10,4 +10,6 @@ public interface EnchereDAO {
 	public void insert(Utilisateur user) throws BusinessException;
 	
 	public void supprimerCompte(int id) throws BusinessException;
+
+	public void updateUser(Utilisateur userUpdate) throws BusinessException;
 }
