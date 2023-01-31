@@ -37,16 +37,20 @@ public class ServletLogin extends HttpServlet {
 			String mdp = request.getParameter("motDePasse");
 
 			EnchereManager em = new EnchereManager();
-			Utilisateur userConnecte;
+			Utilisateur user;
 
 			try {
-				userConnecte = em.validerUtilisateur(pseudo, mdp);
-				HttpSession session = request.getSession();
-				session.setAttribute("userConnecte", userConnecte);
-			
-			
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
-				rd.forward(request, response);
+				user = em.validerUtilisateur(pseudo, mdp);
+				if(user.getMotDePasse().equals(mdp)) {
+					HttpSession session = request.getSession();
+					session.setAttribute("userConnecte", user);
+				
+				
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
+					rd.forward(request, response);
+				}
+				//TODO : erreur
+				
 
 			} catch (BusinessException e) {
 				
