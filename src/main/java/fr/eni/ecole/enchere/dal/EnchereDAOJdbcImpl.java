@@ -9,7 +9,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String LOGIN = "SELECT * FROM UTILISATEURS where  email=?, mot_de_passe=?";
+	private static final String LOGIN = "SELECT * FROM UTILISATEURS where pseudo=? and mot_de_passe=?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
 		
@@ -24,9 +24,27 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			ResultSet rs = stmt.executeQuery();
 
-			while (rs.next()) {
-				user.setMotDePasse(pwd);
-				user.setPseudo(pseudo);
+			if (rs.next()) {
+				user.setMotDePasse(rs.getString("mot_de_passe"));
+				user.setPseudo(rs.getString("pseudo"));
+				user.setNom(rs.getString("nom"));
+				user.setPrenom(rs.getString("prenom"));
+				user.setEmail(rs.getString("email"));
+				user.setTelephone(rs.getString("telephone"));
+				user.setRue(rs.getString("rue"));
+				user.setCodePostal(rs.getString("code_postal"));
+				user.setVille(rs.getString("ville"));
+				user.setCredit(rs.getInt("credit"));
+				if ( rs.getByte("administrateur") ==0) {
+					user.setAdministrateur(false);
+				} else {
+					user.setAdministrateur(true);
+				};
+				System.out.println("connecté");
+				
+			} else {
+				BusinessException businessException = new BusinessException();
+				businessException.addMessage("utilisateur inexistant");
 			}
 
 		} catch (Exception e)

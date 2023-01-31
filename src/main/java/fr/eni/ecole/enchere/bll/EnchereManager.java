@@ -15,11 +15,11 @@ private EnchereDAO enchereDAO;
 	}
 	
 
-		public Utilisateur validerUtilisateur(String email, String pwd) throws BusinessException {
+		public Utilisateur validerUtilisateur(String pseudo, String pwd) throws BusinessException {
 			
 			Utilisateur userLogin = new Utilisateur();
 			
-			userLogin = enchereDAO.connexion(email, pwd);
+			userLogin = enchereDAO.connexion(pseudo, pwd);
 			
 			
 			

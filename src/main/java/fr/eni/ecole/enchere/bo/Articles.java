@@ -13,18 +13,11 @@ public class Articles {
 	private int prixInitial;
 	private int prixVente;
 	private String etatVente;
-	
-	
-	
-	
-	
+
 	
 	public Articles() {
 		super();
 	}
-
-
-
 
 	public Articles(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, int prixVente, String etatVente) {
