@@ -14,7 +14,7 @@
 	
 	<h2>Mon profil</h2>
 
-	<form method="post" action="<%=request.getContextPath()%>/ServletConnexion">
+	<form method="post" action="<%=request.getContextPath()%>/ServletCreateAccount">
 		<section>
 			<label for="input_pseudo">Pseudo :</label>
 			<input type="text" id="pseudo" name="pseudo" />

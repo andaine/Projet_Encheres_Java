@@ -90,7 +90,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				
 		} catch (SQLException e) {
 			BusinessException be = new BusinessException();
-			be.addMessage("L'insertion d'un repas a généré une erreur");
+			be.addMessage("L'insertion d'un user a généré une erreur");
 			//throw lance l'exception et envoie le message aux couches supérieures
 			throw be;	
 		}
