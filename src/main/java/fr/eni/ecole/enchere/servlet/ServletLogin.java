@@ -31,7 +31,7 @@ public class ServletLogin extends HttpServlet {
 
 		System.out.println("dopost - servlet login");
 
-		if (!request.getParameter("identifiant").isEmpty() && !request.getParameter("mdp").isEmpty()) {
+		if (!request.getParameter("identifiant").isEmpty() && !request.getParameter("motDePasse").isEmpty()) {
 
 			String pseudo = request.getParameter("identifiant");
 			String mdp = request.getParameter("motDePasse");
