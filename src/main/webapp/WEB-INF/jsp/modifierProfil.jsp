@@ -84,12 +84,12 @@
 	</section>
 
 	<section id="sectionBoutons">
-		<form method ="post" action="<%=request.getContextPath()%>/ServletModifierProfil?id=${userConnecte.getNoUtilisateur()">
+		<form method ="post" action="<%=request.getContextPath()%>/ServletModifierProfil?id=${userConnecte.getNoUtilisateur()}">
 			<!-- TODO servlet modifier profil -->
 			<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
 		</form>
 		
-		<form method="get" action="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()">
+		<form method="get" action="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()}">
 			
 			<!--  TODO servlet delete -->
 			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte">	

@@ -52,7 +52,7 @@
 			</li>						
 		</ul>
 	
-	<a href="<%=request.getContextPath()%>/ServletUpdateUtilisateurs.java">
+	<a href="<%=request.getContextPath()%>/ServletUpdateUtilisateurs" >
 		<!-- TODO servlet modifier profil -->
 	
 		<input name="modifierProfil" id="modifierProfil" type="submit" value="Modifier">
