@@ -34,7 +34,7 @@ public class ServletLogin extends HttpServlet {
 		if (!request.getParameter("identifiant").isEmpty() && !request.getParameter("mdp").isEmpty()) {
 
 			String pseudo = request.getParameter("identifiant");
-			String mdp = request.getParameter("mdp");
+			String mdp = request.getParameter("motDePasse");
 
 			EnchereManager em = new EnchereManager();
 			Utilisateur userConnecte;
