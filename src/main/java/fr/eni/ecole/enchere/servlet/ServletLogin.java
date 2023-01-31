@@ -27,6 +27,11 @@ public class ServletLogin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if (request.getAttribute("identifiant") != null || request.getAttribute("mdp") != null) {
+			
+		} else {
+//			throw new BusinessException();
+		}
 	}
 
 }
