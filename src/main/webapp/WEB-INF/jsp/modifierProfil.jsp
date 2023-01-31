@@ -84,7 +84,7 @@
 	</section>
 
 	<section id="sectionBoutons">
-		<form method ="post" action="<%=request.getContextPath()%>/ServletModifierProfil">
+		<form method ="post" action="<%=request.getContextPath()%>/ServletModifierProfil?id=${userConnecte.getNoUtilisateur()">
 			<!-- TODO servlet modifier profil -->
 			<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
 		</form>
