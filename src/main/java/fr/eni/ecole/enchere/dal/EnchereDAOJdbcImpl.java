@@ -10,8 +10,8 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String LOGIN = "SELECT * FROM UTILISATEURS where pseudo=? and mot_de_passe=?";
-	private static final String CREATE_USER = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
+	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
+	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE * FROM Utilisateurs WHERE no_utilisateur=?";
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
