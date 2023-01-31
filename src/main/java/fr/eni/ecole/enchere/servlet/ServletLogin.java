@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.enchere.bll.EnchereManager;
+import fr.eni.ecole.enchere.bo.Utilisateur;
+import fr.eni.ecole.enchere.exception.BusinessException;
+
 /**
  * Servlet implementation class ServletLogin
  */
@@ -27,8 +31,24 @@ public class ServletLogin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getAttribute("identifiant") != null || request.getAttribute("mdp") != null) {
+		System.out.println("dopost - servlet login");
+		
+		if (request.getParameter("identifiant") != null && request.getParameter("mdp") != null) {
 			
+			String pseudo = request.getParameter("identifiant");
+			String mdp = request.getParameter("mdp");
+			
+//			System.out.println(pseudo + " : " + mdp );
+			
+			EnchereManager em = new EnchereManager();
+			Utilisateur user;
+			try {
+				user = em.validerUtilisateur(pseudo, mdp);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("erreur servlet");
+			}
 		} else {
 //			throw new BusinessException();
 		}

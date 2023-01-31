@@ -41,7 +41,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					user.setAdministrateur(true);
 				};
 				System.out.println("connecté");
-				
+				System.out.println(user.getEmail());
 			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("utilisateur inexistant");

@@ -16,13 +16,11 @@ private EnchereDAO enchereDAO;
 	
 
 		public Utilisateur validerUtilisateur(String pseudo, String pwd) throws BusinessException {
-			
+		
 			Utilisateur userLogin = new Utilisateur();
 			
 			userLogin = enchereDAO.connexion(pseudo, pwd);
-			
-			
-			
+		
 			return userLogin;
 	
 	}
