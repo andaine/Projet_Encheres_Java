@@ -8,4 +8,6 @@ public interface EnchereDAO {
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException;
 	
 	public void insert(Utilisateur user) throws BusinessException;
+	
+	public void supprimerCompte(int id) throws BusinessException;
 }

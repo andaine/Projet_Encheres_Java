@@ -27,4 +27,9 @@ public class EnchereManager {
 
 		enchereDAO.insert(user);
 	}
+	
+	public void supprimerUtilisateur(int id) throws BusinessException{
+		
+		enchereDAO.supprimerCompte(id);
+	}
 }
