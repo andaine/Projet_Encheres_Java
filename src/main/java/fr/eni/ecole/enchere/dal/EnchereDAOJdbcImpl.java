@@ -3,6 +3,7 @@ package fr.eni.ecole.enchere.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -42,16 +43,18 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				};
 				System.out.println("connecté");
 				System.out.println(user.getEmail());
+				
 			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("utilisateur inexistant");
+				throw businessException;
 			}
 
-		} catch (Exception e)
+		} catch (SQLException e)
 		{
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.addMessage("utilisateur inexistant");
+			businessException.addMessage("problème");
 			throw businessException;
 		}
 		
