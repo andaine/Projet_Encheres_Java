@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Utilisateur;
@@ -41,9 +42,11 @@ public class ServletLogin extends HttpServlet {
 //			System.out.println(pseudo + " : " + mdp );
 			
 			EnchereManager em = new EnchereManager();
-			Utilisateur user;
+			Utilisateur userConnecte;
 			try {
-				user = em.validerUtilisateur(pseudo, mdp);
+				userConnecte = em.validerUtilisateur(pseudo, mdp);
+				HttpSession session = request.getSession();
+				session.setAttribute("userConnecte", userConnecte);
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
