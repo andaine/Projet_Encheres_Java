@@ -142,5 +142,4 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			throw be;
 		}
 	}
-
 }
