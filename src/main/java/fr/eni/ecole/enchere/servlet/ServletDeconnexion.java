@@ -28,11 +28,7 @@ public class ServletDeconnexion extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
-		
-		
-		
-		
-		
+	
 	}
 
 }
