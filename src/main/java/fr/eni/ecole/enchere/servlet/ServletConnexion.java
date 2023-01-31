@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.ecole.enchere.exception.BusinessException;
+
 /**
  * Servlet implementation class ServletConnexion
  */
@@ -34,6 +36,13 @@ public class ServletConnexion extends HttpServlet {
 		
 		System.out.println("doget - servlet accueil");
 		request.setCharacterEncoding("UTF-8");
+		
+		if (request.getAttribute("identifiant") != null || request.getAttribute("mdp") != null) {
+			
+		} else {
+//			throw new BusinessException();
+		}
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
 		rd.forward(request, response);
