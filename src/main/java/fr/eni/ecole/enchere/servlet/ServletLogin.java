@@ -49,7 +49,7 @@ public class ServletLogin extends HttpServlet {
 				rd.forward(request, response);
 
 			} catch (BusinessException e) {
-	
+				
 				doGet(request, response);
 				System.out.println("erreur servlet");
 			}
