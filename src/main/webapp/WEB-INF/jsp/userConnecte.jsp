@@ -15,7 +15,7 @@
 		<nav id="menu">
 			<ul>
 				<li>
-					<a href="<%=request.getContextPath()%>/..." name="lienEncheres" id="lienEncheres">Enchères</a>
+					<a href="<%=request.getContextPath()%>/ServletConnecte" name="lienEncheres" id="lienEncheres">Enchères</a>
 						<!-- TODO Servlet userConnecte -->
 				</li>
 				<li>
