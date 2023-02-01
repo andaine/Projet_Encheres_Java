@@ -10,6 +10,10 @@
 <title>JSP UserConnecte</title>
 </head>
 <body>
+	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
+		${be}
+	</c:forEach></p>
+	
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 		<nav id="menu">
