@@ -180,16 +180,25 @@ public class UserDAOJdbcImpl implements UserDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				
-				
+				user.setPseudo(rs.getString("pseudo"));
+				user.setNom(rs.getString("nom"));
+				user.setPrenom(rs.getString("prenom"));
+				user.setEmail(rs.getString("email"));
+				user.setTelephone(rs.getString("telephone"));
+				user.setRue(rs.getString("rue"));
+				user.setCodePostal(rs.getString("code_postal"));
+				user.setVille(rs.getString("ville"));				
+			}else {
+				BusinessException businessException = new BusinessException();
+				businessException.addMessage("DAL exception - utilisateur inexistant");
+				throw businessException;		
 			}
-			
-			
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
+		} catch (SQLException e) {	
 			e.printStackTrace();
+			BusinessException businessException = new BusinessException();
+			businessException.addMessage("DAL exception - échec de connexion");
+			throw businessException;
 		}
 		return null;
 	}
