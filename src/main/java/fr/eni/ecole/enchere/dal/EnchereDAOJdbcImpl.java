@@ -13,7 +13,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
 	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
-	private static final String DELETE_USER = "DELETE * FROM Utilisateurs WHERE no_utilisateur=?";
+	private static final String DELETE_USER = "DELETE FROM Utilisateurs WHERE no_utilisateur=?";
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
@@ -31,6 +31,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			if (rs.next()) {
 				
+				user.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				user.setMotDePasse(rs.getString("mot_de_passe"));
 				user.setPseudo(rs.getString("pseudo"));
 				user.setNom(rs.getString("nom"));
