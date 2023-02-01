@@ -20,7 +20,7 @@ public class EnchereManager {
 		Utilisateur userLogin = enchereDAO.connexion(pseudo, pwd);
 
 		return userLogin;
-	}
+	} 
 	
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {

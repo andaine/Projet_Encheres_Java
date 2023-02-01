@@ -43,7 +43,7 @@ public class ServletLogin extends HttpServlet {
 				String pseudo = request.getParameter("identifiant");
 				String mdp = request.getParameter("motDePasse");
 
-					userConnecte = em.connecterUtilisateur(pseudo, mdp);
+					userConnecte = em.connecterUtilisateur(pseudo, mdp); 
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnecte", userConnecte);
 
