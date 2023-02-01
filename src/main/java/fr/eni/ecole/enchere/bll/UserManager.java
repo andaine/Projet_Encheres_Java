@@ -6,38 +6,45 @@ import fr.eni.ecole.enchere.dal.UserDAO;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class UserManager {
-	private UserDAO enchereDAO;
+	private UserDAO userDAO;
 
 	
 	public UserManager() {
 
-		this.enchereDAO = DAOFactory.getUserDAO();
+		this.userDAO = DAOFactory.getUserDAO();
 	}
 	
 
 	public Utilisateur connecterUtilisateur(String pseudo, String pwd) throws BusinessException {
 
-		Utilisateur userLogin = enchereDAO.connexion(pseudo, pwd);
+		Utilisateur userLogin = userDAO.connexion(pseudo, pwd);
 
 		return userLogin;
 	} 
 	
+	public Utilisateur afficherUtilisateur(String pseudo) throws BusinessException{
+		
+		Utilisateur autreUser = userDAO.selectUser(pseudo);
+		
+		return autreUser;
+		
+	}
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
 		System.out.println("Manager");
-		enchereDAO.insert(user);
+		userDAO.insert(user);
 	}
 	
 	public void supprimerUtilisateur(int id) throws BusinessException{
 		
-		enchereDAO.supprimerCompte(id);
+		userDAO.supprimerCompte(id);
 	}
 	
 	public void updateUtilisateur(Utilisateur userUpdate) throws BusinessException {
 
 		validerUtilisateur(userUpdate);
-		enchereDAO.updateUser(userUpdate);
+		userDAO.updateUser(userUpdate);
 
 	}
 	

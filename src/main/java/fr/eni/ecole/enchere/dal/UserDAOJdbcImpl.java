@@ -200,6 +200,6 @@ public class UserDAOJdbcImpl implements UserDAO {
 			businessException.addMessage("DAL exception - échec de connexion");
 			throw businessException;
 		}
-		return null;
+		return user;
 	}
 }
