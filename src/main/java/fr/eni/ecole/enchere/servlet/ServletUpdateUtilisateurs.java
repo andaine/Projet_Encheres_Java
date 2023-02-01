@@ -31,6 +31,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	
 		HttpSession session = request.getSession();
 		
 		System.out.println("dopost - servlet update");
@@ -43,27 +44,39 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		String rue = request.getParameter("rueModifier");
 		String code_postal = request.getParameter("codePModifier");
 		String ville = request.getParameter("villeModifier");
-//		String mot_de_passe = request.getParameter("mdpConfirmer");
-
-		if (request.getParameter("mdpConfirmer").equals(request.getParameter("mdpNouveau")) && request.getParameter("mdpActuel").equals("")) {
-			
-			String mdpNouveau = request.getParameter("mdpNouveau");
-			Utilisateur userUpdate = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdpNouveau);
-			userUpdate.setNoUtilisateur(Integer.parseInt(request.getParameter("id")) );
-		} 
-
-		System.out.println(pseudo);
-		UserManager em = new UserManager();
-		Utilisateur userUpdate = new Utilisateur();
-
-		try {
-			em.updateUtilisateur(userUpdate);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String motDePasseActuel = request.getParameter("mdpActuel");
+		String motDePasseConfirmer = request.getParameter("mdpConfirmer");
+		String motDePasseNouveau = request.getParameter("mdpNouveau");
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		
+//		Utilisateur userMdp = (Utilisateur) session.getAttribute("userConnecte");
+//		String mdpBDD = userMdp.getMotDePasse();
+		
+		
+		if (motDePasseConfirmer.equals(motDePasseNouveau) && !motDePasseConfirmer.isEmpty() && !motDePasseNouveau.isEmpty()) {	
+			motDePasseActuel = request.getParameter("mdpNouveau");
+		} else if(!motDePasseConfirmer.equals(motDePasseNouveau)) {
+			BusinessException be = new BusinessException();
+			be.addMessage("les 2 mots de passe ne sont pas identiques");
+			request.setAttribute("listeErreur", be.getListeMessage());
 		}
+		
+		
+//		if (request.getParameter("mdpActuel").equals(mdpBDD)) {
+			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel);
+			UserManager em = new UserManager();
+			try {
+				em.updateUtilisateur(userConnecte);
+				session.setAttribute("userConnecte", userConnecte);
+			} catch (BusinessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		System.out.println("test");
+	
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
 		rd.forward(request, response);
 	}
 

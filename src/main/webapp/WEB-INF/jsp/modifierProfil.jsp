@@ -19,8 +19,9 @@
 	</header>
 
 	<section id="sectionInfos">
-	
+	<form method ="post" action="<%=request.getContextPath()%>/ServletUpdateUtilisateurs?id=${userConnecte.getNoUtilisateur()}">
 		<div id="divL">
+		
 			<ul>
 				<li>
 					<label for="pseudoModifier" id="labelPseudoModifier">Pseudo : </label>
@@ -47,6 +48,8 @@
 					<input id="mdpNouveau" name="mdpNouveau" type="text">
 				</li>
 			</ul>
+			
+	
 		</div>
 	
 		<div id="divR">
@@ -80,15 +83,16 @@
 				${userConnecte.getCredit()}		
 			</p> 
 		</div>
-
+		<!-- TODO servlet modifier profil -->
+		<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
+	</form>
 	</section>
 
-	<section id="sectionBoutons">
-		<form method ="post" action="<%=request.getContextPath()%>/ServletUpdateUtilisateurs?id=${userConnecte.getNoUtilisateur()}">
-			<!-- TODO servlet modifier profil -->
-			<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
-		</form>
+	
 		
+			
+		
+	<section id="sectionBoutons">	
 		<a href="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()}">
 			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte">	
 		</a>	
