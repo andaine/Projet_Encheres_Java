@@ -2,16 +2,16 @@ package fr.eni.ecole.enchere.bll;
 
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
-import fr.eni.ecole.enchere.dal.EnchereDAO;
+import fr.eni.ecole.enchere.dal.UserDAO;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
-public class EnchereManager {
-	private EnchereDAO enchereDAO;
+public class UserManager {
+	private UserDAO enchereDAO;
 
 	
-	public EnchereManager() {
+	public UserManager() {
 
-		this.enchereDAO = DAOFactory.getEnchereDAO();
+		this.enchereDAO = DAOFactory.getUserDAO();
 	}
 	
 

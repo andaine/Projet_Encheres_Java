@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
-public class EnchereDAOJdbcImpl implements EnchereDAO {
+public class UserDAOJdbcImpl implements UserDAO {
 
 	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
 	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"

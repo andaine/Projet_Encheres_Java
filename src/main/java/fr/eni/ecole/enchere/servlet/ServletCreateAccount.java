@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.ecole.enchere.bll.EnchereManager;
+import fr.eni.ecole.enchere.bll.UserManager;
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
@@ -51,7 +51,7 @@ public class ServletCreateAccount extends HttpServlet {
 
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 
-			EnchereManager em = new EnchereManager();
+			UserManager em = new UserManager();
 
 			HttpSession session = request.getSession();
 			session.setAttribute("userConnecte", user);

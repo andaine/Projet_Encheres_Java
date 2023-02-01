@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-import fr.eni.ecole.enchere.bll.EnchereManager;
+import fr.eni.ecole.enchere.bll.UserManager;
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
@@ -53,7 +53,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		} 
 
 		System.out.println(pseudo);
-		EnchereManager em = new EnchereManager();
+		UserManager em = new UserManager();
 		Utilisateur userUpdate = new Utilisateur();
 
 		try {
