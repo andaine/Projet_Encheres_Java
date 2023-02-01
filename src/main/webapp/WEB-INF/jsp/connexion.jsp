@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="fr.eni.ecole.enchere.exception.BusinessException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,8 +15,10 @@
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
+	
 
-	<p><c:forEach var="be" items="${be.getListeMessage()}">
+
+	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
 		${be}
 	</c:forEach></p>
 	
