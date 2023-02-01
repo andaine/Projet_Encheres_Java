@@ -77,7 +77,7 @@
 		<div id="divCredit">
 			<label for="credit" id="labelCredit ">Crédit</label>
 			<p id="credit">
-				<%-- <%=userConnecte.getCredit() %> --%>			
+				${userConnecte.getCredit()}		
 			</p> 
 		</div>
 
