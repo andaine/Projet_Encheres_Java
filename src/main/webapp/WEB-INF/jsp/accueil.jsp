@@ -36,6 +36,13 @@
 
 	<section id="afficherEncheres">
 		<!-- TODO afficher la liste des encheres en cours -->
+		
+		
+		
+		
+		
+		
+		
 	</section>
 
 
