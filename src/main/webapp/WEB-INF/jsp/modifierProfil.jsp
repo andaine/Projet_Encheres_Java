@@ -90,7 +90,7 @@
 		</form>
 		
 		<a href="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()}">
-			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte ${userConnecte.getNoUtilisateur()}">	
+			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte">	
 		</a>	
 	</section>
 

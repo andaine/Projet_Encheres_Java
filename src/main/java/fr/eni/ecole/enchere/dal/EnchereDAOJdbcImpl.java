@@ -15,8 +15,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE FROM Utilisateurs WHERE no_utilisateur=?";
 	private static final String DELETE_ARTICLE_VENDU = "DELETE FROM Articles_vendus WHERE no_utilisateur=?";
-	private static final String DELETE_ENCHERE = " DELETE ENCHERES FROM ARTICLES_VENDUS INNER JOIN ENCHERES ON ENCHERES.no_article = ARTICLES_VENDUS.no_article "
-			+ "WHERE ARTICLES_VENDUS.no_utilisateur = ?;";
+	private static final String DELETE_ENCHERE = " DELETE ENCHERES FROM ARTICLES_VENDUS a INNER JOIN ENCHERES e ON e.no_article = a.no_article "
+			+ "WHERE a.no_utilisateur = ?;";
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
