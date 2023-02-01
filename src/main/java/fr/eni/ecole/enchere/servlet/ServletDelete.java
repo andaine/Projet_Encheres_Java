@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.ecole.enchere.bll.EnchereManager;
+import fr.eni.ecole.enchere.bll.UserManager;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 /**
@@ -27,7 +27,7 @@ public class ServletDelete extends HttpServlet {
 		String idStr = request.getParameter("id");
 		System.out.println("test servlet delete " + idStr);
 		int id = Integer.parseInt(idStr);
-		EnchereManager mgr = new EnchereManager();
+		UserManager mgr = new UserManager();
 		try {
 			mgr.supprimerUtilisateur(id);
 		} catch (BusinessException e) {
@@ -36,11 +36,7 @@ public class ServletDelete extends HttpServlet {
 		}
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
-		
-		
-		
-		
-		
+	
 	}
 
 }
