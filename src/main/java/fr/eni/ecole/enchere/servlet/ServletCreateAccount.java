@@ -38,32 +38,35 @@ public class ServletCreateAccount extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String pseudo = request.getParameter("pseudo");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String email = request.getParameter("email");
-		String telephone = request.getParameter("telephone");
-		String rue = request.getParameter("rue");
-		String codePostal = request.getParameter("cp");
-		String ville = request.getParameter("ville");
-		String motDePasse = request.getParameter("motDePasse");
-
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
-
-		EnchereManager em = new EnchereManager();
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("userConnecte", user);
-
 		try {
+			String pseudo = request.getParameter("pseudo");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			String telephone = request.getParameter("telephone");
+			String rue = request.getParameter("rue");
+			String codePostal = request.getParameter("cp");
+			String ville = request.getParameter("ville");
+			String motDePasse = request.getParameter("motDePasse");
+
+			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+
+			EnchereManager em = new EnchereManager();
+
+			HttpSession session = request.getSession();
+			session.setAttribute("userConnecte", user);
+			
 			em.insererUtilisateur(user);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
+			
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
+			request.setAttribute("listeErreur", e.getListeMessage());
 			e.printStackTrace();
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+			rd.forward(request, response);
 		}
-System.out.println("ServletCreate-doPost");
+		System.out.println("ServletCreate-doPost");
 	}
 
 }
