@@ -89,7 +89,7 @@
 			<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
 		</form>
 		
-		<a href="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.noUtilisateur}">
+		<a href="<%=request.getContextPath()%>/ServletDelete?id=${userConnecte.getNoUtilisateur()}">
 			<input type="submit" id="supprimerProfil" name="supprimerProfil" value="Supprimer mon compte ${userConnecte.getNoUtilisateur()}">	
 		</a>	
 	</section>
