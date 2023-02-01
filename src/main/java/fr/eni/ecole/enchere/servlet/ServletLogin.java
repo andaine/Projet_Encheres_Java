@@ -55,7 +55,9 @@ public class ServletLogin extends HttpServlet {
 				be.addMessage("Servlet : veuillez remplir les 2 champs");
 				be.printStackTrace();
 				request.setAttribute("listeErreur", be.getListeMessage());
+
 				doGet(request, response);
+
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
