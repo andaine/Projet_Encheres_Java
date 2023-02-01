@@ -1,5 +1,9 @@
 package fr.eni.ecole.enchere.bll;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.dal.ArticleDAO;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -15,8 +19,10 @@ public class ArticleManager {
 	}
 	
 	
-	public void afficherCategories() throws BusinessException {
-		articleDAO.selectCategories();
+	public List<Categorie> afficherCategories() throws BusinessException {
+		List<Categorie> categoriesListe = articleDAO.selectCategories();
+		System.out.println("manager");
+		return categoriesListe;
 	}
 	
 }
