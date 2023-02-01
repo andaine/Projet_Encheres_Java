@@ -2,7 +2,7 @@
 <%@page import="fr.eni.ecole.enchere.exception.BusinessException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +10,10 @@
 <title>Connexion</title>
 </head>
 <body>
-	<% BusinessException be = new BusinessException(); %>
 	
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
-	
 
 
 	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
