@@ -53,31 +53,31 @@ public class UserManager {
 	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
 		StringBuilder sb = new StringBuilder();
 		
-		if (userAValider.getPseudo()==null) {
+		if (userAValider.getPseudo().length()>0) {
             sb.append("Pseudo non renseignée.\n");
         }
 
-        if (userAValider.getNom()==null) {
+        if (userAValider.getNom().length()>0) {
         	sb.append("nom non renseignée.\n");
         }
-        if (userAValider.getPrenom() == null) {
+        if (userAValider.getPrenom().length()>0) {
         	sb.append("prenom non valide.\n");
         }
         
-        if (userAValider.getCodePostal()== null) {
+        if (userAValider.getCodePostal().length()>0) {
         	sb.append("Le codepostal non renseigné.\n");
         }
         
-        if (userAValider.getEmail() == null) {
+        if (userAValider.getEmail().length()>0) {
         	sb.append("L'email non renseigné.\n");
         }
         
-        if (userAValider.getRue() == null) {
+        if (userAValider.getRue().length()>0) {
         	sb.append("la rue non renseigné.\n");
         }
         
         
-        if (userAValider.getMotDePasse() == null) {
+        if (userAValider.getMotDePasse().length()>0) {
         	sb.append("mot de passe non renseigné.\n");
         }
         
