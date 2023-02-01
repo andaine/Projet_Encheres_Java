@@ -1,3 +1,5 @@
+<%@page import="javax.swing.text.Document"%>
+<%@page import="javax.swing.JRadioButton"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,8 +21,8 @@
 		<nav id="menu">
 			<ul>
 				<li>
+				
 					<a href="<%=request.getContextPath()%>/ServletConnecte" name="lienEncheres" id="lienEncheres">Enchères</a>
-						<!-- TODO Servlet userConnecte -->
 				</li>
 				<li>
 					<a href="<%=request.getContextPath() %>/..." name="lienNouvelleVente" id="lienNouvelleVente">Vendre un article</a>
@@ -64,8 +66,8 @@
 								</ul>
 						</div>
 						<div id="divVente">
-							<input type="radio" id="achats" name="achats"/>
-							<label for="achats">Mes ventes</label>
+							<input type="radio" id="ventes" name="ventes"/>
+							<label for="ventes">Mes ventes</label>
 								<ul>
 									<li><input type="checkbox" id="ventesEnCours" name="ventesEnCours">
 										<label for="ventesEnCours">mes ventes en cours</label>
