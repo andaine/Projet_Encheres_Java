@@ -30,7 +30,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				
+
 				user.setMotDePasse(rs.getString("mot_de_passe"));
 				user.setPseudo(rs.getString("pseudo"));
 				user.setNom(rs.getString("nom"));
@@ -46,7 +46,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				} else {
 					user.setAdministrateur(true);
 				}
-				
+
 				System.out.println("connecté");
 				System.out.println(user.getEmail());
 			} else {
@@ -89,11 +89,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			}
 
 		} catch (SQLException e) {
-//			BusinessException be = new BusinessException();
-//			be.addMessage("L'insertion d'un user a généré une erreur");
-//			// throw lance l'exception et envoie le message aux couches supérieures
-//			throw be;
 			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - insertion de l'utilisateur impossible");
+			throw be;
 		}
 	}
 
@@ -110,8 +109,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - suppression de l'utilisateur impossible");
+
 		}
 
 	}
