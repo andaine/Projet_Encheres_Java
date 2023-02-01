@@ -12,4 +12,6 @@ public interface UserDAO {
 	public void supprimerCompte(int id) throws BusinessException;
 
 	public void updateUser(Utilisateur userUpdate) throws BusinessException;
+	
+	public Utilisateur selectUser(String pseudo) throws BusinessException;
 }

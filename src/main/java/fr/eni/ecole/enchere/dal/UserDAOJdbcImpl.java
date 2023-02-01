@@ -11,6 +11,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class UserDAOJdbcImpl implements UserDAO {
 
 	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
+	private static final String SELECT_USER = "SELECT * FROM Utilisateur WHERE pseudo=?";
 	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE FROM Utilisateurs WHERE no_utilisateur=?";
@@ -20,13 +21,12 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
-
-		PreparedStatement stmt = null;
+		
 		Utilisateur user = new Utilisateur();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			stmt = cnx.prepareStatement(LOGIN);
+			PreparedStatement stmt = cnx.prepareStatement(LOGIN);
 			stmt.setString(1, pseudo);
 			stmt.setString(2, pwd);
 
@@ -166,5 +166,31 @@ public class UserDAOJdbcImpl implements UserDAO {
 			// throw lance l'exception et envoie le message aux couches supérieures
 			throw be;
 		}
+	}
+
+	@Override
+	public Utilisateur selectUser(String pseudo) throws BusinessException {
+		
+		Utilisateur user = new Utilisateur();
+		
+		try(Connection con = ConnectionProvider.getConnection()){
+			
+			PreparedStatement pstmt = con.prepareStatement(SELECT_USER);
+			pstmt.setString(1, pseudo);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
