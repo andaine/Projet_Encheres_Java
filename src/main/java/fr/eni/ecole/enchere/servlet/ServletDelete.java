@@ -23,8 +23,9 @@ public class ServletDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("doget - servlet");
 		String idStr = request.getParameter("id");
+		System.out.println("test servlet delete " + idStr);
 		int id = Integer.parseInt(idStr);
 		EnchereManager mgr = new EnchereManager();
 		try {
