@@ -43,7 +43,6 @@ public class ServletLogin extends HttpServlet {
 				String pseudo = request.getParameter("identifiant");
 				String mdp = request.getParameter("motDePasse");
 
-
 					userConnecte = em.validerUtilisateur(pseudo, mdp);
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnecte", userConnecte);
@@ -51,20 +50,18 @@ public class ServletLogin extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
 					rd.forward(request, response);
 
-
 			} else {
-				// TODO : rajouter BusinessException avec message "veuillez remplir les 2 cases"
 				BusinessException be = new BusinessException();
-				be.addMessage("veuillez remplir les 2 champs");
+				be.addMessage("Servlet : veuillez remplir les 2 champs");
+				be.printStackTrace();
+				request.setAttribute("listeErreur", be.getListeMessage());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
 				rd.forward(request, response);
 			}
 		} catch (BusinessException e) {
-
+			e.printStackTrace();
+			request.setAttribute("listeErreur", e.getListeMessage());
 			doGet(request, response);
-			System.out.println("erreur servlet");
 		}
-
 	}
-
 }
