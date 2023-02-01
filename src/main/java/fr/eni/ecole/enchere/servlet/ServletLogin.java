@@ -55,8 +55,9 @@ public class ServletLogin extends HttpServlet {
 				be.addMessage("Servlet : veuillez remplir les 2 champs");
 				be.printStackTrace();
 				request.setAttribute("listeErreur", be.getListeMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
-				rd.forward(request, response);
+
+				doGet(request, response);
+
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
