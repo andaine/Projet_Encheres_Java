@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Utilisateur;
@@ -26,39 +28,41 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		HttpSession session = request.getSession();
+		
 		System.out.println("dopost - servlet update");
 
-		if (request.getParameter("mdpConfirmer").equals(request.getParameter("mdpNouveau"))) {
+		String pseudo = request.getParameter("pseudoModifier");
+		String nom = request.getParameter("nomModifier");
+		String prenom = request.getParameter("prenomModifier");
+		String email = request.getParameter("emailModifier");
+		String telephone = request.getParameter("telModifier");
+		String rue = request.getParameter("rueModifier");
+		String code_postal = request.getParameter("codePModifier");
+		String ville = request.getParameter("villeModifier");
+//		String mot_de_passe = request.getParameter("mdpConfirmer");
+
+		if (request.getParameter("mdpConfirmer").equals(request.getParameter("mdpNouveau")) && request.getParameter("mdpActuel").equals("")) {
 			
-			String pseudo = request.getParameter("pseudoModifier");
-			String nom = request.getParameter("nomModifier");
-			String prenom = request.getParameter("prenomModifier");
-			String email = request.getParameter("emailModifier");
-			String telephone = request.getParameter("telModifier");
-			String rue = request.getParameter("rueModifier");
-			String code_postal = request.getParameter("codePModifier");
-			String ville = request.getParameter("villeModifier");
-			String mot_de_passe = request.getParameter("mdpConfirmer");
+			String mdpNouveau = request.getParameter("mdpNouveau");
+			Utilisateur userUpdate = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mdpNouveau);
+			userUpdate.setNoUtilisateur(Integer.parseInt(request.getParameter("id")) );
+		} 
 
-			EnchereManager em = new EnchereManager();
-			Utilisateur userUpdate = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville,
-					mot_de_passe);
+		System.out.println(pseudo);
+		EnchereManager em = new EnchereManager();
+		Utilisateur userUpdate = new Utilisateur();
 
-			try {
-				em.updateUtilisateur(userUpdate);
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println();
+		try {
+			em.updateUtilisateur(userUpdate);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
 	}
