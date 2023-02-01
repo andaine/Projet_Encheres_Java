@@ -56,7 +56,7 @@ public class ServletLogin extends HttpServlet {
 				be.printStackTrace();
 				request.setAttribute("listeErreur", be.getListeMessage());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connexion.jsp");
-				rd.forward(request, response);  
+				rd.forward(request, response);
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
