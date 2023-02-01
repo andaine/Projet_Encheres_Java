@@ -51,14 +51,14 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				System.out.println(user.getEmail());
 			} else {
 				BusinessException businessException = new BusinessException();
-				businessException.addMessage("utilisateur inexistant");
+				businessException.addMessage("DAL exception - utilisateur inexistant");
 				throw businessException;
 			}
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
-			businessException.addMessage("utilisateur inexistant");
+			businessException.addMessage("DAL exception - échec de connexion");
 			throw businessException;
 		}
 
