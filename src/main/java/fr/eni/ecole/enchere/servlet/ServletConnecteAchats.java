@@ -34,6 +34,8 @@ public class ServletConnecteAchats extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
 		int id = userConnecte.getNoUtilisateur();
+		System.out.println(" -------------------------------servlet connecte achats");
+		System.out.println(id);
 		EnchereManager mgr = new EnchereManager();
 
 		try {
