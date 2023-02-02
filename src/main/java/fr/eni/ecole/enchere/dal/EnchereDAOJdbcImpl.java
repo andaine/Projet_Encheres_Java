@@ -15,30 +15,31 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO{
 
-	private static final String SELECT_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.nom, a.nom_article FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article WHERE NOT e.no_utilisateur=?";
+	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.nom, a.nom_article FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article";
+	private static final String SELECT_AUTRES_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.nom, a.nom_article FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article WHERE NOT e.no_utilisateur=?";
 	private static final String SELECT_MES_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.nom, a.nom_article FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article WHERE e.no_utilisateur=?";
 	
 	
 	
 	@Override
-	public List<Enchere> afficherEncheres() throws BusinessException {
+	public List<Enchere> afficherAllEncheres() throws BusinessException {
 		
-		List<Enchere> listeEncheres = new ArrayList<>();
+		List<Enchere> listeAllEncheres = new ArrayList<>();
 	
 		
 		try (Connection con = ConnectionProvider.getConnection()){
 			
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ENCHERES);	
+			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERES);	
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
 				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
 						rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("nom"));
 				  
-				listeEncheres.add(enchere);
+				listeAllEncheres.add(enchere);
 			}
-			for(Enchere e : listeEncheres) {
-				System.out.println("DAL encheres : " + e.getMontantEnchere());
+			for(Enchere e : listeAllEncheres) {
+				System.out.println("DAL allEncheres : " + e.getMontantEnchere());
 			}
 
 		} catch (SQLException e) {
@@ -48,21 +49,22 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			throw be;			
 		}
 
-		return listeEncheres;
+		return listeAllEncheres;
 	}
 
 
 
 	@Override
-	public List<Enchere> afficherMesEncheres() throws BusinessException {
+	public List<Enchere> afficherMesEncheres(int id) throws BusinessException {
 
 		List<Enchere> listeMesEncheres = new ArrayList<>();
 		
 		try (Connection con = ConnectionProvider.getConnection()){
 			
 	
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ENCHERES);	
+			PreparedStatement pstmt = con.prepareStatement(SELECT_MES_ENCHERES);			
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
 				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
@@ -71,7 +73,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 				listeMesEncheres.add(enchere);
 			}
 			for(Enchere e : listeMesEncheres) {
-				System.out.println("DAL encheres : " + e.getMontantEnchere());
+				System.out.println("DAL mesEncheres : " + e.getMontantEnchere());
 			}
 
 		} catch (SQLException e) {
@@ -83,6 +85,44 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 
 		return listeMesEncheres;
 	}
+
+
+
+	@Override
+	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException {
+		
+			
+			List<Enchere> listeAutresEncheres = new ArrayList<>();
+		
+			
+			try (Connection con = ConnectionProvider.getConnection()){
+				
+				PreparedStatement pstmt = con.prepareStatement(SELECT_AUTRES_ENCHERES);
+				pstmt.setInt(1, id);
+				ResultSet rs = pstmt.executeQuery();	
+				while(rs.next()) {
+					System.out.println(rs.getInt("montant_enchere"));
+					Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
+							rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("nom"));
+					  
+					listeAutresEncheres.add(enchere);
+				}
+				for(Enchere e : listeAutresEncheres) {
+					System.out.println("DAL autresEncheres : " + e.getMontantEnchere());
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				BusinessException be = new BusinessException();
+				be.addMessage("DAL exception - Impossible d'afficher la liste des enchères");
+				throw be;			
+			}
+
+			return listeAutresEncheres;
+		}
+
+
+
 
 	
 	

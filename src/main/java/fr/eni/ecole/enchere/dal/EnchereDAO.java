@@ -6,8 +6,12 @@ import fr.eni.ecole.enchere.bo.Enchere;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 public interface EnchereDAO {
-
-	public List<Enchere> afficherEncheres() throws BusinessException;
 	
-	public List<Enchere> afficherMesEncheres() throws BusinessException;
+	
+
+	public List<Enchere> afficherAllEncheres() throws BusinessException;
+	
+	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException;
+	
+	public List<Enchere> afficherMesEncheres(int id) throws BusinessException;
 }
