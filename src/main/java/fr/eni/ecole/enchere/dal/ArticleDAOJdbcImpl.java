@@ -13,7 +13,6 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
-	private int nb=4;
 	
 
 	@Override
