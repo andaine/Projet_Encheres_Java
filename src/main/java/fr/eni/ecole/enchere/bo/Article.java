@@ -1,6 +1,7 @@
 package fr.eni.ecole.enchere.bo;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class Article {
@@ -13,29 +14,15 @@ public class Article {
 	private int prixInitial;
 	private int prixVente;
 	private String etatVente;
+	private List<Enchere>enchereListe;
 
 	
 	public Article() {
 		super();
 	}
-
-	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixInitial, int prixVente, String etatVente) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-	}
-
-
-
-
+	
 	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente, String etatVente) {
+			LocalDate dateFinEncheres, int prixInitial, int prixVente, String etatVente, List<Enchere> enchereListe) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -45,8 +32,23 @@ public class Article {
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.enchereListe = enchereListe;
 	}
 
+
+
+	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			int prixInitial, int prixVente, String etatVente, List<Enchere> enchereListe) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.enchereListe = enchereListe;
+	}
 
 
 	@Override
@@ -57,20 +59,10 @@ public class Article {
 	}
 	
 
-
-
-
 	public int getNoArticle() {
 		return noArticle;
 	}
 	
-
-
-
-
-
-
-
 
 
 	public String getNomArticle() {
@@ -79,21 +71,15 @@ public class Article {
 	
 
 
-
-
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
 	}
 	
 
 
-
-
 	public String getDescription() {
 		return description;
 	}
-
-
 
 
 	public void setDescription(String description) {
@@ -102,29 +88,22 @@ public class Article {
 	
 
 
-
-
 	public LocalDate getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 	
 
 
-
-
 	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
-
-
+	
 
 	public LocalDate getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 	
-
-
 
 
 	public void setDateFinEncheres(LocalDate dateFinEncheres) {
@@ -133,13 +112,9 @@ public class Article {
 	
 
 
-
-
 	public int getPrixInitial() {
 		return prixInitial;
 	}
-	
-
 
 
 
@@ -149,13 +124,10 @@ public class Article {
 
 
 
-
 	public int getPrixVente() {
 		return prixVente;
 	}
 	
-
-
 
 
 	public void setPrixVente(int prixVente) {
@@ -164,19 +136,25 @@ public class Article {
 	
 
 
-
-
 	public String getEtatVente() {
 		return etatVente;
 	}
 	
 
 
-
-
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
 	}
-	
-	
+
+	public List<Enchere> getEnchereListe() {
+		return enchereListe;
+	}
+
+	public void setEnchereListe(List<Enchere> enchereListe) {
+		this.enchereListe = enchereListe;
+	}
+
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
+	}
 }
