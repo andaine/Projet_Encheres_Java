@@ -1,7 +1,5 @@
 package fr.eni.ecole.enchere.bll;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -35,6 +33,7 @@ public class UserManager {
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
 		System.out.println("Manager");
+		validerUtilisateur(user);
 		userDAO.insert(user);
 	}
 	
@@ -54,31 +53,38 @@ public class UserManager {
 		StringBuilder sb = new StringBuilder();
 		
 		if (userAValider.getPseudo().isEmpty()) {
-            sb.append("Pseudo non renseignée.\n");
+            sb.append("Le pseudo est obligatoire.\n");
         }
 
         if (userAValider.getNom().isEmpty()) {
-        	sb.append("nom non renseignée.\n");
+        	sb.append("Le nom est obligatoire.\n");
         }
         if (userAValider.getPrenom().isEmpty()) {
-        	sb.append("prenom non valide.\n");
-        }
-        
-        if (userAValider.getCodePostal().isEmpty()) {
-        	sb.append("Le codepostal non renseigné.\n");
+        	sb.append("Le prénom est obligatoire.\n");
         }
         
         if (userAValider.getEmail().isEmpty()) {
-        	sb.append("L'email non renseigné.\n");
+        	sb.append("L'email est obligatoire.\n");
+        }
+        
+        if (userAValider.getTelephone().length()!=10) {
+            sb.append("Le format du telephone est non valide.\n");
         }
         
         if (userAValider.getRue().isEmpty()) {
-        	sb.append("la rue non renseigné.\n");
+        	sb.append("La rue est obligatoire.\n");
         }
         
+        if (userAValider.getCodePostal().isEmpty()) {
+        	sb.append("Le code postal est obligatoire.\n");
+        }
+        
+        if (userAValider.getVille().isEmpty()) {
+        	sb.append("La ville est obligatoire.\n");
+        }
         
         if (userAValider.getMotDePasse().isEmpty()) {
-        	sb.append("mot de passe non renseigné.\n");
+        	sb.append("Le mot de passe est obligatoire.\n");
         }
         
        System.out.println("manager valider user");
