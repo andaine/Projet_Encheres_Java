@@ -11,9 +11,12 @@
 <title>JSP modifier profil</title>
 </head>
 <body>
-	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
-		${be}
-	</c:forEach></p>
+	<c:forEach var="be" items="${listeErreur}">
+		<div><p style="color:red">${be}</p> </div>
+	</c:forEach>
+	
+	
+	
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 		<h1>Mon Profil</h1>

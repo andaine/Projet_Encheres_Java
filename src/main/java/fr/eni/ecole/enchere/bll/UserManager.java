@@ -50,50 +50,48 @@ public class UserManager {
 	}
 	
 	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
-		StringBuilder sb = new StringBuilder();
+	
+		BusinessException be = new BusinessException();
 		
 		if (userAValider.getPseudo().isEmpty()) {
-            sb.append("Le pseudo est obligatoire.\n");
+			be.addMessage("Le pseudo est obligatoire.\n");
         }
 
         if (userAValider.getNom().isEmpty()) {
-        	sb.append("Le nom est obligatoire.\n");
+        	be.addMessage("Le nom est obligatoire.\n");
         }
         if (userAValider.getPrenom().isEmpty()) {
-        	sb.append("Le prénom est obligatoire.\n");
+        	be.addMessage("Le prénom est obligatoire.\n");
         }
         
         if (userAValider.getEmail().isEmpty()) {
-        	sb.append("L'email est obligatoire.\n");
+        	be.addMessage("L'email est obligatoire.\n");
         }
         
         if (userAValider.getTelephone().length()!=10) {
-            sb.append("Le format du telephone est non valide.\n");
+        	be.addMessage("Le format du telephone est non valide.\n");
         }
         
         if (userAValider.getRue().isEmpty()) {
-        	sb.append("La rue est obligatoire.\n");
+        	be.addMessage("La rue est obligatoire.\n");
         }
         
         if (userAValider.getCodePostal().isEmpty()) {
-        	sb.append("Le code postal est obligatoire.\n");
+        	be.addMessage("Le code postal est obligatoire.\n");
         }
         
         if (userAValider.getVille().isEmpty()) {
-        	sb.append("La ville est obligatoire.\n");
+        	be.addMessage("La ville est obligatoire.\n");
         }
         
         if (userAValider.getMotDePasse().isEmpty()) {
-        	sb.append("Le mot de passe est obligatoire.\n");
+        	be.addMessage("Le mot de passe est obligatoire.\n");
         }
         
        System.out.println("manager valider user");
      
-        if(sb.length()>0) {
-        	String resultat = sb.toString();
-        	System.out.println(resultat);
-        	BusinessException be = new BusinessException();
-			be.addMessage(resultat);
+        if(!be.getListeMessage().isEmpty()) {
+        
         	throw be;
         	
         }
