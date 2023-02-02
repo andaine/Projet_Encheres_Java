@@ -71,11 +71,9 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 				session.setAttribute("userConnecte", userConnecte);
 			} catch (BusinessException e) {
 				request.setAttribute("listeErreur", e.getListeMessage());
-				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
 				rd.forward(request, response);
 			}
-
-		System.out.println("test");
 	
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
 		rd.forward(request, response);
