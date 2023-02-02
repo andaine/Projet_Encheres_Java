@@ -17,13 +17,32 @@ public class EnchereManager {
 		
 	}
 	
-	public List<Enchere> afficherEncheres() throws BusinessException{
-			
-		List<Enchere> listeEncheres = enchereDAO.afficherEncheres();
-		for(Enchere e : listeEncheres) {
+	public List<Enchere> afficherAllEncheres() throws BusinessException{
+		
+		List<Enchere> listeAllsEncheres = enchereDAO.afficherAllEncheres();
+		for(Enchere e : listeAllsEncheres) {
 			System.out.println("BLL encheres : " + e.getMontantEnchere());
 		}
-		return listeEncheres;
+		return listeAllsEncheres;
 	}
 	
+	
+	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException{
+			
+		List<Enchere> listeAutresEncheres = enchereDAO.afficherAutresEncheres(id);
+		for(Enchere e : listeAutresEncheres) {
+			System.out.println("BLL encheres : " + e.getMontantEnchere());
+		}
+		return listeAutresEncheres;
+	}
+	
+	public List<Enchere> afficherMesEncheres(int id) throws BusinessException	{
+		
+		List<Enchere> listeMesEncheres = enchereDAO.afficherMesEncheres(id);
+		for(Enchere e : listeMesEncheres) {
+			System.out.println("BLL mesEncheres : " + e.getMontantEnchere());
+		}
+		return listeMesEncheres;
+		
+	}
 }

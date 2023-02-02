@@ -44,7 +44,7 @@ public class ServletAccueil extends HttpServlet {
 		EnchereManager mgr = new EnchereManager();
 
 		try {
-			List<Enchere> listeEncheres = mgr.afficherEncheres();
+			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
 			request.setAttribute("listeEncheres", listeEncheres);
 			for(Enchere e : listeEncheres) {
 				System.out.println("Servlet encheres : " + e.getMontantEnchere());

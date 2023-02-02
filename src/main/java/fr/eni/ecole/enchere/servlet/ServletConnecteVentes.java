@@ -20,8 +20,8 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 /**
  * Servlet implementation class ServletConnexion
  */
-@WebServlet("/ServletConnecteAchats")
-public class ServletConnecteAchats extends HttpServlet {
+@WebServlet("/ServletConnecteVentes")
+public class ServletConnecteVentes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -37,9 +37,9 @@ public class ServletConnecteAchats extends HttpServlet {
 		EnchereManager mgr = new EnchereManager();
 
 		try {
-			List<Enchere> listeAutresEncheres = mgr.afficherAutresEncheres(id);
-			request.setAttribute("listeEncheres", listeAutresEncheres);
-			for(Enchere e : listeAutresEncheres) {
+			List<Enchere> listeMesEncheres = mgr.afficherMesEncheres(id);
+			request.setAttribute("listeEncheres", listeMesEncheres);
+			for(Enchere e : listeMesEncheres) {
 				System.out.println("Servlet encheres : " + e.getMontantEnchere());
 			}
 		} catch (BusinessException e) {
@@ -48,7 +48,7 @@ public class ServletConnecteAchats extends HttpServlet {
 			be.addMessage("ca marche pas");
 		}
 	
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecteAchats.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecteVentes.jsp");
 		rd.forward(request, response);
 	}
 

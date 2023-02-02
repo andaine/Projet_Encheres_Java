@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/ServletConnecteAchats"
 					name="lienEncheres" id="lienEncheres">Enchères</a></li>
-				<li><a href="<%=request.getContextPath()%>/WEB-INF/jsp/nouvelleVente.jsp"
+				<li><a href="<%=request.getContextPath()%>/..."
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a> <!--  TODO ServletNouvelleVente --></li>
 				<li><a href="<%=request.getContextPath()%>/ServletMonProfil"
@@ -51,7 +51,7 @@
 			<!--  SECTION MES ACHATS/MES VENTES -->
 			<section id="sectionAchatVente">
 				<div id="divAchat">
-					<input type="radio" id="achats" name="radioButton" value="Achats" checked/>
+					<input type="radio" id="achats" name="radioButton" value="Achats" />
 					<label for="achats">Achats</label>
 					<ul>
 						<li><input type="checkbox" id="encheresOuvertes"
@@ -66,7 +66,7 @@
 					</ul>
 				</div>
 				<div id="divVente">
-					<input type="radio" id="ventes" name="radioButton" /> <label
+					<input type="radio" id="ventes" name="radioButton" checked/> <label
 						for="ventes">Mes ventes</label>
 					<ul>
 						<li><input type="checkbox" id="ventesEnCours"
