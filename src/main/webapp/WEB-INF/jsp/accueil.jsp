@@ -23,12 +23,9 @@
 
 			<label for="selectCategorie" id="labelCategorie">Catégories</label>
 			<select name="categorie" id="categorie">
-				<p><c:forEach var="cat" items="${categorie}">
-					${cat}
-				</c:forEach></p>   
-			
-			
-				<!-- TODO integrer la liste Catégories dans le select -->
+                <c:forEach var="cat" items="${categorie}">
+                <option value="${cat}">${cat}</option>
+                </c:forEach> 
 			</select>
 			<input type="submit" id="boutonRechercher" value="Rechercher">
 		</form>
