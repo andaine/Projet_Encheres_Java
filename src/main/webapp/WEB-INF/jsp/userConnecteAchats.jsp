@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/ServletConnecteAchats"
 					name="lienEncheres" id="lienEncheres">Enchères</a></li>
-				<li><a href="<%=request.getContextPath()%>/ServletNouvelleVente"
+				<li><a href="<%=request.getContextPath()%>/WEB-INF/jsp/nouvelleVente.jsp"
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a> <!--  TODO ServletNouvelleVente --></li>
 				<li><a href="<%=request.getContextPath()%>/ServletMonProfil"
@@ -44,9 +44,11 @@
 			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
-			<label for="selectCategorie" id="labelCategorie">Catégories</label> <select
-				name="categorie" id="categorie">
-				<!-- TODO integrer la liste Catégories dans le select -->
+			<label for="selectCategorie" id="labelCategorie">Catégories</label>
+			<select name="categorie" id="categorie">
+				<c:forEach var="cat" items="${categorie}">
+					<option value="${cat.noCategorie}">${cat.libelle}</option>
+				</c:forEach>
 			</select>
 			<!--  SECTION MES ACHATS/MES VENTES -->
 			<section id="sectionAchatVente">
