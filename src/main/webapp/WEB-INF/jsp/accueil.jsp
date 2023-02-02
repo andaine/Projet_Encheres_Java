@@ -19,8 +19,11 @@
 
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
+		<a href="<%=request.getContextPath()%>/ServletCreateAccount" name="lienInscrire"
+			id="lienLogin">S'inscrire</a>
+		<p> - </p>
 		<a href="<%=request.getContextPath()%>/ServletLogin" name="lienLogin"
-			id="lienLogin">S'inscrire - Se connecter</a>
+			id="lienLogin">Se connecter</a>
 		<h2 id="titreListe">Liste des enchères</h2>
 	</header>
 
