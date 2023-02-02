@@ -26,13 +26,12 @@
 					</c:forEach>
 			</select></li>
 
-			<li><label for="email" id="prix">Mise à prix :</label> <input
-				type="number" id="prix" name="prix" step="50"></li>
-			<li><label for="telephone" id="labelTelephone">Début des
-					enchère :</label>
-				<p id="telephone" name="telephone"></p></li>
-			<li><label for="rue" id="labelRue">Fin des enchères :</label>
-				<p id="rue" name="rue"></p></li>
+			<li><label for="email" id="prix">Mise à prix :</label>
+			 <input type="number" id="prix" name="prix" step="50" min="1"></li>
+			<li><label for="debutEnchere" id="debutEnchere">Début des enchère :</label>
+				 <input type="date" id="debutEnchere" name="debutEnchere"></li>
+			<li><label for="finEnchere">Fin des enchères :</label>
+				 <input type="date" id="finEnchere" name="finEnchere" ></li>
 			<li>
 		</ul>
 
@@ -42,11 +41,11 @@
 				<legend>Retrait</legend>
 
 				<label for="rue">Rue : </label>
-				<input type="text" id="rue" name="rueRetrait" value=""> <br> 
+				<input type="text" id="rue" name="rueRetrait" value="${userConnecte.getRue()}"> <br> 
 				<label for="sasquatch">Code Postal :</label>
-				<input type="text" id="sasquatch" name="monster" value=""> <br> 
-				 <label for="mothman">Mothman : </label>
-				<input type="text" id="mothman" name="monster" value="" />
+				<input type="text" id="sasquatch" name="monster" value="${userConnecte.getCodePostal()}"> <br> 
+				 <label for="mothman">Ville : </label>
+				<input type="text" id="mothman" name="monster" value="${userConnecte.getVille()}" />
 			</fieldset>
 		</form>
 
