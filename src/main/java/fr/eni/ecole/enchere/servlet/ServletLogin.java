@@ -47,7 +47,7 @@ public class ServletLogin extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnecte", userConnecte);
 
-					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecteAchats.jsp");
 					rd.forward(request, response);
 
 			} else {
