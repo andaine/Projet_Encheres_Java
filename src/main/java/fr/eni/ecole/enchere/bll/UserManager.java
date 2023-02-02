@@ -53,41 +53,43 @@ public class UserManager {
 	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
 		StringBuilder sb = new StringBuilder();
 		
-		if (userAValider.getPseudo().length()>0) {
+		if (userAValider.getPseudo().isEmpty()) {
             sb.append("Pseudo non renseignée.\n");
         }
 
-        if (userAValider.getNom().length()>0) {
+        if (userAValider.getNom().isEmpty()) {
         	sb.append("nom non renseignée.\n");
         }
-        if (userAValider.getPrenom().length()>0) {
+        if (userAValider.getPrenom().isEmpty()) {
         	sb.append("prenom non valide.\n");
         }
         
-        if (userAValider.getCodePostal().length()>0) {
+        if (userAValider.getCodePostal().isEmpty()) {
         	sb.append("Le codepostal non renseigné.\n");
         }
         
-        if (userAValider.getEmail().length()>0) {
+        if (userAValider.getEmail().isEmpty()) {
         	sb.append("L'email non renseigné.\n");
         }
         
-        if (userAValider.getRue().length()>0) {
+        if (userAValider.getRue().isEmpty()) {
         	sb.append("la rue non renseigné.\n");
         }
         
         
-        if (userAValider.getMotDePasse().length()>0) {
+        if (userAValider.getMotDePasse().isEmpty()) {
         	sb.append("mot de passe non renseigné.\n");
         }
         
-       String resultat = sb.toString();
        System.out.println("manager valider user");
-        System.out.println(resultat);
+     
         if(sb.length()>0) {
+        	String resultat = sb.toString();
+        	System.out.println(resultat);
         	BusinessException be = new BusinessException();
 			be.addMessage(resultat);
         	throw be;
+        	
         }
 	}
 }
