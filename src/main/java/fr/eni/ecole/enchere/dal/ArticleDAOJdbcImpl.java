@@ -15,9 +15,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
 
 	@Override
-	public List<Categorie> selectCategories() throws BusinessException {
+	public List<String> selectCategories() throws BusinessException {
 
-		List<Categorie> categoriesListe = new ArrayList<Categorie>();
+		List<String> categoriesListe = new ArrayList<String>();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
@@ -25,10 +25,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			ResultSet rs = stmt.executeQuery(SELECT_CATEGORIES);
 			
 			while (rs.next()) {
-				Categorie categorie = new Categorie();
-				categoriesListe.add(categorie);
+				
+				categoriesListe.add(rs.getString("libelle"));
 				}
 
+			
 		} catch (SQLException e) {
 			BusinessException be = new BusinessException();
 			be.addMessage("la liste des catégories n'a pas pu être chargée");

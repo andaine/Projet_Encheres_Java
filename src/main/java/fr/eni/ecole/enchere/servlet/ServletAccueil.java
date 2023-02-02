@@ -34,7 +34,8 @@ public class ServletAccueil extends HttpServlet {
 		ArticleManager am = new ArticleManager();
 		
 		try {
-			List<Categorie> listeCategories = am.afficherCategories();
+			List<String> listeCategories = am.afficherCategories();
+			
 			request.setAttribute("categorie", listeCategories);
 		} catch (BusinessException e) {
 			e.printStackTrace();
