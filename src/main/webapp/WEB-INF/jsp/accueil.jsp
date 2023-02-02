@@ -24,9 +24,10 @@
 			<label for="selectCategorie" id="labelCategorie">Catégories</label>
 			<select name="categorie" id="categorie">
                 <c:forEach var="cat" items="${categorie}">
-                <option value="${cat}">${cat}</option>
+                <option value="${cat.noCategorie}">${cat.libelle}</option>
                 </c:forEach> 
 			</select>
+			
 			<input type="submit" id="boutonRechercher" value="Rechercher">
 		</form>
 	</section>

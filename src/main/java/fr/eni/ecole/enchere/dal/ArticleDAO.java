@@ -7,7 +7,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public interface ArticleDAO {
 
-	public List<String>selectCategories() throws BusinessException;
+	public List<Categorie>selectCategories() throws BusinessException;
 	
 	
 }
