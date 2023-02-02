@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,11 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 		
 		try (Connection con = ConnectionProvider.getConnection()){
 			
-			PreparedStatement pstmt = con.prepareStatement(SELECT_ENCHERES);
-			ResultSet rs = pstmt.executeQuery();
-			
-			LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_ENCHERES);	
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
-				Enchere enchere = new Enchere(dateEnchere, rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"));
+				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"));
 				listeEncheres.add(enchere);
 			}
 			for(Enchere e : listeEncheres) {
