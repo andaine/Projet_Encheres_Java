@@ -14,8 +14,9 @@
 		<h1 id="ENI">ENI-Encheres</h1>
 	</header>
 	
-	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
-		${be}
+	<p style="color:red">
+	<c:forEach var="be" items="${listeErreur}">
+		${be}<br>
 	</c:forEach></p>
 	
 	<h2>Mon profil</h2>

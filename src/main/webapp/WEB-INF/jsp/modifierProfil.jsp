@@ -11,9 +11,11 @@
 <title>JSP modifier profil</title>
 </head>
 <body>
+	<p>
 	<c:forEach var="be" items="${listeErreur}">
-		<div><p style="color:red">${be}</p> </div>
+		<div style = "color:red">${be} <br> </div>
 	</c:forEach>
+	</p> 
 	
 	
 	
