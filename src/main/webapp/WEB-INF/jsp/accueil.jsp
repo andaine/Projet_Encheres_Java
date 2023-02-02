@@ -17,7 +17,6 @@
 </head>
 <body>
 
-
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 		<a href="<%=request.getContextPath()%>/ServletLogin" name="lienLogin"
@@ -42,7 +41,6 @@
 	</section>
 
 	<section id="afficherEncheres">
-		<!-- TODO afficher la liste des encheres en cours -->
 		<c:forEach var="e" items="${listeEncheres}">
 			<div id="divEnchere">			
 				<p>${e.getNomArticle() }</p>
@@ -53,16 +51,7 @@
 			</div>
 		</c:forEach>
 
-
-
-
-
-
 	</section>
-
-
-
-
 
 </body>
 </html>
