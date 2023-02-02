@@ -1,15 +1,24 @@
 package fr.eni.ecole.enchere.bo;
 
+import java.util.List;
+
 public class Categorie {
 
 	private int noCategorie;
 	private String libelle;
-	
-	
+	private List<Article> categorieArticle;
 	
 	
 	public Categorie() {
 		super();
+	}
+
+	
+	public Categorie(int noCategorie, String libelle, List<Article> categorieArticle) {
+		super();
+		this.noCategorie = noCategorie;
+		this.libelle = libelle;
+		this.categorieArticle = categorieArticle;
 	}
 
 
@@ -44,6 +53,17 @@ public class Categorie {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+
+
+	public List<Article> getCategorieArticle() {
+		return categorieArticle;
+	}
+
+
+	public void setCategorieArticle(List<Article> categorieArticle) {
+		this.categorieArticle = categorieArticle;
+	}
+	
 	
 	
 }
