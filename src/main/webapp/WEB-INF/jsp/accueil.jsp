@@ -6,6 +6,8 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/style.css">
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -33,13 +35,15 @@
 			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
-
+			<input type="submit" id="boutonRechercher" value="Rechercher">
+			<br>
+			<br>
 			<label for="selectCategorie" id="labelCategorie">Catégories</label> <select
 				name="categorie" id="categorie">
 				<c:forEach var="cat" items="${categorie}">
 					<option value="${cat.noCategorie}">${cat.libelle}</option>
 				</c:forEach>
-			</select> <input type="submit" id="boutonRechercher" value="Rechercher">
+			</select>
 		</form>
 	</section>
 
