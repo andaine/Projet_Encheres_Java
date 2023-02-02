@@ -23,10 +23,8 @@ public class ServletAutreProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		//TODO
-//		UserManager mgr = new UserManager();
-//		mgr.afficherUtilisateur(request.get);
+		String nomAutreUser = (String) request.getAttribute("nomAutreUser");
+		System.out.println("test servlet autreUser " + nomAutreUser);
 		
 		
 		

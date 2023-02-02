@@ -51,8 +51,11 @@
 			<!--  SECTION MES ACHATS/MES VENTES -->
 			<section id="sectionAchatVente">
 				<div id="divAchat">
-					<input type="radio" id="achats" name="radioButton" value="Achats" />
-					<label for="achats">Achats</label>
+				
+					
+						<input type="radio" id="achats" name="radioButton" value="Achats" />				
+							<label for="achats">Achats</label>
+				
 					<ul>
 						<li><input type="checkbox" id="encheresOuvertes"
 							name="encheresOuvertes"> <label for="encheresOuvertes">enchères

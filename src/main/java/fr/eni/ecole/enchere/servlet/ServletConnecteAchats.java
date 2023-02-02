@@ -43,7 +43,7 @@ public class ServletConnecteAchats extends HttpServlet {
 		try {
 			List<Enchere> listeAutresEncheres = mgr.afficherAutresEncheres(id);
 			request.setAttribute("listeEncheres", listeAutresEncheres);
-			for(Enchere e : listeAutresEncheres) {
+			for (Enchere e : listeAutresEncheres) {
 				System.out.println("Servlet encheres : " + e.getMontantEnchere());
 			}
 		} catch (BusinessException e) {
@@ -51,21 +51,21 @@ public class ServletConnecteAchats extends HttpServlet {
 			BusinessException be = new BusinessException();
 			be.addMessage("ca marche pas");
 		}
-		
+
 		ArticleManager am = new ArticleManager();
-		
+
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();
-			
+
 			request.setAttribute("categorie", listeCategories);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-	
+
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecteAchats.jsp");
 		rd.forward(request, response);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);

@@ -68,8 +68,10 @@
 					</ul>
 				</div>
 				<div id="divVente">
-					<input type="radio" id="ventes" name="radioButton" /> <label
-						for="ventes">Mes ventes</label>
+					
+						<input type="radio" id="ventes" name="radioButton" />
+							 <label for="ventes">Mes ventes</label>
+					
 					<ul>
 						<li><input type="checkbox" id="ventesEnCours"
 							name="ventesEnCours"> <label for="ventesEnCours">mes
@@ -96,7 +98,9 @@
 				<p>Prix : ${e.getMontantEnchere()}</p>
 				<p>Fin de l'enchère : ${e.getDateEnchere()}</p>
 				<br>
-				<p>Vendeur : ${e.getNomUser() }</p>
+				<p>Vendeur : <a href="${pageContext.request.contextPath }/ServletAutreProfil" id="nomAutreUser">${e.getNomUser() }</a>
+					<c:set var="nomAutreUSer" scope="request" value="${e.getNomUser() }"/>
+				</p>
 			</div>
 		</c:forEach>
 
