@@ -1,5 +1,6 @@
 package fr.eni.ecole.enchere.bll;
 
+import java.util.Iterator;
 import java.util.List;
 
 import fr.eni.ecole.enchere.bo.Enchere;
@@ -19,6 +20,9 @@ public class EnchereManager {
 	public List<Enchere> afficherEncheres() throws BusinessException{
 			
 		List<Enchere> listeEncheres = enchereDAO.afficherEncheres();
+		for(Enchere e : listeEncheres) {
+			System.out.println("BLL encheres : " + e.getMontantEnchere());
+		}
 		return listeEncheres;
 	}
 	

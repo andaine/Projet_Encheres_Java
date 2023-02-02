@@ -46,6 +46,9 @@ public class ServletAccueil extends HttpServlet {
 		try {
 			List<Enchere> listeEncheres = mgr.afficherEncheres();
 			request.setAttribute("listeEncheres", listeEncheres);
+			for(Enchere e : listeEncheres) {
+				System.out.println("Servlet encheres : " + e.getMontantEnchere());
+			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException();

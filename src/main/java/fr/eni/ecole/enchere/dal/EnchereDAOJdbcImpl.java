@@ -20,17 +20,22 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 	@Override
 	public List<Enchere> afficherEncheres() throws BusinessException {
 		
-		List<Enchere> listeEnchere = new ArrayList<>();
+		List<Enchere> listeEncheres = new ArrayList<>();
+	
 		
 		try (Connection con = ConnectionProvider.getConnection()){
 			
 			PreparedStatement pstmt = con.prepareStatement(SELECT_ENCHERES);
 			ResultSet rs = pstmt.executeQuery();
-			Enchere enchere = new Enchere();
+			
 			LocalDate dateEnchere = rs.getDate("date_enchere").toLocalDate();
 			while(rs.next()) {
-				enchere = new Enchere(dateEnchere, rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"));
-				listeEnchere.add(enchere);
+				System.out.println(rs.getInt("montant_enchere"));
+				Enchere enchere = new Enchere(dateEnchere, rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"));
+				listeEncheres.add(enchere);
+			}
+			for(Enchere e : listeEncheres) {
+				System.out.println("DAL encheres : " + e.getMontantEnchere());
 			}
 
 		} catch (SQLException e) {
@@ -40,7 +45,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			throw be;			
 		}
 
-		return listeEnchere;
+		return listeEncheres;
 	}
 
 	
