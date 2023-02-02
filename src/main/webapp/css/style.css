@@ -1,2 +1,41 @@
 @charset "UTF-8";
 
+legend {
+	 padding: 3px 6px;
+	 
+}
+
+
+#image {
+	flex : 0.4;
+}
+
+.fieldset {
+	color : red;
+	 width: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	/*padding: 100px 10px 10px 10px; */
+}
+
+#testBody {
+	
+	
+	 text-align: center;  
+	 
+}
+
+#sectionNouvelleVente {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	flex-direction : column;
+}
+
+ul  {
+	list-style : none;
+}
+
+label {
+	float : left;
+}
