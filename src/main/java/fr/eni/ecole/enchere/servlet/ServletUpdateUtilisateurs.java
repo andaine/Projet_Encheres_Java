@@ -70,8 +70,9 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 				em.updateUtilisateur(userConnecte);
 				session.setAttribute("userConnecte", userConnecte);
 			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				request.setAttribute("listeErreur", e.getListeMessage());
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
+				rd.forward(request, response);
 			}
 
 		System.out.println("test");

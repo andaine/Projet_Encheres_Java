@@ -13,6 +13,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
+	
 
 	@Override
 	public List<Categorie> selectCategories() throws BusinessException {
@@ -24,8 +25,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_CATEGORIES);
 			
+			
+			
 			while (rs.next()) {
-				Categorie categorie = new Categorie();
+				//crée une catégorie avec id et libelle afin de constituer la liste java ace les données de la bdd
+				Categorie categorie = new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"));
 				categoriesListe.add(categorie);
 				}
 
@@ -35,8 +39,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			// throw lance l'exception et envoie le message aux couches supérieures
 			throw be;
 		}
-System.out.println("dal");
+		System.out.println("dal");
 		return categoriesListe;
 
 	}
+	
 }

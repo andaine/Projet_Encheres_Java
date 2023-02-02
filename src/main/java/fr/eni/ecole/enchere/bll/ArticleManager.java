@@ -1,6 +1,5 @@
 package fr.eni.ecole.enchere.bll;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.enchere.bo.Categorie;

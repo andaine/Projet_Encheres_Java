@@ -61,6 +61,7 @@ public class ServletAccueil extends HttpServlet {
 		
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();
+			
 			request.setAttribute("categorie", listeCategories);
 		} catch (BusinessException e) {
 			e.printStackTrace();
