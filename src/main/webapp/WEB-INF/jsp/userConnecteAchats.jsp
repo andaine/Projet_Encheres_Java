@@ -44,9 +44,11 @@
 			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
-			<label for="selectCategorie" id="labelCategorie">Catégories</label> <select
-				name="categorie" id="categorie">
-				<!-- TODO integrer la liste Catégories dans le select -->
+			<label for="selectCategorie" id="labelCategorie">Catégories</label>
+			<select name="categorie" id="categorie">
+				<c:forEach var="cat" items="${categorie}">
+					<option value="${cat.noCategorie}">${cat.libelle}</option>
+				</c:forEach>
 			</select>
 			<!--  SECTION MES ACHATS/MES VENTES -->
 			<section id="sectionAchatVente">
