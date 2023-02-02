@@ -17,7 +17,7 @@ public class Utilisateur {
 	private int credit;
 	private boolean administrateur;
 	private List<Enchere> listEnchere;
-	private List<Articles> listArticleVendus;
+	private List<Article> listArticleVendus;
 	
 	
 	public Utilisateur(String pseudo, String motDePasse) {
@@ -126,7 +126,7 @@ public class Utilisateur {
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
-			List<Enchere> listEnchere, List<Articles> listArticleVendus) {
+			List<Enchere> listEnchere, List<Article> listArticleVendus) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -145,7 +145,7 @@ public class Utilisateur {
 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
-			List<Enchere> listEnchere, List<Articles> listArticleVendus) {
+			List<Enchere> listEnchere, List<Article> listArticleVendus) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;

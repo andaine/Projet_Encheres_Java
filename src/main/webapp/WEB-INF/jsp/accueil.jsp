@@ -17,7 +17,6 @@
 </head>
 <body>
 
-
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 		<a href="<%=request.getContextPath()%>/ServletLogin" name="lienLogin"
@@ -42,25 +41,17 @@
 	</section>
 
 	<section id="afficherEncheres">
-		<!-- TODO afficher la liste des encheres en cours -->
 		<c:forEach var="e" items="${listeEncheres}">
-			<p>COUCOU ${e.getMontantEnchere()}</p>
-
-
-
-
+			<div id="divEnchere">			
+				<p>${e.getNomArticle() }</p>
+				<p>Prix : ${e.getMontantEnchere()}</p>
+				<p>Fin de l'enchère : ${e.getDateEnchere()} </p>
+				<br>
+				<p>Vendeur : ${e.getNomUser() }</p>
+			</div>
 		</c:forEach>
 
-
-
-
-
-
 	</section>
-
-
-
-
 
 </body>
 </html>

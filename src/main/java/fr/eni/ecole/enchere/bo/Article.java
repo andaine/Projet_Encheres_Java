@@ -3,7 +3,7 @@ package fr.eni.ecole.enchere.bo;
 import java.time.LocalDate;
 
 
-public class Articles {
+public class Article {
 
 	private int noArticle;
 	private String nomArticle;
@@ -15,11 +15,11 @@ public class Articles {
 	private String etatVente;
 
 	
-	public Articles() {
+	public Article() {
 		super();
 	}
 
-	public Articles(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, int prixVente, String etatVente) {
 		super();
 		this.nomArticle = nomArticle;
@@ -34,7 +34,7 @@ public class Articles {
 
 
 
-	public Articles(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
 			LocalDate dateFinEncheres, int prixInitial, int prixVente, String etatVente) {
 		super();
 		this.noArticle = noArticle;
