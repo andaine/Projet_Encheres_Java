@@ -44,11 +44,14 @@
 	<section id="afficherEncheres">
 		<!-- TODO afficher la liste des encheres en cours -->
 		<c:forEach var="e" items="${listeEncheres}">
-			<p>COUCOU ${e.getMontantEnchere()}</p>
+			<div id="divEnchere">
 
-
-
-
+				<p>	<!--TODO  NOM ARTICLE --></p>
+				<p>Prix : ${e.getMontantEnchere()}</p>
+				<p>Fin de l'enchère : ${e.getDateEnchere()} </p>
+				<br>
+				<p>Vendeur : <!-- TODO NOM VENDEUR --></p>
+			</div>
 		</c:forEach>
 
 
