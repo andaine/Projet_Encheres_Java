@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="fr.eni.ecole.enchere.bo.Utilisateur" %>    
+
     
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,7 @@
 								</ul>
 						</div>
 						<div id="divVente">
-							<input type="radio" id="ventes" name="ventes"/>
+							<input type="radio" id="ventes" name="achats"/>
 							<label for="ventes">Mes ventes</label>
 								<ul>
 									<li><input type="checkbox" id="ventesEnCours" name="ventesEnCours">
@@ -87,7 +88,11 @@
 
 	<section id="sectionAfficherEncheres">
 		<!-- TODO afficher la liste des encheres en cours -->
+		<div>
+		<span class="encadrer-un-contenu">Ce texte est dans un cadre.
 		
+		</span> 
+		</div>
 		
 		
 		
