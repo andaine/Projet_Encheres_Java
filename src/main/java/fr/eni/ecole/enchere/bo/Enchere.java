@@ -8,7 +8,21 @@ public class Enchere {
 	private int montantEnchere;
 	private int noUser;
 	private int noArticle;
+	private String nomArticle;
+	private String nomUser;
 	
+
+public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle, String nomArticle,
+			String nomUser) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.noUser = noUser;
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.nomUser = nomUser;
+	}
+
 
 public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle) {
 		super();
@@ -70,6 +84,28 @@ public Enchere(LocalDate dateEnchere, int montantEnchere) {
 		this.noArticle = noArticle;
 	}
 	
+
+
+	public String getNomArticle() {
+		return nomArticle;
+	}
+
+
+	public void setNomArticle(String nomArticle) {
+		this.nomArticle = nomArticle;
+	}
+
+
+	public String getNomUser() {
+		return nomUser;
+	}
+
+
+	public void setNomUser(String nomUser) {
+		this.nomUser = nomUser;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
