@@ -15,8 +15,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO{
 
-	private static final String SELECT_ENCHERES = "SELECT * FROM Encheres";
-	
+	private static final String SELECT_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.nom, a.nom_article FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article";
 
 	@Override
 	public List<Enchere> afficherEncheres() throws BusinessException {
@@ -30,7 +29,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			ResultSet rs = stmt.executeQuery(SELECT_ENCHERES);	
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
-				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"));
+				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
+						rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("nom"));
+				  
 				listeEncheres.add(enchere);
 			}
 			for(Enchere e : listeEncheres) {
