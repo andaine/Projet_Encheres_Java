@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/ServletConnecteAchats"
 					name="lienEncheres" id="lienEncheres">Enchères</a></li>
-				<li><a href="<%=request.getContextPath()%>/ServletNouvelleVente"
+				<li><a href="<%=request.getContextPath()%>/WEB-INF/jsp/nouvelleVente.jsp"
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a> <!--  TODO ServletNouvelleVente --></li>
 				<li><a href="<%=request.getContextPath()%>/ServletMonProfil"
