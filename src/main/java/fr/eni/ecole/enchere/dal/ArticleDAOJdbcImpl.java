@@ -1,26 +1,33 @@
 package fr.eni.ecole.enchere.dal;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import fr.eni.ecole.enchere.bo.Utilisateur;
+import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
-public class ArticleDAOJdbcImpl implements ArticleDAO{
+public class ArticleDAOJdbcImpl implements ArticleDAO {
 
-	private static final String SELECT_CATEGORIES ="SELECT * FROM Articles";
+	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
 
 	@Override
-	public void selectCategories() throws BusinessException {
+	public List<Categorie> selectCategories() throws BusinessException {
+
+		List<Categorie> categoriesListe = new ArrayList<Categorie>();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 
-			Statement pstmt = cnx.createStatement();
-
-			pstmt.executeQuery(SELECT_CATEGORIES);
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_CATEGORIES);
+			
+			while (rs.next()) {
+				Categorie categorie = new Categorie();
+				categoriesListe.add(categorie);
+				}
 
 		} catch (SQLException e) {
 			BusinessException be = new BusinessException();
@@ -28,5 +35,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			// throw lance l'exception et envoie le message aux couches supérieures
 			throw be;
 		}
+System.out.println("dal");
+		return categoriesListe;
+
 	}
 }

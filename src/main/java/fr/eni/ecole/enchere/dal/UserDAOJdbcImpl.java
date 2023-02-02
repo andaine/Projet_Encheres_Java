@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -11,7 +12,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class UserDAOJdbcImpl implements UserDAO {
 
 	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
-	private static final String SELECT_USER = "SELECT * FROM Utilisateur WHERE pseudo=?";
+	private static final String SELECT_USER = "SELECT * FROM Utilisateurs WHERE pseudo=?";
 	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE FROM Utilisateurs WHERE no_utilisateur=?";
@@ -19,9 +20,10 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String DELETE_ENCHERE = " DELETE ENCHERES FROM ARTICLES_VENDUS a INNER JOIN ENCHERES e ON e.no_article = a.no_article "
 			+ "WHERE a.no_utilisateur = ?;";
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
+	private static final String UPDATE_MDP = "SELECT * FROM Utilisateurs where no_utilisateur=?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
-		
+
 		Utilisateur user = new Utilisateur();
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
@@ -33,7 +35,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				
+
 				user.setNoUtilisateur(rs.getInt("no_utilisateur"));
 				user.setMotDePasse(rs.getString("mot_de_passe"));
 				user.setPseudo(rs.getString("pseudo"));
@@ -50,7 +52,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 				} else {
 					user.setAdministrateur(true);
 				}
-				
+
 				System.out.println("connecté");
 				System.out.println(user.getEmail());
 			} else {
@@ -94,10 +96,10 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-            BusinessException be = new BusinessException();
-            be.addMessage("DAL exception - insertion de l'utilisateur impossible");
-            throw be;
-			
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - insertion de l'utilisateur impossible");
+			throw be;
+
 		}
 	}
 
@@ -106,23 +108,20 @@ public class UserDAOJdbcImpl implements UserDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			con.setAutoCommit(false);
-			
-			//supprime les encheres de l'user a supprimer
+
+			// supprime les encheres de l'user a supprimer
 			PreparedStatement pstmtEnchere = con.prepareStatement(DELETE_ENCHERE);
 			pstmtEnchere.setInt(1, id);
 			pstmtEnchere.executeUpdate();
 			pstmtEnchere.close();
-			
-			
-			//supprime les articles de l'user a supprimer
+
+			// supprime les articles de l'user a supprimer
 			PreparedStatement pstmtArticle = con.prepareStatement(DELETE_ARTICLE_VENDU);
-			pstmtArticle.setInt(1,id);
+			pstmtArticle.setInt(1, id);
 			pstmtArticle.executeUpdate();
 			pstmtArticle.close();
-			
-			
-			
-			//supprime l'user
+
+			// supprime l'user
 			PreparedStatement pstmtUser = con.prepareStatement(DELETE_USER);
 			pstmtUser.setInt(1, id);
 			pstmtUser.executeUpdate();
@@ -131,10 +130,10 @@ public class UserDAOJdbcImpl implements UserDAO {
 			con.close();
 
 		} catch (SQLException e) {
-			 e.printStackTrace();
-	         BusinessException be = new BusinessException();
-	         be.addMessage("DAL exception - suppression de l'utilisateur impossible");
-	         throw be;
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - suppression de l'utilisateur impossible");
+			throw be;
 		}
 
 	}
@@ -143,22 +142,40 @@ public class UserDAOJdbcImpl implements UserDAO {
 	public void updateUser(Utilisateur userUpdate) throws BusinessException {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
+			String mdpBDD = null;
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_MDP);
 
-			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstmt.setInt(1, userUpdate.getNoUtilisateur());
 
-			pstmt.setString(1, userUpdate.getPseudo());
-			pstmt.setString(2, userUpdate.getNom());
-			pstmt.setString(3, userUpdate.getPrenom());
-			pstmt.setString(4, userUpdate.getEmail());
-			pstmt.setString(5, userUpdate.getTelephone());
-			pstmt.setString(6, userUpdate.getRue());
-			pstmt.setString(7, userUpdate.getCodePostal());
-			pstmt.setString(8, userUpdate.getVille());
-			pstmt.setString(9, userUpdate.getMotDePasse());
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				mdpBDD = rs.getString("mot_de_passe");
+			}
+			
+			
+			pstmt = cnx.prepareStatement(UPDATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			pstmt.setInt(10, userUpdate.getNoUtilisateur());
+			
+			if (userUpdate.getMotDePasse().equals(mdpBDD)) {
 
-			pstmt.executeUpdate();
+				pstmt.setString(1, userUpdate.getPseudo());
+				pstmt.setString(2, userUpdate.getNom());
+				pstmt.setString(3, userUpdate.getPrenom());
+				pstmt.setString(4, userUpdate.getEmail());
+				pstmt.setString(5, userUpdate.getTelephone());
+				pstmt.setString(6, userUpdate.getRue());
+				pstmt.setString(7, userUpdate.getCodePostal());
+				pstmt.setString(8, userUpdate.getVille());
+
+				pstmt.setString(9, userUpdate.getMotDePasse());
+
+				pstmt.setInt(10, userUpdate.getNoUtilisateur());
+
+				pstmt.executeUpdate();
+			} 
+			
+			rs.close();
+			pstmt.close();
 
 		} catch (SQLException e) {
 			BusinessException be = new BusinessException();
@@ -170,16 +187,16 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 	@Override
 	public Utilisateur selectUser(String pseudo) throws BusinessException {
-		
+
 		Utilisateur user = new Utilisateur();
-		
-		try(Connection con = ConnectionProvider.getConnection()){
-			
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
 			PreparedStatement pstmt = con.prepareStatement(SELECT_USER);
 			pstmt.setString(1, pseudo);
 			ResultSet rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				user.setPseudo(rs.getString("pseudo"));
 				user.setNom(rs.getString("nom"));
 				user.setPrenom(rs.getString("prenom"));
@@ -187,14 +204,14 @@ public class UserDAOJdbcImpl implements UserDAO {
 				user.setTelephone(rs.getString("telephone"));
 				user.setRue(rs.getString("rue"));
 				user.setCodePostal(rs.getString("code_postal"));
-				user.setVille(rs.getString("ville"));				
-			}else {
+				user.setVille(rs.getString("ville"));
+			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("DAL exception - utilisateur inexistant");
-				throw businessException;		
+				throw businessException;
 			}
-		
-		} catch (SQLException e) {	
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException businessException = new BusinessException();
 			businessException.addMessage("DAL exception - échec de connexion");

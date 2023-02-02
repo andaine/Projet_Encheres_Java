@@ -1,5 +1,7 @@
 package fr.eni.ecole.enchere.bll;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -61,9 +63,6 @@ public class UserManager {
         if (userAValider.getPrenom() == null) {
         	sb.append("prenom non valide.\n");
         }
-        if (userAValider.getTelephone()==null) {
-        	sb.append("Quantité en stock non valide.\n");
-        }
         
         if (userAValider.getCodePostal()== null) {
         	sb.append("Le codepostal non renseigné.\n");
@@ -83,11 +82,12 @@ public class UserManager {
         }
         
        String resultat = sb.toString();
-        
+       System.out.println("manager valider user");
+        System.out.println(resultat);
         if(sb.length()>0) {
         	BusinessException be = new BusinessException();
 			be.addMessage(resultat);
-        	
+        	throw be;
         }
 	}
 }

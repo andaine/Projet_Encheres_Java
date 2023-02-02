@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <%@ page import="fr.eni.ecole.enchere.bo.Enchere" %> 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
        
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +16,8 @@
 <title>JSP Accueil</title>
 </head>
 <body>
+	
+
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
 		<a href="<%=request.getContextPath()%>/ServletLogin" name="lienLogin" id="lienLogin">S'inscrire - Se connecter</a>
@@ -25,6 +31,11 @@
 
 			<label for="selectCategorie" id="labelCategorie">Catégories</label>
 			<select name="categorie" id="categorie">
+				<p><c:forEach var="cat" items="${categorie}">
+					${cat}
+				</c:forEach></p>   
+			
+			
 				<!-- TODO integrer la liste Catégories dans le select -->
 			</select>
 			<input type="submit" id="boutonRechercher" value="Rechercher">
