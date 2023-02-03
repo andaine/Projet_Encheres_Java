@@ -123,6 +123,14 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 
 
 
+	@Override
+	public Enchere ajouterVente(Enchere enchere) throws BusinessException {
+		
+		return null;
+	}
+
+	
+
 
 	
 	
