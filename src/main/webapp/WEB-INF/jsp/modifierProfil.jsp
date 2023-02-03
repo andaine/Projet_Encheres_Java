@@ -11,6 +11,8 @@
 <title>JSP modifier profil</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/fragments/header.html" %>
+	
 	<p>
 	<c:forEach var="be" items="${listeErreur}">
 		<div style = "color:red">${be} <br> </div>

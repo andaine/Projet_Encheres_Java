@@ -9,8 +9,9 @@
 <title>Détail vente</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/fragments/header.html" %>
+	
 	<h1>Détail vente</h1>
-
 
 	<section id="sectionDetailVente">
 		<ul>
