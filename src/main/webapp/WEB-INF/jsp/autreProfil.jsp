@@ -21,47 +21,36 @@
 	<section id="sectionUserID">
 		<ul>
 			<li>
-				<label for="pseudo" id="labelPseudo">Pseudo :</label>
-				<p id="pseudo" name="pseudo"> ${infoVendeur.getPseudo()}</p>
+				<label for="pseudo" id="labelPseudo">Pseudo : ${infoVendeur.getPseudo()}</label>	
 			</li>
 			<li>
-				<label for="nom" id="labelNom">Nom :</label>
-				<p id="nom" name="nom">${infoVendeur.getNom()}</p>
+				<label for="nom" id="labelNom">Nom : ${infoVendeur.getNom()}</label>
 			</li>
 			<li>
-				<label for="prenom" id="labelPrenom">Prenom :</label>
-				<p id="prenom" name="prenom">${infoVendeur.getPrenom()}</p>
+				<label for="prenom" id="labelPrenom">Prenom : ${infoVendeur.getPrenom()}</label>
 			</li>
 			<li>
-				<label for="email" id="labelEmail">Email :</label>
-				<p id="email" name="email">${infoVendeur.getEmail()}</p>
+				<label for="email" id="labelEmail">Email : ${infoVendeur.getEmail()}</label>
 			</li>
 			<li>
-				<label for="telephone" id="labelTelephone">Téléphone :</label>
-				<p id="telephone" name="telephone">${infoVendeur.getTelephone()}</p>
+				<label for="telephone" id="labelTelephone">Téléphone : ${infoVendeur.getTelephone()}</label>
 			</li>
 			<li>
-				<label for="rue" id="labelRue">Rue :</label>
-				<p id="rue" name="rue">${infoVendeur.getRue()}</p>
+				<label for="rue" id="labelRue">Rue : ${infoVendeur.getRue()}</label>
 			</li>
 			<li>
-				<label for="codePostal" id="labelCodePostal">Code postal :</label>
-				<p id="codePostal" name="codePostal">${infoVendeur.getCodePostal()}</p>
+				<label for="codePostal" id="labelCodePostal">Code postal : ${infoVendeur.getCodePostal()}</label>	
 			</li>
 			<li>
-				<label for="ville" id="labelVille">Ville :</label>
-				<p id="ville" name="ville">${infoVendeur.getVille()}</p>
+				<label for="ville" id="labelVille">Ville : ${infoVendeur.getVille()}</label>
 			</li>						
 		</ul>
 
-	
-	
-	
-	
 	</section>
 
-
-
+	<form method="get" action="${pageContext.request.contextPath}/ServletConnecteAchats">
+		<input type="submit" value="Accueil" id="connexion"/>
+	</form>
 
 </body>
 </html>
