@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +36,9 @@
 				<div class="input">
 					<label for="categorie">Catégorie</label> <select id="categorie"
 						name="categorie" required>
-						<option value="1" label="Catégorie 1">Catégorie 1</option>
+						<c:forEach var="cat" items="${categorie}">
+							<option value="${cat.noCategorie}">${cat.libelle}</option>
+						</c:forEach>
 					</select>
 				</div>
 				<div class="input">
@@ -78,8 +79,8 @@
 					</div>
 				</div>
 				<div class="actions">
-					<input type="submit" name="enregistrer" value="Enregistrer" /> <input
-						type="submit" name="annuler" value="Annuler" />
+					<input type="submit" name="enregistrer" value="Enregistrer" /> 
+					<input type="submit" name="annuler" value="Annuler" />
 				</div>
 			</form>
 		</div>
