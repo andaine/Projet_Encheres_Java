@@ -100,8 +100,8 @@
 				<p>Prix : ${e.getMontantEnchere()}</p>
 				<p>Fin de l'enchère : ${e.getDateEnchere()}</p>
 				<br>
-				<p>Vendeur : <a href="${pageContext.request.contextPath }/ServletAutreProfil" id="nomAutreUser">${e.getNomUser() }</a>
-					<c:set var="nomAutreUSer" scope="request" value="${e.getNomUser() }"/>
+				<p>Vendeur : <a href="${pageContext.request.contextPath }/ServletAutreProfil?nom=${e.getPseudoUser()}"  id="nomAutreUser">${e.getPseudoUser() }</a>
+					
 				</p>
 			</div>
 		</c:forEach>
