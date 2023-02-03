@@ -43,7 +43,7 @@
 			
 			 <select name="selectCategorie" id="selectCategorie">
 				<c:forEach var="cat" items="${categorie}">
-					<option >  ${cat.libelle}</option>
+					<option value="${cat.libelle}" ${cat.libelle.equals(categorieChoisie) ? 'selected':''}>  ${cat.libelle} </option>
 				</c:forEach>
 			</select>
 		</form>
