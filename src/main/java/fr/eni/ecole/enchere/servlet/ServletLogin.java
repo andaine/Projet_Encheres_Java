@@ -47,7 +47,7 @@ public class ServletLogin extends HttpServlet {
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnecte", userConnecte);
 
-					RequestDispatcher rd = request.getRequestDispatcher("/ServletConnecteAchats");
+					RequestDispatcher rd = request.getRequestDispatcher("/ServletAccueil");
 					rd.forward(request, response);
 
 			} else {

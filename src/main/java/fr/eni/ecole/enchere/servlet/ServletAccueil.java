@@ -73,7 +73,8 @@ public class ServletAccueil extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		EnchereManager mgr = new EnchereManager();
-		try {
+		/*try {
+			
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
 			List<Enchere> listeEncheresAGarder = new ArrayList<>();
 			List<Enchere> listeEncheresFinale = new ArrayList<>();
@@ -114,7 +115,7 @@ public class ServletAccueil extends HttpServlet {
 			BusinessException be = new BusinessException();
 			be.addMessage("Aucune enchère pour cette catégorie");
 		}
-
+*/
 		ArticleManager am = new ArticleManager();
 
 		try {

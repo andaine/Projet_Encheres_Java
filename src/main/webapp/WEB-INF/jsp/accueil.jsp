@@ -22,12 +22,37 @@
 
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
+		<c:if test="${userConnecte!=null }">
+			<nav id="navConnecte">
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/ServletConnecteAchats"
+					name="lienEncheres" id="lienEncheres">Enchères</a></li>
+				<li><a href="${pageContext.request.contextPath}/ServletNouvelleVente"
+					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
+						article</a> <!--  TODO ServletNouvelleVente --></li>
+				<li><a href="${pageContext.request.contextPath}/ServletMonProfil"
+					name="lienMonProfil" id="lienMonProfil">Mon profil</a></li>
+				<li><a href="${pageContext.request.contextPath}/ServletDeconnexion"
+					name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a></li>
+			</ul>
+		</nav>
+		</c:if>
+		<nav id="navDeconnecte"	>
+		
 		<a href="${pageContext.request.contextPath}/ServletCreateAccount" name="lienInscrire"
 			id="lienLogin">S'inscrire</a>
 			-
 		<a href="${pageContext.request.contextPath}/ServletLogin" name="lienLogin"
 			id="lienLogin">Se connecter</a>
 		<h2 id="titreListe">Liste des enchères</h2>
+		</nav>
+		
+	
+		
+		
+		
+		
+		
 	</header>
 
 	<section id="filtres">
@@ -59,6 +84,11 @@
 			</select>
 		</form>
 	</section>
+
+
+
+
+
 
 	<section id="afficherEncheres">
 		<c:forEach var="e" items="${listeEncheres}">

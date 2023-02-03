@@ -38,7 +38,7 @@
 	
 		<label for="input_nom">Se souvenir de moi :</label>
 		<input type="checkbox" id="seSouvenir" name="seSouvenir" unchecked>
-		<a href="<%=request.getContextPath()%>/Login"><input type="button" value="Mot de passe oublié"/></a>
+		<a href="<%=request.getContextPath()%>/ServletLogin"><input type="button" value="Mot de passe oublié"/></a>
 		</section>
 		
 	</form>
