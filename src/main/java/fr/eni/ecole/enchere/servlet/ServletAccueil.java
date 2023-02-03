@@ -76,6 +76,7 @@ public class ServletAccueil extends HttpServlet {
 		try {
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
 			List<Enchere> listeEncheresAGarder = new ArrayList<>();
+			List<Enchere> listeEncheresFinale = new ArrayList<>();
 
 			// recup catégorie choisie
 			String categorieChoisie = req.getParameter("selectCategorie");
@@ -92,11 +93,21 @@ public class ServletAccueil extends HttpServlet {
 			}
 			for (Enchere eag : listeEncheresAGarder) {
 				if (eag.getNomArticle().contains(textFieldResult)) {
-					listeEncheres.add(eag);
+					listeEncheresFinale.add(eag);
 				}
 			}
-
-			req.setAttribute("listeEncheres", listeEncheres);
+			
+			if(categorieChoisie.equals("Toutes")) {
+				for (Enchere e : listeEncheres) {
+					if (e.getNomArticle().contains(textFieldResult)) {
+						listeEncheresFinale.add(e);
+					}
+				}
+				
+			}else {
+				req.setAttribute("listeEncheres", listeEncheresFinale);
+			}
+			
 
 		} catch (BusinessException e) {
 			e.printStackTrace();

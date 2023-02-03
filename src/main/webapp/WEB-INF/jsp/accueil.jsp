@@ -52,6 +52,7 @@
 			<!-- SELECTEUR DE CATEGORIES  -->	
 			<label for="selectCategorie" id="labelCategorie">Catégories :</label>			
 			 <select name="selectCategorie" id="selectCategorie">
+			 	<option selected="selected">Toutes</option>
 				<c:forEach var="cat" items="${categorie}">
 					<option value="${cat.libelle}" ${cat.libelle.equals(categorieChoisie) ? 'selected':''}>  ${cat.libelle} </option>
 				</c:forEach>
