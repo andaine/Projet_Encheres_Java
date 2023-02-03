@@ -43,7 +43,7 @@
 	<section id="sectionFiltres">
 		<h2 id="titreFiltres">Filtres :</h2>
 		<form method="post"
-			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
+			action="<%=request.getContextPath()%>/ServletConnecteAchats"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle" placeholder="le nom de l'article contient">
 			<label for="selectCategorie" id="labelCategorie">Catégories</label>
