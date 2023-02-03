@@ -54,7 +54,7 @@
 				<p>Prix : ${e.getMontantEnchere()}</p>
 				<p>Fin de l'enchère : ${e.getDateEnchere()} </p>
 				<br>
-				<p>Vendeur : ${e.getNomUser() }</p>
+				<p>Vendeur : ${e.getPseudoUser() }</p>
 			</div>
 		</c:forEach>
 
