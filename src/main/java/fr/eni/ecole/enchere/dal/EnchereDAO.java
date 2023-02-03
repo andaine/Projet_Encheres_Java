@@ -15,5 +15,5 @@ public interface EnchereDAO {
 	
 	public List<Enchere> afficherMesEncheres(int id) throws BusinessException;
 	
-	public Enchere ajouterVente(Enchere enchere) throws BusinessException;
+	
 }

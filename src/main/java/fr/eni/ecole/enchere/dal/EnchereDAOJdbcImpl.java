@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.ecole.enchere.bo.Enchere;
+import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 
@@ -123,19 +124,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 
 
 
-	@Override
-	public Enchere ajouterVente(Enchere enchere) throws BusinessException {
-		
-		return null;
+	
 	}
 
-	
-
 
 	
 	
-	
-	
-	
-	
-}
+
