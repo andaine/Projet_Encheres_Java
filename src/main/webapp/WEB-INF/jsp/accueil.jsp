@@ -32,7 +32,7 @@
 	<section id="filtres">
 		<h2 id="titreFiltres">Filtres :</h2>
 		<form method="post"
-			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
+			action="<%=request.getContextPath()%>/ServletAccueil"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
 			<input type="submit" id="boutonRechercher" value="Rechercher">
