@@ -13,10 +13,20 @@ public class Article {
 	private LocalDate dateFinEncheres;
 	private int prixInitial;
 	private int prixVente;
+	private Utilisateur user;
 	private String etatVente;
 	private List<Enchere>enchereListe;
 
 	
+	
+	public Utilisateur getUser() {
+		return user;
+	}
+
+	public void setUser(Utilisateur user) {
+		this.user = user;
+	}
+
 	public Article() {
 		super();
 	}

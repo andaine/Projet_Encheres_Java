@@ -75,7 +75,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 				rd.forward(request, response);
 			}
 	
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/userConnecte.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ser");
 		rd.forward(request, response);
 	}
 

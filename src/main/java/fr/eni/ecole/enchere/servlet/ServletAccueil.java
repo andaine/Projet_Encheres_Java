@@ -82,9 +82,9 @@ public class ServletAccueil extends HttpServlet {
 			String categorieChoisie = req.getParameter("selectCategorie");
 			req.setAttribute("categorieChoisie", categorieChoisie);
 
-			// filtre les encheres avec les mots du champ de texte
+			// recup le champ de texte
 			String textFieldResult = req.getParameter("textFiltreArticle");
-			System.out.println(textFieldResult);
+			
 
 			for (Enchere e : listeEncheres) {
 				if (e.getNomCategorie().equals(categorieChoisie)) {
@@ -103,7 +103,7 @@ public class ServletAccueil extends HttpServlet {
 						listeEncheresFinale.add(e);
 					}
 				}
-				
+				req.setAttribute("listeEncheres", listeEncheresFinale);
 			}else {
 				req.setAttribute("listeEncheres", listeEncheresFinale);
 			}
