@@ -40,9 +40,9 @@
 			<br>
 			<br>
 			<label for="selectCategorie" id="labelCategorie">Catégories :</label> <select
-				name="categorie" id="categorie">
+				name="selectCategorie" id="selectCategorie">
 				<c:forEach var="cat" items="${categorie}">
-					<option value="${cat.noCategorie}">${cat.libelle}</option>
+					<option >${cat.libelle}</option>
 				</c:forEach>
 			</select>
 		</form>
