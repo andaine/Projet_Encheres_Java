@@ -43,7 +43,6 @@ public class ServletAccueil extends HttpServlet {
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
 			request.setAttribute("listeEncheres", listeEncheres);
 			for (Enchere e : listeEncheres) {
-				System.out.println("Servlet encheres : " + e.getMontantEnchere());
 			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -62,7 +61,6 @@ public class ServletAccueil extends HttpServlet {
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-		System.out.println("servletAccueil");
 
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
@@ -78,25 +76,45 @@ public class ServletAccueil extends HttpServlet {
 		try {
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
 			List<Enchere> listeEncheresAGarder = new ArrayList<>();
+			List<Enchere> listeEncheresFinale = new ArrayList<>();
+
 			// recup catégorie choisie
 			String categorieChoisie = req.getParameter("selectCategorie");
-			System.out.println("categorie choisie : " +categorieChoisie);
-			
+			req.setAttribute("categorieChoisie", categorieChoisie);
+
+			// filtre les encheres avec les mots du champ de texte
+			String textFieldResult = req.getParameter("textFiltreArticle");
+			System.out.println(textFieldResult);
+
 			for (Enchere e : listeEncheres) {
-				System.out.println("categorie dispo : " + e.getNomCategorie());
 				if (e.getNomCategorie().equals(categorieChoisie)) {
 					listeEncheresAGarder.add(e);
 				}
 			}
-			req.setAttribute("listeEncheres", listeEncheresAGarder);
-			req.setAttribute("categorieChoisie", categorieChoisie);
+			for (Enchere eag : listeEncheresAGarder) {
+				if (eag.getNomArticle().contains(textFieldResult)) {
+					listeEncheresFinale.add(eag);
+				}
+			}
+			
+			if(categorieChoisie.equals("Toutes")) {
+				for (Enchere e : listeEncheres) {
+					if (e.getNomArticle().contains(textFieldResult)) {
+						listeEncheresFinale.add(e);
+					}
+				}
+				
+			}else {
+				req.setAttribute("listeEncheres", listeEncheresFinale);
+			}
+			
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException();
-			be.addMessage("Aucune enchère pour cette catégorie");		
+			be.addMessage("Aucune enchère pour cette catégorie");
 		}
-		
+
 		ArticleManager am = new ArticleManager();
 
 		try {
@@ -106,11 +124,10 @@ public class ServletAccueil extends HttpServlet {
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(req, resp);
-		
+
 	}
 
 }
