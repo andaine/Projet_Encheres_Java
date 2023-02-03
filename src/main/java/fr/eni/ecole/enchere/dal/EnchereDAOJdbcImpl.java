@@ -15,9 +15,9 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO{
 
-	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
-	private static final String SELECT_AUTRES_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie WHERE NOT e.no_utilisateur=?";
-	private static final String SELECT_MES_ENCHERES = "SELECT e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie WHERE e.no_utilisateur=?";
+	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
+	private static final String SELECT_AUTRES_ENCHERES = SELECT_ALL_ENCHERES + "WHERE NOT e.no_utilisateur=?";
+	private static final String SELECT_MES_ENCHERES = SELECT_ALL_ENCHERES + "WHERE e.no_utilisateur=?";
 	
 	
 	
@@ -33,7 +33,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERES);	
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
-				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
+				Enchere enchere = new Enchere(rs.getDate("date_fin_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
 						rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
 				  
 				listeAllEncheres.add(enchere);
@@ -67,7 +67,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				System.out.println(rs.getInt("montant_enchere"));
-				Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
+				Enchere enchere = new Enchere(rs.getDate("date_fin_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
 						rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
 				  
 				listeMesEncheres.add(enchere);
@@ -102,7 +102,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 				ResultSet rs = pstmt.executeQuery();	
 				while(rs.next()) {
 					System.out.println(rs.getInt("montant_enchere"));
-					Enchere enchere = new Enchere(rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
+					Enchere enchere = new Enchere(rs.getDate("date_fin_enchere").toLocalDate(), rs.getInt("montant_enchere"),  rs.getInt("no_utilisateur"), 
 							rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
 					  
 					listeAutresEncheres.add(enchere);

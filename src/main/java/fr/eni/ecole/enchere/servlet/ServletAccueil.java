@@ -73,25 +73,41 @@ public class ServletAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("dopost - servlet accueil");
 
+		req.setCharacterEncoding("UTF-8");
 		EnchereManager mgr = new EnchereManager();
 		try {
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
+			List<Enchere> listeEncheresAGarder = new ArrayList<>();
 			// recup catégorie choisie
-			String categorieChoisie = req.getParameter("categorie");
-			
+			String categorieChoisie = req.getParameter("selectCategorie");
+			System.out.println("categorie choisie : " +categorieChoisie);
 			
 			for (Enchere e : listeEncheres) {
-				if (e.getNomCategorie() != categorieChoisie) {
-					listeEncheres.remove(e);
+				System.out.println("categorie dispo : " + e.getNomCategorie());
+				if (e.getNomCategorie().equals(categorieChoisie)) {
+					listeEncheresAGarder.add(e);
 				}
 			}
-			req.setAttribute("listeEncheres", listeEncheres);
+			req.setAttribute("listeEncheres", listeEncheresAGarder);
+			req.setAttribute("categorieChoisie", categorieChoisie);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException();
 			be.addMessage("Aucune enchère pour cette catégorie");		
 		}
+		
+		ArticleManager am = new ArticleManager();
+
+		try {
+			List<Categorie> listeCategories = am.afficherCategories();
+
+			req.setAttribute("categorie", listeCategories);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
+		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(req, resp);
 		
