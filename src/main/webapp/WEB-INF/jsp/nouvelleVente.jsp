@@ -65,7 +65,7 @@
 					<div>
 						<div class="input">
 							<label for="rue">Rue</label> <input type="text" id="rue"
-								name="rue" placeholder="Nom de la rue du retrait" required />
+								name="rue" value="${userConnecte.getRue()}" placeholder="Nom de la rue du retrait" required />
 						</div>
 						<div class="input">
 							<label for="postal">Code postal</label> <input type="text"
