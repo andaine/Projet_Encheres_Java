@@ -18,6 +18,7 @@
 <title>JSP Accueil</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/fragments/header.html" %>
 
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>

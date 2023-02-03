@@ -13,6 +13,8 @@
 <title>JSP UserConnecte Achats</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/fragments/header.html" %>
+	
 	<p style="color: red">
 		<c:forEach var="be" items="${listeErreur}">
 		${be}

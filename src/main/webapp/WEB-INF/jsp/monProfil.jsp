@@ -14,6 +14,8 @@
 <title>JSP mon profil</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/fragments/header.html" %>
+	
 	<header><h2>ENI - enchères</h2></header>
 
 	<section id="sectionUserID">
