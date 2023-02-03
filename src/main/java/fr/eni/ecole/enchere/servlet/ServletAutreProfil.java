@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.ecole.enchere.bll.UserManager;
+import fr.eni.ecole.enchere.bo.Utilisateur;
+import fr.eni.ecole.enchere.exception.BusinessException;
 
 /**
  * Servlet implementation class ServletAutreProfil
@@ -23,8 +25,18 @@ public class ServletAutreProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nomAutreUser = (String) request.getAttribute("nomAutreUser");
-		System.out.println("test servlet autreUser " + nomAutreUser);
+		String nomAutreUser =  (String) request.getParameter("nom");
+		UserManager user = new UserManager();
+		Utilisateur infoVendeur;
+		try {
+			infoVendeur = user.afficherUtilisateur(nomAutreUser);
+			System.out.println(infoVendeur.getPseudo());
+			request.setAttribute("infoVendeur", infoVendeur);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		
 		
 		
