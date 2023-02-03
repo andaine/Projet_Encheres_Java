@@ -9,20 +9,20 @@ public class Enchere {
 	private int noUser;
 	private int noArticle;
 	private String nomArticle;
-	private String nomUser;
+	private String pseudoUser;
 	private String nomCategorie;
 
 
 
 	public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle, String nomArticle,
-			String nomUser, String nomCategorie) {
+			String pseudoUser, String nomCategorie) {
 		super();
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 		this.noUser = noUser;
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
-		this.nomUser = nomUser;
+		this.pseudoUser = pseudoUser;
 		this.nomCategorie = nomCategorie;
 	}
 
@@ -84,12 +84,12 @@ public class Enchere {
 		this.nomArticle = nomArticle;
 	}
 
-	public String getNomUser() {
-		return nomUser;
+	public String getPseudoUser() {
+		return pseudoUser;
 	}
 
-	public void setNomUser(String nomUser) {
-		this.nomUser = nomUser;
+	public void setPseudoUser(String pseudoUser) {
+		this.pseudoUser = pseudoUser;
 	}
 
 	
