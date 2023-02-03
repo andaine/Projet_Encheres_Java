@@ -39,10 +39,11 @@
 			<input type="submit" id="boutonRechercher" value="Rechercher">
 			<br>
 			<br>
-			<label for="selectCategorie" id="labelCategorie">Catégories :</label> <select
-				name="selectCategorie" id="selectCategorie">
+			<label for="selectCategorie" id="labelCategorie">Catégories :</label>
+			
+			 <select name="selectCategorie" id="selectCategorie">
 				<c:forEach var="cat" items="${categorie}">
-					<option >${cat.libelle}</option>
+					<option >  ${cat.libelle}</option>
 				</c:forEach>
 			</select>
 		</form>

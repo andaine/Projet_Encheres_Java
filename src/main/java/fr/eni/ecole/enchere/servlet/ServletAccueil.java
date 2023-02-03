@@ -73,6 +73,7 @@ public class ServletAccueil extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("dopost - servlet accueil");
 
+		req.setCharacterEncoding("UTF-8");
 		EnchereManager mgr = new EnchereManager();
 		try {
 			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
@@ -88,6 +89,7 @@ public class ServletAccueil extends HttpServlet {
 				}
 			}
 			req.setAttribute("listeEncheres", listeEncheresAGarder);
+			req.setAttribute("categorieChoisie", categorieChoisie);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
