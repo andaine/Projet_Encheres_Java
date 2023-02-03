@@ -1,41 +1,70 @@
 @charset "UTF-8";
 
-legend {
-	 padding: 3px 6px;
-	 
-}
-
-
-#image {
-	flex : 0.4;
-}
-
-.fieldset {
-	color : red;
-	 width: 20%;
-	margin-left: auto;
-	margin-right: auto;
-	/*padding: 100px 10px 10px 10px; */
-}
-
-#testBody {
-	
-	
-	 text-align: center;  
-	 
-}
-
-#sectionNouvelleVente {
+/* css nouvelle vente */
+.menu {
 	display: flex;
+	flex-direction: row;
+}
+
+.menu>div {
 	flex: 1;
-	justify-content: center;
-	flex-direction : column;
 }
 
-ul  {
-	list-style : none;
+.menu .pageTitle {
+	text-align: center;
+	font-weight: bold;
 }
 
-label {
-	float : left;
+.content {
+	display: flex;
+	flex-direction: row;
 }
+
+.content>div {
+	margin: 2rem;
+	flex: 1;
+}
+
+.content form .input {
+	display: flex;
+	margin: 0.5rem 0;
+}
+
+.content form .actions {
+	margin-top: 0.5rem;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.content form textarea {
+	resize: vertical;
+}
+
+.content form .input label {
+	flex-basis: 35%;
+}
+
+.content form label::after {
+	content: ' :';
+}
+
+.content form input[type="submit"] {
+	padding: 1.5rem;
+	background-color: white;
+}
+
+#retrait {
+	border: 1px solid #000000;
+	padding: 1rem;
+	position: relative;
+}
+
+#retrait .title {
+	position: absolute;
+	background-color: white;
+	padding: 0 0.5rem;
+	top: -8%;
+}
+
+/* ------------------------------------------------------------------------- */
+

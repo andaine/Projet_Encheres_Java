@@ -9,50 +9,75 @@
 <meta charset="UTF-8">
 <title>nouvelle Vente</title>
 </head>
-<body id="testBody">
-	<h1>nouvelle vente</h1>
-	
-	<div id="image">
-	</div>
+<body>
+<div class="menu">
+    <div>ENI-Enchères</div>
+    <div class="pageTitle">Nouvelle vente</div>
+    <div></div>
+</div>
+<div class="content">
+    <div>
+        <img src="">
+    </div>
+    <div>
+        <form>
+            <div class="input">
+                <label for="article">Article</label>
+                <input type="text" id="article" name="article" placeholder="Nom de l'article" required/>
+            </div>
+            <div class="input">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Rentrez votre description" rows="4"
+                          cols="30"></textarea>
+            </div>
+            <div class="input">
+                <label for="categorie">Catégorie</label>
+                <select id="categorie" name="categorie" required>
+                    <option value="1" label="Catégorie 1">Catégorie 1</option>
+                </select>
+            </div>
+            <div class="input">
+                <label for="photo">Photo de l'article</label>
+                <input type="file" accept="image/*" id="photo" name="photo" placeholder="Envoyer une image">
+            </div>
+            <div class="input">
+                <label for="prix">Mise à prix</label>
+                <input type="number" min="0" id="prix" name="prix" step="50" placeholder="prix de vente initial" required/>
+            </div>
 
-
-	<section id="sectionNouvelleVente">
-		<ul>
-			<li><label for="nomArticle" id="labelPseudo">Article :</label>
-				<input type="text" id="nomArticle" name="nomArticle"></li>
-			<li><label for="nom" id="Description">Description :</label>
-				<textarea id="nomDescription" name="nomDescription" rows="5" cols="33"> </textarea></li>
-			<li><label for="Categorie" id="Categorie">Categorie :</label> <select
-				name="categorie" id="categorie">
-					<option></option>
-					<c:forEach var="cat" items="${categorie}">
-						<option value="${cat.noCategorie}">${cat.libelle}</option>
-					</c:forEach>
-			</select></li>
-
-			<li><label for="email" id="prix">Mise à prix :</label>
-			 <input type="number" id="prix" name="prix" step="50" min="0"></li>
-			<li><label for="debutEnchere" id="debutEnchere">Début des enchère :</label>
-				 <input type="date" id="debutEnchere" name="debutEnchere"></li>
-			<li><label for="finEnchere">Fin des enchères :</label>
-				 <input type="date" id="finEnchere" name="finEnchere" ></li>
-			<li>
-		</ul>
-
-	</section>
-		<form>
-			<fieldset class="fieldset">
-				<legend>Retrait</legend>
-
-				<label for="rue">Rue : </label>
-				<input type="text" id="rue" name="rueRetrait" value="${userConnecte.getRue()}"> <br> 
-				<label for="sasquatch">Code Postal :</label>
-				<input type="text" id="codePostal" name="codePostal" value="${userConnecte.getCodePostal()}"> <br> 
-				 <label for="mothman">Ville : </label>
-				<input type="text" id="mothman" name="monster" value="${userConnecte.getVille()}" />
-			</fieldset>
-		</form>
-
-	
+            <div class="input">
+                <label for="debut">Début de l'enchère</label>
+                <input type="date" id="debut" name="debut" required/>
+            </div>
+            <div class="input">
+                <label for="fin">Fin de l'enchère</label>
+                <input type="date" id="fin" name="fin" required/>
+            </div>
+            <div id="retrait">
+                <span class="title">Retrait</span>
+                <div>
+                    <div class="input">
+                        <label for="rue">Rue</label>
+                        <input type="text" id="rue" name="rue" placeholder="Nom de la rue du retrait" required/>
+                    </div>
+                    <div class="input">
+                        <label for="postal">Code postal</label>
+                        <input type="text" pattern="\d{5}" id="postal" name="postal"
+                               placeholder="Code postal de la ville" required/>
+                    </div>
+                    <div class="input">
+                        <label for="ville">Ville</label>
+                        <input type="text" id="ville" name="ville" placeholder="Ville" required/>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <input type="submit" name="enregistrer" value="Enregistrer"/>
+                <input type="submit" name="annuler" value="Annuler"/>
+            </div>
+        </form>
+    </div>
+    <div></div>
+</div>
 </body>
 </html>

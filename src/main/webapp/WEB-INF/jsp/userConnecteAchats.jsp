@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/ServletConnecteAchats"
 					name="lienEncheres" id="lienEncheres">Enchères</a></li>
-				<li><a href="<%=request.getContextPath()%>/WEB-INF/jsp/nouvelleVente.jsp"
+				<li><a href="<%=request.getContextPath()%>/ServletNouvelleVente"
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a> <!--  TODO ServletNouvelleVente --></li>
 				<li><a href="<%=request.getContextPath()%>/ServletMonProfil"
@@ -43,7 +43,7 @@
 		<form method="post"
 			action="<%=request.getContextPath()%>/ServletAfficherEncheres"
 			name="formAfficherEncheres" id="formAfficherEncheres">
-			<input type="text" name="textFiltreArticle" id="textFiltreArticle">
+			<input type="text" name="textFiltreArticle" id="textFiltreArticle" placeholder="le nom de l'article contient">
 			<label for="selectCategorie" id="labelCategorie">Catégories</label>
 			<select name="categorie" id="categorie">
 				<c:forEach var="cat" items="${categorie}">

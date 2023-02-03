@@ -25,9 +25,9 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/ServletConnecteAchats"
 					name="lienEncheres" id="lienEncheres">Enchères</a></li>
-				<li><a href="<%=request.getContextPath()%>/..."
+				<li><a href="<%=request.getContextPath()%>/ServletNouvelleVente"
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
-						article</a> <!--  TODO ServletNouvelleVente --></li>
+						article</a> </li>
 				<li><a href="<%=request.getContextPath()%>/ServletMonProfil"
 					name="lienMonProfil" id="lienMonProfil">Mon profil</a></li>
 				<li><a href="<%=request.getContextPath()%>/ServletDeconnexion"
