@@ -53,18 +53,5 @@
 	background-color: white;
 }
 
-#retrait {
-	border: 1px solid #000000;
-	padding: 1rem;
-	position: relative;
-}
-
-#retrait .title {
-	position: absolute;
-	background-color: white;
-	padding: 0 0.5rem;
-	top: -8%;
-}
-
 /* ------------------------------------------------------------------------- */
 

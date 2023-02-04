@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 <meta charset="UTF-8">
 <title>nouvelle Vente</title>
 </head>
@@ -60,24 +60,25 @@
 					<label for="fin">Fin de l'enchère</label> <input type="date"
 						id="fin" name="fin" required />
 				</div>
-				<div id="retrait">
-					<span class="title">Retrait</span>
-					<div>
-						<div class="input">
-							<label for="rue">Rue</label> <input type="text" id="rue"
-								name="rue" value="${userConnecte.getRue()}" placeholder="Nom de la rue du retrait" required />
-						</div>
-						<div class="input">
-							<label for="postal">Code postal</label> <input type="text"
-								pattern="\d{5}" id="postal" name="postal"
-								placeholder="Code postal de la ville" required />
-						</div>
-						<div class="input">
-							<label for="ville">Ville</label> <input type="text" id="ville"
-								name="ville" placeholder="Ville" required />
-						</div>
-					</div>
-				</div>
+			<fieldset id="retrait">
+                <legend class="title">Retrait</legend>
+                <div>
+                    <div class="input">
+                        <label for="rue">Rue</label>
+                        <input type="text" id="rue" name="rue" placeholder="Nom de la rue du retrait" required/>
+                    </div>
+                    <div class="input">
+                        <label for="postal">Code postal</label>
+                        <input type="text" pattern="\d{5}" id="postal" name="postal"
+                               placeholder="Code postal de la ville" required/>
+                    </div>
+                    <div class="input">
+                        <label for="ville">Ville</label>
+                        <input type="text" id="ville" name="ville" placeholder="Ville" required/>
+                    </div>
+                </div>
+            </fieldset>	
+				
 				<div class="actions">
 					<input type="submit" name="enregistrer" value="Enregistrer" /> 
 					<input type="submit" name="annuler" value="Annuler" />
