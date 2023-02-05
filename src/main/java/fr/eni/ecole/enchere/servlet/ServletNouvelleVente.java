@@ -53,7 +53,7 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<Retrait> retraitVendeur = new ArrayList<>();
+		
 		ArticleManager am = new ArticleManager();
 		try {
 			validerArticle(request);
@@ -68,7 +68,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			String codePostal = request.getParameter("postal");
 			String ville = request.getParameter("ville");
 			
-			retraitVendeur.add(new Retrait(rue, codePostal, ville));
+			Retrait retraitVendeur = new Retrait(rue, codePostal, ville);
 			
 			Article art = new Article(article, description, debutVente, finVente, prix, prix, noCategorie, "CR", retraitVendeur);
 			HttpSession session = request.getSession();

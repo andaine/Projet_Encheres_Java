@@ -48,6 +48,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 	
+    
 	@Override
 	public void ajouterVente(Article article, int idUtilisateur) throws BusinessException {
 		
@@ -67,21 +68,21 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 
 				int idNoArticle = 0;
+				
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
 					article.setNoArticle(rs.getInt(1));	
 					idNoArticle = rs.getInt(1);
-					
 				}
 				
 				pstmt = cnx.prepareStatement(CREATE_RETRAITS_ARTICLE);
-				// TODO : chercher info de la list<Retrait>
+				
 				
 				pstmt.setInt(1, idNoArticle);
-//				pstmt.setString(1, article.getRetraitVendeur());
-//				pstmt.setString(2, article.getRetraitVendeur().get(0));
-//				pstmt.setString(3, article.getRetraitVendeur().get(0));
+				pstmt.setString(1, article.getRetraitVendeur().getRue());
+				pstmt.setString(2, article.getRetraitVendeur().getCodePostal());
+				pstmt.setString(3, article.getRetraitVendeur().getVille());
 				pstmt.executeUpdate();
 				
 				pstmt.close();
@@ -95,6 +96,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			}
 		}
+
+
 }
 
 

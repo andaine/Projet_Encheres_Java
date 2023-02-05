@@ -12,5 +12,5 @@ public interface ArticleDAO {
 
 	public void ajouterVente(Article article, int id) throws BusinessException;
 	
-	
+
 }

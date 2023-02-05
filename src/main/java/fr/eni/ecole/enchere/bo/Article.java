@@ -18,7 +18,7 @@ public class Article {
 	private Utilisateur user;
 	private String etatVente;
 	private List<Enchere> enchereListe;
-	private List<Retrait> retraitVendeur;
+	private Retrait retraitVendeur;
 	
 	
 	
@@ -69,7 +69,7 @@ public class Article {
 
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, int prixVente, int noCategorie, String etatVente,
-			List<Retrait> retraitVendeur) {
+			 Retrait retraitVendeur) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -80,7 +80,7 @@ public class Article {
 		this.noCategorie = noCategorie;
 
 		this.etatVente = etatVente;
-		this.retraitVendeur = retraitVendeur;
+		this.setRetraitVendeur(retraitVendeur);
 	}
 
 	@Override
@@ -190,13 +190,7 @@ public class Article {
 		this.noArticle = noArticle;
 	}
 
-	public List<Retrait> getRetraitVendeur() {
-		return retraitVendeur;
-	}
-
-	public void setRetraitVendeur(List<Retrait> retraitVendeur) {
-		this.retraitVendeur = retraitVendeur;
-	}
+	
 
 	public int getNoCategorie() {
 		return noCategorie;
@@ -204,6 +198,14 @@ public class Article {
 
 	public void setNoCategorie(int noCategorie) {
 		this.noCategorie = noCategorie;
+	}
+
+	public Retrait getRetraitVendeur() {
+		return retraitVendeur;
+	}
+
+	public void setRetraitVendeur(Retrait retraitVendeur) {
+		this.retraitVendeur = retraitVendeur;
 	}
 }
 
