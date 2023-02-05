@@ -25,7 +25,7 @@
 			<form>
 				<div class="input">
 					<label for="article">Article</label> <input type="text"
-						id="article" name="article" placeholder="Nom de l'article"
+						id="c" name="article" placeholder="Nom de l'article"
 						required />
 				</div>
 				<div class="input">

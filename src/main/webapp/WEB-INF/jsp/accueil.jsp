@@ -37,7 +37,7 @@
 			</ul>
 		</nav>
 		</c:if>
-		<c:if test="${userConnecte===null}">
+		<c:if test="${userConnecte==null}">
 			<nav id="navDeconnecte"	>
 		
 		<a href="${pageContext.request.contextPath}/ServletCreateAccount" name="lienInscrire"
