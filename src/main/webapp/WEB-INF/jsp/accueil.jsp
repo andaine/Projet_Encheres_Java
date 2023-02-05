@@ -30,29 +30,26 @@
 				<li><a href="${pageContext.request.contextPath}/ServletNouvelleVente"
 					name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a> <!--  TODO ServletNouvelleVente --></li>
-				<li><a href="${pageContext.request.contextPath}/ServletMonProfil"
+				<li><a href="${pageContext.request.contextPath}/ServletMonProfil?id=${userConnecte.getNoUtilisateur()}"
 					name="lienMonProfil" id="lienMonProfil">Mon profil</a></li>
 				<li><a href="${pageContext.request.contextPath}/ServletDeconnexion"
 					name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a></li>
 			</ul>
 		</nav>
 		</c:if>
-		<nav id="navDeconnecte"	>
+		<c:if test="${userConnecte===null}">
+			<nav id="navDeconnecte"	>
 		
 		<a href="${pageContext.request.contextPath}/ServletCreateAccount" name="lienInscrire"
 			id="lienLogin">S'inscrire</a>
 			-
 		<a href="${pageContext.request.contextPath}/ServletLogin" name="lienLogin"
 			id="lienLogin">Se connecter</a>
-		<h2 id="titreListe">Liste des enchères</h2>
-		</nav>
+			<h2 id="titreListe">Liste des enchères</h2>
+			</nav>
+		</c:if>
 		
-	
-		
-		
-		
-		
-		
+
 	</header>
 
 	<section id="filtres">

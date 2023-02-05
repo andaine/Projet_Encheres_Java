@@ -25,18 +25,18 @@ public class ServletAutreProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nomAutreUser =  (String) request.getParameter("nom");
-		UserManager user = new UserManager();
-		Utilisateur infoVendeur;
-		try {
-			infoVendeur = user.afficherUtilisateur(nomAutreUser);
-			System.out.println(infoVendeur.getPseudo());
-			request.setAttribute("infoVendeur", infoVendeur);
-		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+//		String nomAutreUser =  (String) request.getParameter("nom");
+//		UserManager user = new UserManager();
+//		Utilisateur infoVendeur;
+//		try {
+//			infoVendeur = user.afficherUtilisateur(nomAutreUser);
+//			System.out.println(infoVendeur.getPseudo());
+//			request.setAttribute("infoVendeur", infoVendeur);
+//		} catch (BusinessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	
 		
 		
 		
