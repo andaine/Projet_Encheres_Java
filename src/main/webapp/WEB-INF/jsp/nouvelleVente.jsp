@@ -80,8 +80,11 @@
             </fieldset>	
 				
 				<div class="actions">
+				<form method ="post" action="${pageContext.request.contextPath}/ServletNouvelleVente" name="formNouvelleVente" id="formNouvelleVente">
 					<input type="submit" name="enregistrer" value="Enregistrer" /> 
 					<input type="submit" name="annuler" value="Annuler" />
+				</form>
+					
 				</div>
 			</form>
 		</div>

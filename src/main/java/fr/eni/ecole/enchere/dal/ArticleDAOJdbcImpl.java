@@ -16,8 +16,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
 	private static final String CREATE_ARTICLE = "INSERT INTO Articles (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'CR');";
-	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?);";
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'CR')";
+	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
 
     @Override
 	public List<Categorie> selectCategories() throws BusinessException {
@@ -56,6 +56,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			try (Connection cnx = ConnectionProvider.getConnection()) {
 
 				cnx.setAutoCommit(false);
+				//création de l'article
 				PreparedStatement pstmt = cnx.prepareStatement(CREATE_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
 				pstmt.setString(1, (article.getNomArticle()));
 				pstmt.setString(2, (article.getDescription()));
@@ -66,8 +67,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				pstmt.setInt(6, idUtilisateur);
 				pstmt.setInt(7, article.getNoCategorie());
 
-
 				int idNoArticle = 0;
+
 				
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
@@ -76,6 +77,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 					idNoArticle = rs.getInt(1);
 				}
 				
+				pstmt.close();
+				//création du retrait associé à l'article
 				pstmt = cnx.prepareStatement(CREATE_RETRAITS_ARTICLE);
 				
 				

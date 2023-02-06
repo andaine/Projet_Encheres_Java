@@ -97,16 +97,16 @@ public class ServletAccueil extends HttpServlet {
 				}
 			}
 			
-			if(categorieChoisie.equals("Toutes")) {
-				for (Enchere e : listeEncheres) {
-					if (e.getNomArticle().contains(textFieldResult)) {
-						listeEncheresFinale.add(e);
-					}
-				}
-				req.setAttribute("listeEncheres", listeEncheresFinale);
-			}else {
-				req.setAttribute("listeEncheres", listeEncheresFinale);
-			}
+//			if(categorieChoisie.equals("Toutes")) {
+//				for (Enchere e : listeEncheres) {
+//					if (e.getNomArticle().contains(textFieldResult)) {
+//						listeEncheresFinale.add(e);
+//					}
+//				}
+//				req.setAttribute("listeEncheres", listeEncheresFinale);
+//			}else {
+//				req.setAttribute("listeEncheres", listeEncheresFinale);
+//			}
 			
 
 		} catch (BusinessException e) {
