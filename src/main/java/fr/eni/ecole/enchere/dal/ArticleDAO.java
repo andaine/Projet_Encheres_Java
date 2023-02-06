@@ -10,7 +10,7 @@ public interface ArticleDAO {
 
 	public List<Categorie>selectCategories() throws BusinessException;
 
-	public void ajouterVente(Article article) throws BusinessException;
+	public void ajouterVente(Article article, int id) throws BusinessException;
 	
-	
+
 }

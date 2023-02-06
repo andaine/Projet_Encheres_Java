@@ -1,6 +1,7 @@
 package fr.eni.ecole.enchere.bo;
 
 import java.time.LocalDate;
+import java.time.zone.ZoneRulesException;
 import java.util.List;
 
 
@@ -13,10 +14,12 @@ public class Article {
 	private LocalDate dateFinEncheres;
 	private int prixInitial;
 	private int prixVente;
+	private int noCategorie;
 	private Utilisateur user;
 	private String etatVente;
-	private List<Enchere>enchereListe;
-
+	private List<Enchere> enchereListe;
+	private Retrait retraitVendeur;
+	
 	
 	
 	public Utilisateur getUser() {
@@ -46,6 +49,7 @@ public class Article {
 	}
 
 
+	
 
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
 			int prixInitial, int prixVente, String etatVente, List<Enchere> enchereListe) {
@@ -60,6 +64,24 @@ public class Article {
 		this.enchereListe = enchereListe;
 	}
 
+
+
+
+	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			int prixInitial, int prixVente, int noCategorie, String etatVente,
+			 Retrait retraitVendeur) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixInitial = prixInitial;
+		this.prixVente = prixVente;
+		this.noCategorie = noCategorie;
+
+		this.etatVente = etatVente;
+		this.setRetraitVendeur(retraitVendeur);
+	}
 
 	@Override
 	public String toString() {
@@ -167,4 +189,25 @@ public class Article {
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
+
+	
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+
+	public Retrait getRetraitVendeur() {
+		return retraitVendeur;
+	}
+
+	public void setRetraitVendeur(Retrait retraitVendeur) {
+		this.retraitVendeur = retraitVendeur;
+	}
 }
+
+
+

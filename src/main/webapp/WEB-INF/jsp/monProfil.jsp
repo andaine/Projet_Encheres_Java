@@ -16,41 +16,41 @@
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html" %>
 	
-	<header><h2>ENI - enchères</h2></header>
+	<header><h2>ENI - enchères monprofil.jsp</h2></header>
 
 	<section id="sectionUserID">
 		<ul>
 			<li>
 				<label for="pseudo" id="labelPseudo">Pseudo :</label>
-				<p id="pseudo" name="pseudo"><%=userConnecte.getPseudo() %>  </p>
+				<p id="pseudo" name="pseudo"> ${infoVendeur.getPseudo()}  </p>
 			</li>
 			<li>
 				<label for="nom" id="labelNom">Nom :</label>
-				<p id="nom" name="nom"><%=userConnecte.getNom() %>  </p>
+				<p id="nom" name="nom">${infoVendeur.getNom()}   </p>
 			</li>
 			<li>
 				<label for="prenom" id="labelPrenom">Prenom :</label>
-				<p id="prenom" name="prenom"><%=userConnecte.getPrenom() %>  </p>
+				<p id="prenom" name="prenom">${infoVendeur.getPrenom()}  </p>
 			</li>
 			<li>
 				<label for="email" id="labelEmail">Email :</label>
-				<p id="email" name="email"><%=userConnecte.getEmail() %>  </p>
+				<p id="email" name="email">${infoVendeur.getEmail()}  </p>
 			</li>
 			<li>
 				<label for="telephone" id="labelTelephone">Téléphone :</label>
-				<p id="telephone" name="telephone"><%=userConnecte.getTelephone() %>  </p>
+				<p id="telephone" name="telephone">${infoVendeur.getTelephone()}  </p>
 			</li>
 			<li>
 				<label for="rue" id="labelRue">Rue :</label>
-				<p id="rue" name="rue"><%=userConnecte.getRue() %>  </p>
+				<p id="rue" name="rue">${infoVendeur.getRue()}  </p>
 			</li>
 			<li>
 				<label for="codePostal" id="labelCodePostal">Code postal :</label>
-				<p id="codePostal" name="codePostal"><%=userConnecte.getCodePostal() %>  </p>
+				<p id="codePostal" name="codePostal">${infoVendeur.getCodePostal()} </p>
 			</li>
 			<li>
 				<label for="ville" id="labelVille">Ville :</label>
-				<p id="ville" name="ville"><%=userConnecte.getVille() %>  </p>
+				<p id="ville" name="ville">${infoVendeur.getVille()}  </p>
 			</li>						
 		</ul>
 	
