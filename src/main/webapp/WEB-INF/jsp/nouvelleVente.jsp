@@ -58,11 +58,11 @@
 
 				<div class="input">
 					<label for="debut">Début de l'enchère</label> <input type="date"
-						id="debut" name="debut" value="${debut}"  />
+						id="debut" name="debut" value="${debut}" required />
 				</div>
 				<div class="input">
 					<label for="fin">Fin de l'enchère</label> <input type="date"
-						id="fin" name="fin" value="${fin}" required />
+						id="fin" name="fin" value="${fin}"  required/>
 				</div>
 			<fieldset id="retrait">
                 <legend class="title">Retrait</legend>
