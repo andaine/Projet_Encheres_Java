@@ -22,8 +22,7 @@
 
 	<header>
 		<h1 id="ENI">ENI-Encheres</h1>
-<<<<<<< HEAD
-=======
+
 		<c:if test="${userConnecte!=null }">
 			<nav id="navConnecte">
 			<ul>
