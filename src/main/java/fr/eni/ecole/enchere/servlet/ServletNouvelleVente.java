@@ -43,6 +43,14 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		HttpSession session = request.getSession();
+		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
+		if (request.getAttribute("rue") == null) {
+			request.setAttribute("rue", userConnecte.getRue());
+			request.setAttribute("postal",userConnecte.getCodePostal());
+			request.setAttribute("ville",userConnecte.getVille());
+		
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/nouvelleVente.jsp");
 		rd.forward(request, response);
@@ -61,8 +69,10 @@ public class ServletNouvelleVente extends HttpServlet {
 		LocalDate finVente = LocalDate.parse(request.getParameter("fin"), DateTimeFormatter.ISO_DATE);
 		
 		String rue = request.getParameter("rue");
+		System.out.println(rue + "test rue !!!!!");
 		String codePostal = request.getParameter("postal");
 		String ville = request.getParameter("ville");
+		
 		String categorieChoisie = request.getParameter("categorie");
 		request.setAttribute("categorieChoisie", categorieChoisie);
 		ArticleManager am = new ArticleManager();
