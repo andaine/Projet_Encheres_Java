@@ -1,5 +1,7 @@
 package fr.eni.ecole.enchere.bll;
 
+import java.util.List;
+
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -29,13 +31,14 @@ public class UserManager {
 		return userLogin;
 	} 
 	
-	public Utilisateur afficherUtilisateur(String pseudo) throws BusinessException{
+	public Utilisateur afficherUtilisateur(int id) throws BusinessException{
 		
-		Utilisateur autreUser = userDAO.selectUser(pseudo);
+		Utilisateur autreUser = userDAO.selectUser(id);
 		
 		return autreUser;
 		
 	}
+
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
@@ -59,18 +62,22 @@ public class UserManager {
 	
 		BusinessException be = new BusinessException();
 		
-		if (userAValider.getPseudo().isEmpty()) {
+		if (isValidEmail(userAValider.getEmail()) == false ) {
+			be.addMessage("le format de l'email n'est pas bon");
+		}
+		
+		if (userAValider.getPseudo().isBlank()) {
 			be.addMessage("Le pseudo est obligatoire.\n");
         }
 
-        if (userAValider.getNom().isEmpty()) {
+        if (userAValider.getNom().isBlank()) {
         	be.addMessage("Le nom est obligatoire.\n");
         }
-        if (userAValider.getPrenom().isEmpty()) {
+        if (userAValider.getPrenom().isBlank()) {
         	be.addMessage("Le prénom est obligatoire.\n");
         }
         
-        if (userAValider.getEmail().isEmpty()) {
+        if (userAValider.getEmail().isBlank()) {
         	be.addMessage("L'email est obligatoire.\n");
         }
         
@@ -78,19 +85,19 @@ public class UserManager {
         	be.addMessage("Le format du telephone est non valide.\n");
         }
         
-        if (userAValider.getRue().isEmpty()) {
+        if (userAValider.getRue().isBlank()) {
         	be.addMessage("La rue est obligatoire.\n");
         }
         
-        if (userAValider.getCodePostal().isEmpty()) {
+        if (userAValider.getCodePostal().isBlank()) {
         	be.addMessage("Le code postal est obligatoire.\n");
         }
         
-        if (userAValider.getVille().isEmpty()) {
+        if (userAValider.getVille().isBlank()) {
         	be.addMessage("La ville est obligatoire.\n");
         }
         
-        if (userAValider.getMotDePasse().isEmpty()) {
+        if (userAValider.getMotDePasse().isBlank()) {
         	be.addMessage("Le mot de passe est obligatoire.\n");
         }
         
@@ -102,4 +109,9 @@ public class UserManager {
         	
         }
 	}
+	
+	private static boolean isValidEmail(String email) {
+			String regExp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+			return email.matches(regExp);
+		}
 }

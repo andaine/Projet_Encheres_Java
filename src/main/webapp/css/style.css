@@ -53,18 +53,34 @@
 	background-color: white;
 }
 
-#retrait {
-	border: 1px solid #000000;
-	padding: 1rem;
-	position: relative;
-}
-
-#retrait .title {
-	position: absolute;
-	background-color: white;
-	padding: 0 0.5rem;
-	top: -8%;
-}
-
 /* ------------------------------------------------------------------------- */
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/*NE FONCTIONNE PAS*/
+header>div>h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+#filtres>div{
+	display: flex;
+	flex-direction: row;
+}
+
+
+
+
+
+
+
+
+
 

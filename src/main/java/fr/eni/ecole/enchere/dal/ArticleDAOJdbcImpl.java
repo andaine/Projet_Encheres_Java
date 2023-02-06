@@ -15,10 +15,16 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
-	private static final String CREATE_ARTICLE = "INSERT INTO Articles (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, mot_de_passe, etat_vente)"
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'CR');";
-	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?);";
-	@Override
+	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
+	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
+	private static final String SELECT_ARTICLE = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e "
+			+ "					INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
+			+ "					INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
+			+ "					INNER JOIN RETRAITS r ON a.no_article = r.no_article"
+			+ "					INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie"
+			+ "					WHERE no_article=?";
+    @Override
 	public List<Categorie> selectCategories() throws BusinessException {
 
 		List<Categorie> categoriesListe = new ArrayList<Categorie>();
@@ -46,32 +52,44 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	}
 	
+    
 	@Override
-	public void ajouterVente(Article article) throws BusinessException {
+	public void ajouterVente(Article article, int idUtilisateur) throws BusinessException {
 		
 		
 			try (Connection cnx = ConnectionProvider.getConnection()) {
 
 				cnx.setAutoCommit(false);
+				//création de l'article
 				PreparedStatement pstmt = cnx.prepareStatement(CREATE_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
 				pstmt.setString(1, (article.getNomArticle()));
 				pstmt.setString(2, (article.getDescription()));
 				pstmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
 				pstmt.setDate(4, java.sql.Date.valueOf(article.getDateFinEncheres()));
 				pstmt.setInt(5, article.getPrixInitial());
-				pstmt.setInt(6, (article.getPrixVente()));
-				pstmt.setInt(7, (article.getUser().getNoUtilisateur()));
-//				pstmt.setString(8, (article.getVille()));
-//				pstmt.setString(9, (article.getMotDePasse()));
-//
+	
+				pstmt.setInt(6, idUtilisateur);
+				pstmt.setInt(7, article.getNoCategorie());
+
+				int idNoArticle = 0;
+
+				
 				pstmt.executeUpdate();
 				ResultSet rs = pstmt.getGeneratedKeys();
 				if (rs.next()) {
 					article.setNoArticle(rs.getInt(1));	
+					idNoArticle = rs.getInt(1);
 				}
 				
+				pstmt.close();
+				//création du retrait associé à l'article
 				pstmt = cnx.prepareStatement(CREATE_RETRAITS_ARTICLE);
 				
+				
+				pstmt.setInt(1, idNoArticle);
+				pstmt.setString(2, article.getRetraitVendeur().getRue());
+				pstmt.setString(3, article.getRetraitVendeur().getCodePostal());
+				pstmt.setString(4, article.getRetraitVendeur().getVille());
 				pstmt.executeUpdate();
 				
 				pstmt.close();
@@ -85,6 +103,15 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 			}
 		}
+
+	public Article afficherArticle(int idArticle) throws BusinessException {
+		Article artRetourne = new Article();
+		
+		
+		
+		return artRetourne;
+		
+	}
 }
 
 

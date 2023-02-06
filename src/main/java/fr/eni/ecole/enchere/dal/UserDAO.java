@@ -13,5 +13,5 @@ public interface UserDAO {
 
 	public void updateUser(Utilisateur userUpdate) throws BusinessException;
 	
-	public Utilisateur selectUser(String pseudo) throws BusinessException;
+	public Utilisateur selectUser(int id) throws BusinessException;
 }

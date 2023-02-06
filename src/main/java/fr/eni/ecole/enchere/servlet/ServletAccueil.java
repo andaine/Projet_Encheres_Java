@@ -54,7 +54,6 @@ public class ServletAccueil extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		ArticleManager am = ArticleManager.getInstance();
-				
 
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();
@@ -71,41 +70,34 @@ public class ServletAccueil extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("dopost - servlet accueil\n");
 
-		req.setCharacterEncoding("UTF-8");
 		EnchereManager mgr = EnchereManager.getInstance();
 		HttpSession session = req.getSession();
 		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
 		int userId;
-		if(userConnecte == null) {
+		if (userConnecte == null) {
 			userId = 0;
-		}else {
+		} else {
 			userId = userConnecte.getNoUtilisateur();
 		}
-		
-			// recup catégorie choisie
-			String categorieChoisie = req.getParameter("selectCategorie");
-			req.setAttribute("categorieChoisie", categorieChoisie);
-			System.out.println("test = categorie : " + categorieChoisie);
 
-			// recup le champ de texte
-			String textFieldResult = req.getParameter("textFiltreArticle");
-			System.out.println("test = article : " + textFieldResult);
-			
-			try {
-				List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult);
-				req.setAttribute("listeEncheres", listeEncheresFiltres);
-			} catch (BusinessException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		
-			
-			
-			
+		// recup catégorie choisie
+		String categorieChoisie = req.getParameter("selectCategorie");
+		req.setAttribute("categorieChoisie", categorieChoisie);
+		System.out.println("test = categorie : " + categorieChoisie);
 
-		
+		// recup le champ de texte
+		String textFieldResult = req.getParameter("textFiltreArticle");
+		System.out.println("test = article : " + textFieldResult);
+
+		try {
+			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult);
+			req.setAttribute("listeEncheres", listeEncheresFiltres);
+		} catch (BusinessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		ArticleManager am = ArticleManager.getInstance();
 
 		try {

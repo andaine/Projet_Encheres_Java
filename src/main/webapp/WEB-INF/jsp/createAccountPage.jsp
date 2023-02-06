@@ -9,10 +9,9 @@
 <title>Créer mon compte</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/fragments/header.html" %>
 	
 	<header>
-		<h1 id="ENI">ENI-Encheres</h1>
+		<%@ include file="/WEB-INF/fragments/header.html" %>
 	</header>
 	
 	<p style="color:red">
@@ -25,30 +24,30 @@
 	<form method="post" action="<%=request.getContextPath()%>/ServletCreateAccount">
 		<section>
 			<label for="input_pseudo">Pseudo :</label>
-			<input type="text" id="pseudo" name="pseudo"/>
+			<input type="text" id="pseudo" name="pseudo" value="${pseudo}"/>
 			<label for="input_nom">Nom :</label>
 			<input type="text" id="nom" name="nom" value="${nom}"/>
 		</section>
 		
 		<section>
 			<label for="input_prenom">Prénom :</label>
-			<input type="text" id="prenom" name="prenom"/>
+			<input type="text" id="prenom" name="prenom" value="${prenom}"/>
 			<label for="input_email">Email :</label>
-			<input type="text" id="email" name="email"/>
+			<input type="text" id="email" name="email" value="${email}"/>
 		</section>
 		
 		<section>
 			<label for="input_telephone">Téléphone :</label>
-			<input type="text" id="telephone" name="telephone" />
+			<input type="text" id="telephone" name="telephone" value="${telephone}"/>
 			<label for="input_rue">Rue :</label>
-			<input type="text" id="rue" name="rue"/>
+			<input type="text" id="rue" name="rue" value="${rue}"/>
 		</section>
 		
 		<section>
 			<label for="input_cp">Code Postal :</label>
-			<input type="text" id="cp" name="cp"/>
+			<input type="text" id="cp" name="cp" value="${cp}"/>
 			<label for="input_ville">Ville :</label>
-			<input type="text" id="ville" name="ville"/>
+			<input type="text" id="ville" name="ville" value="${ville}"/>
 		</section>
 		
 		<section>

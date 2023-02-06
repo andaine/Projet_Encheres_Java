@@ -12,7 +12,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class UserDAOJdbcImpl implements UserDAO {
 
 	private static final String LOGIN = "SELECT * FROM Utilisateurs WHERE pseudo=? and mot_de_passe=?";
-	private static final String SELECT_USER = "SELECT * FROM Utilisateurs WHERE pseudo=?";
+	private static final String SELECT_USER = "SELECT * FROM Utilisateurs WHERE no_utilisateur=?";
 	private static final String CREATE_USER = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 100, 0)";
 	private static final String DELETE_USER = "DELETE FROM Utilisateurs WHERE no_utilisateur=?";
@@ -186,14 +186,14 @@ public class UserDAOJdbcImpl implements UserDAO {
 	}
 
 	@Override
-	public Utilisateur selectUser(String pseudo) throws BusinessException {
+	public Utilisateur selectUser(int id) throws BusinessException {
 
 		Utilisateur user = new Utilisateur();
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_USER);
-			pstmt.setString(1, pseudo);
+			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {

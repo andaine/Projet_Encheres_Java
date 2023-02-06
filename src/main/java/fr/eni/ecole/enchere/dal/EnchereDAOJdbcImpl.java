@@ -27,9 +27,11 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 
+
 	Pattern p = Pattern.compile("\\?");
 	Matcher m;
 	int count = 0;
+
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
