@@ -25,7 +25,7 @@ public class ArticleManager {
 		}
 		return mgr;
 	}
-	
+
 	public List<Categorie> afficherCategories() throws BusinessException {
 		List<Categorie> categoriesListe = articleDAO.selectCategories();
 		return categoriesListe;
