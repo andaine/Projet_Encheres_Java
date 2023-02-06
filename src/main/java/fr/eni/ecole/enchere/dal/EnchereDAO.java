@@ -9,11 +9,6 @@ public interface EnchereDAO {
 	
 	
 
-	public List<Enchere> afficherAllEncheres() throws BusinessException;
-	
-	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException;
-	
-	public List<Enchere> afficherMesEncheres(int id) throws BusinessException;
-	
+	public List<Enchere> afficherEncheres(int idUser, String categorie, String nomArticle) throws BusinessException;
 	
 }

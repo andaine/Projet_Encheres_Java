@@ -27,7 +27,7 @@ public class ServletDelete extends HttpServlet {
 		String idStr = request.getParameter("id");
 		System.out.println("test servlet delete " + idStr);
 		int id = Integer.parseInt(idStr);
-		UserManager mgr = new UserManager();
+		UserManager mgr = UserManager.getInstance();
 		try {
 			mgr.supprimerUtilisateur(id);
 		} catch (BusinessException e) {

@@ -10,17 +10,22 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ArticleManager {
 	
 	private ArticleDAO articleDAO;
-
+	private static ArticleManager mgr;
 	
-	public ArticleManager() {
+	private ArticleManager() {
 
 		this.articleDAO = DAOFactory.getArticleDAO();
 	}
 	
+	public static ArticleManager getInstance() {
+		if(mgr == null) {
+			mgr = new ArticleManager();
+		}
+		return mgr;
+	}
 	
 	public List<Categorie> afficherCategories() throws BusinessException {
 		List<Categorie> categoriesListe = articleDAO.selectCategories();
-		System.out.println("manager");
 		return categoriesListe;
 	}
 	

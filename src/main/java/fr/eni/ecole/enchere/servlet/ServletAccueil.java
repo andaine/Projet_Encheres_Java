@@ -12,9 +12,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Enchere;
+import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 import fr.eni.ecole.enchere.bll.ArticleManager;
@@ -35,24 +38,23 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doget - servlet accueil");
+		System.out.println("doget - servlet accueil\n");
 
-		EnchereManager mgr = new EnchereManager();
+		EnchereManager mgr = EnchereManager.getInstance();
 
 		try {
-			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
+			List<Enchere> listeEncheres = mgr.afficherEncheres(0, null, null);
 			request.setAttribute("listeEncheres", listeEncheres);
-			for (Enchere e : listeEncheres) {
-			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException();
-			be.addMessage("ca marche pas");
+			be.addMessage("Impossible d'afficher la liste des enchères");
 		}
 
 		request.setCharacterEncoding("UTF-8");
 
-		ArticleManager am = new ArticleManager();
+		ArticleManager am = ArticleManager.getInstance();
+				
 
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();
@@ -69,54 +71,42 @@ public class ServletAccueil extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("dopost - servlet accueil");
+		System.out.println("dopost - servlet accueil\n");
 
 		req.setCharacterEncoding("UTF-8");
-		EnchereManager mgr = new EnchereManager();
-		/*try {
-			
-			List<Enchere> listeEncheres = mgr.afficherAllEncheres();
-			List<Enchere> listeEncheresAGarder = new ArrayList<>();
-			List<Enchere> listeEncheresFinale = new ArrayList<>();
-
+		EnchereManager mgr = EnchereManager.getInstance();
+		HttpSession session = req.getSession();
+		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
+		int userId;
+		if(userConnecte == null) {
+			userId = 0;
+		}else {
+			userId = userConnecte.getNoUtilisateur();
+		}
+		
 			// recup catégorie choisie
 			String categorieChoisie = req.getParameter("selectCategorie");
 			req.setAttribute("categorieChoisie", categorieChoisie);
+			System.out.println("test = categorie : " + categorieChoisie);
 
 			// recup le champ de texte
 			String textFieldResult = req.getParameter("textFiltreArticle");
+			System.out.println("test = article : " + textFieldResult);
+			
+			try {
+				List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult);
+				req.setAttribute("listeEncheres", listeEncheresFiltres);
+			} catch (BusinessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+			
+			
 			
 
-			for (Enchere e : listeEncheres) {
-				if (e.getNomCategorie().equals(categorieChoisie)) {
-					listeEncheresAGarder.add(e);
-				}
-			}
-			for (Enchere eag : listeEncheresAGarder) {
-				if (eag.getNomArticle().contains(textFieldResult)) {
-					listeEncheresFinale.add(eag);
-				}
-			}
-			
-			if(categorieChoisie.equals("Toutes")) {
-				for (Enchere e : listeEncheres) {
-					if (e.getNomArticle().contains(textFieldResult)) {
-						listeEncheresFinale.add(e);
-					}
-				}
-				req.setAttribute("listeEncheres", listeEncheresFinale);
-			}else {
-				req.setAttribute("listeEncheres", listeEncheresFinale);
-			}
-			
-
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			BusinessException be = new BusinessException();
-			be.addMessage("Aucune enchère pour cette catégorie");
-		}
-*/
-		ArticleManager am = new ArticleManager();
+		
+		ArticleManager am = ArticleManager.getInstance();
 
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();

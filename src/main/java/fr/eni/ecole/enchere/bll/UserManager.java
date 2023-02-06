@@ -7,11 +7,18 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class UserManager {
 	private UserDAO userDAO;
-
+	private static UserManager mgr;
 	
-	public UserManager() {
+	private UserManager() {
 
 		this.userDAO = DAOFactory.getUserDAO();
+	}
+	
+	public static UserManager getInstance() {
+		if(mgr == null) {
+			mgr = new UserManager();
+		}
+		return mgr;
 	}
 	
 
@@ -32,7 +39,6 @@ public class UserManager {
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
-		System.out.println("Manager");
 		validerUtilisateur(user);
 		userDAO.insert(user);
 	}

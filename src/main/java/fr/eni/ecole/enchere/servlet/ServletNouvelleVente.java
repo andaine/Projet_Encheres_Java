@@ -26,7 +26,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 
-		ArticleManager am = new ArticleManager();
+		ArticleManager am = ArticleManager.getInstance();
 
 		try {
 			List<Categorie> listeCategories = am.afficherCategories();

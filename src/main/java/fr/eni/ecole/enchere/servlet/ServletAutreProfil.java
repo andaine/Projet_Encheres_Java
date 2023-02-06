@@ -26,7 +26,7 @@ public class ServletAutreProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String nomAutreUser =  (String) request.getParameter("nom");
-		UserManager user = new UserManager();
+		UserManager user = UserManager.getInstance();
 		Utilisateur infoVendeur;
 		try {
 			infoVendeur = user.afficherUtilisateur(nomAutreUser);

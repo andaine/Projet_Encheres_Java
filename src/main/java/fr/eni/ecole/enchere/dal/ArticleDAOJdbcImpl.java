@@ -42,7 +42,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			// throw lance l'exception et envoie le message aux couches supérieures
 			throw be;
 		}
-		System.out.println("dal");
 		return categoriesListe;
 
 	}

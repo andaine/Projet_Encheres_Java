@@ -11,38 +11,23 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class EnchereManager {
 
 	private EnchereDAO enchereDAO;
+	private static EnchereManager mgr;
 	
-	public EnchereManager() {
+	private EnchereManager() {
 		this.enchereDAO = DAOFactory.getEnchereDAO();
 		
 	}
 	
-	public List<Enchere> afficherAllEncheres() throws BusinessException{
-		
-		List<Enchere> listeAllsEncheres = enchereDAO.afficherAllEncheres();
-		for(Enchere e : listeAllsEncheres) {
-			System.out.println("BLL encheres : " + e.getMontantEnchere());
+	public static EnchereManager getInstance() {
+		if(mgr == null) {
+			mgr = new EnchereManager();
 		}
-		return listeAllsEncheres;
+		return mgr;
+	}
+	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException{
+		
+		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, nomArticle);
+		return listeEncheres;
 	}
 	
-	
-	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException{
-			
-		List<Enchere> listeAutresEncheres = enchereDAO.afficherAutresEncheres(id);
-		for(Enchere e : listeAutresEncheres) {
-			System.out.println("BLL encheres : " + e.getMontantEnchere());
-		}
-		return listeAutresEncheres;
-	}
-	
-	public List<Enchere> afficherMesEncheres(int id) throws BusinessException	{
-		
-		List<Enchere> listeMesEncheres = enchereDAO.afficherMesEncheres(id);
-		for(Enchere e : listeMesEncheres) {
-			System.out.println("BLL mesEncheres : " + e.getMontantEnchere());
-		}
-		return listeMesEncheres;
-		
-	}
 }

@@ -52,7 +52,7 @@ public class ServletCreateAccount extends HttpServlet {
 
 			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
 
-			UserManager em = new UserManager();
+			UserManager em = UserManager.getInstance();
 
 			HttpSession session = request.getSession();
 			session.setAttribute("userConnecte", user);

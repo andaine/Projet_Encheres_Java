@@ -33,7 +33,7 @@ public class ServletLogin extends HttpServlet {
 
 		System.out.println("dopost - servlet login");
 
-		UserManager em = new UserManager();
+		UserManager em = UserManager.getInstance();
 		Utilisateur userConnecte;
 
 		try {
