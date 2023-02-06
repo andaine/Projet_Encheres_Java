@@ -27,6 +27,7 @@ public class ArticleManager {
 	}
 	
 	public void ajouterVente(Article article, int id) throws BusinessException {
+		System.out.println("test articlemanager - ajouterVente");
 		articleDAO.ajouterVente(article, id);
 		 
 	}

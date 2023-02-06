@@ -13,7 +13,7 @@
 	<%@ include file="/WEB-INF/fragments/header.html"%>
 
 	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
-		${be}
+		${be} <br>
 	</c:forEach></p>
 	
 	<div class="menu">
@@ -58,7 +58,7 @@
 
 				<div class="input">
 					<label for="debut">Début de l'enchère</label> <input type="date"
-						id="debut" name="debut" value="${debut}" required />
+						id="debut" name="debut" value="${debut}"  />
 				</div>
 				<div class="input">
 					<label for="fin">Fin de l'enchère</label> <input type="date"

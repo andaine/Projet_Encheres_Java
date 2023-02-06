@@ -1,9 +1,11 @@
 package fr.eni.ecole.enchere.servlet;
 
 import java.io.IOException;
+
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -67,9 +69,10 @@ public class ServletNouvelleVente extends HttpServlet {
 		int prix  = Integer.parseInt(request.getParameter("prix")) ;
 		LocalDate debutVente = LocalDate.parse(request.getParameter("debut"), DateTimeFormatter.ISO_DATE);
 		LocalDate finVente = LocalDate.parse(request.getParameter("fin"), DateTimeFormatter.ISO_DATE);
+		System.out.println(request.getParameter("debut"));
 		
 		String rue = request.getParameter("rue");
-		System.out.println(rue + "test rue !!!!!");
+	
 		String codePostal = request.getParameter("postal");
 		String ville = request.getParameter("ville");
 		
@@ -114,6 +117,21 @@ public class ServletNouvelleVente extends HttpServlet {
 	protected void validerArticle(HttpServletRequest request) throws BusinessException {
 		
 		BusinessException be = new BusinessException();
+	
+		
+
+		 LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
+		 LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
+	
+	
+		if (dateDebut.isBefore(LocalDate.now()) || dateFin.isBefore(LocalDate.now())) {
+			be.addMessage("la date est antérieur à la date du jour");
+		}
+		
+		
+		 if (dateDebut.isAfter(dateFin)) {
+			 be.addMessage("la date de début ne doit pas être ultérieur à la date de fin");
+		 }
 		
 		
 		if (request.getParameter("article").isBlank() ) {
@@ -160,4 +178,10 @@ public class ServletNouvelleVente extends HttpServlet {
         }
 	}
 
+	
+	public LocalDate convretirVersLocalDate(Date dateAconvertir) {
+	    return dateAconvertir.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
+	}
 }
