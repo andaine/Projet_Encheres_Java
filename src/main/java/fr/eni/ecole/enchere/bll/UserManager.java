@@ -1,5 +1,7 @@
 package fr.eni.ecole.enchere.bll;
 
+import java.util.List;
+
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -29,6 +31,7 @@ public class UserManager {
 		return autreUser;
 		
 	}
+
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 

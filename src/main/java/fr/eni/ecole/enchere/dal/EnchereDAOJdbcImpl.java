@@ -20,7 +20,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 			+ "					INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "					INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "					INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
-	private static final String SELECT_AUTRES_ENCHERES = SELECT_ALL_ENCHERES + "WHERE NOT e.no_utilisateur=?";
+	private static final String SELECT_AUTRES_ENCHERES = SELECT_ALL_ENCHERES + " WHERE NOT e.no_utilisateur=?";
 	private static final String SELECT_MES_ENCHERES = SELECT_ALL_ENCHERES + "WHERE e.no_utilisateur=?";
 	
 	
@@ -96,7 +96,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO{
 	public List<Enchere> afficherAutresEncheres(int id) throws BusinessException {
 		
 			
-			List<Enchere> listeAutresEncheres = new ArrayList<>();
+			List<Enchere> listeAutresEncheres = new ArrayList<>(); 
 		
 			
 			try (Connection con = ConnectionProvider.getConnection()){
