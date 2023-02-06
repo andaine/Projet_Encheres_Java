@@ -5,66 +5,88 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 
 
-<%Utilisateur userConnecte =(Utilisateur) session.getAttribute("userConnecte") ;%>
+
 
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 <meta charset="UTF-8">
 <title>JSP mon profil</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html" %>
+	<div class="menu">
+	<div></div>
 	
-	<header><h2>ENI - enchères monprofil.jsp</h2></header>
+		<div><h2 class="pageTitle">profil</h2></div> 
+	<div></div>	
 
-	<section id="sectionUserID">
-		<ul>
-			<li>
-				<label for="pseudo" id="labelPseudo">Pseudo :</label>
-				<p id="pseudo" name="pseudo"> ${infoVendeur.getPseudo()}  </p>
-			</li>
-			<li>
-				<label for="nom" id="labelNom">Nom :</label>
-				<p id="nom" name="nom">${infoVendeur.getNom()}   </p>
-			</li>
-			<li>
-				<label for="prenom" id="labelPrenom">Prenom :</label>
-				<p id="prenom" name="prenom">${infoVendeur.getPrenom()}  </p>
-			</li>
-			<li>
-				<label for="email" id="labelEmail">Email :</label>
-				<p id="email" name="email">${infoVendeur.getEmail()}  </p>
-			</li>
-			<li>
-				<label for="telephone" id="labelTelephone">Téléphone :</label>
-				<p id="telephone" name="telephone">${infoVendeur.getTelephone()}  </p>
-			</li>
-			<li>
-				<label for="rue" id="labelRue">Rue :</label>
-				<p id="rue" name="rue">${infoVendeur.getRue()}  </p>
-			</li>
-			<li>
-				<label for="codePostal" id="labelCodePostal">Code postal :</label>
-				<p id="codePostal" name="codePostal">${infoVendeur.getCodePostal()} </p>
-			</li>
-			<li>
-				<label for="ville" id="labelVille">Ville :</label>
-				<p id="ville" name="ville">${infoVendeur.getVille()}  </p>
-			</li>						
-		</ul>
 	
-	<a href="<%=request.getContextPath()%>/ServletUpdateUtilisateurs" >
-		<!-- TODO servlet modifier profil -->
+	</div>
 	
-		<input name="modifierProfil" id="modifierProfil" type="submit" value="Modifier">
-	</a>
+	<div class="content">
+		
+		<div></div>
+	<div>
+		<form action="${pageContext.request.contextPath}/ServletUpdateUtilisateurs">
+		
+			<div class="labelProfil">
+				<label for="pseudo" id="labelPseudo">Pseudo</label>
+				${infoVendeur.getPseudo()}
+			</div>
+			<div class="labelProfil">
+				<label for="nom" id="labelNom">Nom</label> 
+				${infoVendeur.getNom()}
+			</div>
+			<div class="labelProfil">
+				<label for="prenom" id="labelPrenom">Prenom</label>
+				 ${infoVendeur.getPrenom()}
+				
+			</div>
+			<div class="labelProfil">
+				<label for="email" id="labelEmail">Email</label> 
+				${infoVendeur.getEmail()}
+				
+			</div >
+			<div class="labelProfil">
+				<label for="telephone" id="labelTelephone">Téléphone</label> 
+				${infoVendeur.getTelephone()}
+			</div>
+			<div class="labelProfil">
+				<label for="rue" id="labelRue">Rue</label>
+				${infoVendeur.getRue()} 
+			
+			</div>
+			<div class="labelProfil">
+				<label for="codePostal" id="labelCodePostal">Code postal</label> 
+				${infoVendeur.getCodePostal()}
+			</div>
+			<div class="labelProfil">
+				<label for="ville" id="labelVille">Ville</label> 
+				${infoVendeur.getVille()}
+			</div>						
+	
+	<div class="actions">
+	<c:if test="">
+						<input type="submit" name="Modifier" value="Modifier" /> 			
+		</c:if>
+	</div>
+	
+	
+		
+			
+			
 	
 	
 	
 	
-	</section>
-
+		</form>
+	</div>
+	<div></div>
+	
+	
+	</div>
 
 
 

@@ -18,12 +18,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
-	private static final String SELECT_ARTICLE = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e "
-			+ "					INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
-			+ "					INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "					INNER JOIN RETRAITS r ON a.no_article = r.no_article"
-			+ "					INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie"
-			+ "					WHERE no_article=?";
+	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, a.prix_initial, a.date_fin_enchere, a.no_utilisateur, u.pseudo"
+			+ "FROM UTILISATEURS u INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = u.no_utilisateur "
+								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
+								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
+								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
+								+ "WHERE a.no_article=?";
+	
+	
     @Override
 	public List<Categorie> selectCategories() throws BusinessException {
 
@@ -105,15 +107,28 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 		}
 
 	public Article afficherArticle(int idArticle) throws BusinessException {
-		Article artRetourne = new Article();
 		
-		
-		
-		return artRetourne;
-		
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			Article artRetourne = new Article();
+			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE);
+			pstmt.setInt(1, (artRetourne.getNoArticle()));
+
+			ResultSet rs = pstmt.executeQuery();
+			Categorie cat = new Categorie(idArticle, CREATE_ARTICLE);
+			if (rs.next()) {
+				artRetourne.setNoArticle(rs.getInt("noArticle"));
+				artRetourne.setNomArticle(rs.getString("nomArticle"));
+				artRetourne.setDescription(rs.getString("description"));
+				//artRetourne.setnoCategorie(rs.getString("nomArticle"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - insertion de l'article impossible");
+			throw be;
+		}
+		return null;
+
 	}
 }
-
-
-
-

@@ -44,6 +44,11 @@
 	flex-basis: 35%;
 }
 
+.content form .labelProfil label {
+	flex-basis: 35%;
+	font-weight: bold;
+}
+
 .content form label::after {
 	content: ' :';
 }
