@@ -55,3 +55,30 @@
 
 /* ------------------------------------------------------------------------- */
 
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+h2 {
+	text-align: center;
+}
+
+#filtres>div {
+	display: in-line;
+	flex-direction: row;
+}
+
+/* .rechCat {
+	display : flex;
+	flex-direction: column;
+} */
+
+
+
+
+
+
+
+
