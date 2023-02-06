@@ -24,9 +24,9 @@ public class UserManager {
 		return userLogin;
 	} 
 	
-	public Utilisateur afficherUtilisateur(String pseudo) throws BusinessException{
+	public Utilisateur afficherUtilisateur(int id) throws BusinessException{
 		
-		Utilisateur autreUser = userDAO.selectUser(pseudo);
+		Utilisateur autreUser = userDAO.selectUser(id);
 		
 		return autreUser;
 		
