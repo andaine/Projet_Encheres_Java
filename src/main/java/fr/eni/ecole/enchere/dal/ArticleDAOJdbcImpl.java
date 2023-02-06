@@ -15,8 +15,8 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ArticleDAOJdbcImpl implements ArticleDAO {
 
 	private static final String SELECT_CATEGORIES = "SELECT * FROM Categories";
-	private static final String CREATE_ARTICLE = "INSERT INTO Articles (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
-			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'CR')";
+	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
 
     @Override
@@ -83,9 +83,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				
 				
 				pstmt.setInt(1, idNoArticle);
-				pstmt.setString(1, article.getRetraitVendeur().getRue());
-				pstmt.setString(2, article.getRetraitVendeur().getCodePostal());
-				pstmt.setString(3, article.getRetraitVendeur().getVille());
+				pstmt.setString(2, article.getRetraitVendeur().getRue());
+				pstmt.setString(3, article.getRetraitVendeur().getCodePostal());
+				pstmt.setString(4, article.getRetraitVendeur().getVille());
 				pstmt.executeUpdate();
 				
 				pstmt.close();

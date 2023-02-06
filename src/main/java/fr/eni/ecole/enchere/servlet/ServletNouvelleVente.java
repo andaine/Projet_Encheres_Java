@@ -53,24 +53,27 @@ public class ServletNouvelleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		String article = request.getParameter("article");
+		String description = request.getParameter("description");
+		int noCategorie = Integer.parseInt(request.getParameter("categorie")) ;
+		int prix  = Integer.parseInt(request.getParameter("prix")) ;
+		LocalDate debutVente = LocalDate.parse(request.getParameter("debut"), DateTimeFormatter.ISO_DATE);
+		LocalDate finVente = LocalDate.parse(request.getParameter("fin"), DateTimeFormatter.ISO_DATE);
 		
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("postal");
+		String ville = request.getParameter("ville");
+		String categorieChoisie = request.getParameter("categorie");
+		request.setAttribute("categorieChoisie", categorieChoisie);
 		ArticleManager am = new ArticleManager();
 		try {
 			validerArticle(request);
-			String article = request.getParameter("pseudo");
-			String description = request.getParameter("nom");
-			int noCategorie = Integer.parseInt(request.getParameter("categorie")) ;
-			int prix  = Integer.parseInt(request.getParameter("prix")) ;
-			LocalDate debutVente = LocalDate.parse(request.getParameter("debut"), DateTimeFormatter.ISO_DATE);
-			LocalDate finVente = LocalDate.parse(request.getParameter("fin"), DateTimeFormatter.ISO_DATE);
-			
-			String rue = request.getParameter("rue");
-			String codePostal = request.getParameter("postal");
-			String ville = request.getParameter("ville");
 			
 			Retrait retraitVendeur = new Retrait(rue, codePostal, ville);
 			
 			Article art = new Article(article, description, debutVente, finVente, prix, prix, noCategorie, "CR", retraitVendeur);
+			System.out.println(art);
+			System.out.println(retraitVendeur);
 			HttpSession session = request.getSession();
 			Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
 			int id = userConnecte.getNoUtilisateur();
@@ -79,9 +82,19 @@ public class ServletNouvelleVente extends HttpServlet {
 			
 			am.ajouterVente(art, id);
 		} catch (BusinessException e) {
+			request.setAttribute("article",article);
+			request.setAttribute("description",description);
+
+			request.setAttribute("prix",prix);
+			request.setAttribute("debut",debutVente);
+			request.setAttribute("fin",finVente);
+			request.setAttribute("rue", rue);
+			request.setAttribute("postal",codePostal);
+			request.setAttribute("ville",ville);
 			request.setAttribute("listeErreur", e.getListeMessage());
-		}
+			doGet(request, response);
 		
+		} 
 
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccueil");
 		rd.forward(request, response);
@@ -93,11 +106,11 @@ public class ServletNouvelleVente extends HttpServlet {
 		BusinessException be = new BusinessException();
 		
 		
-		if (request.getParameter("article").isEmpty()) {
+		if (request.getParameter("article").isBlank() ) {
 			be.addMessage("Le nom de l'article est obligatoire.\n");
         }
 
-        if (request.getParameter("description").isEmpty()) {
+        if (request.getParameter("description").isBlank()) {
         	be.addMessage("La description est obligatoire.\n");
         }
        
@@ -114,15 +127,15 @@ public class ServletNouvelleVente extends HttpServlet {
         	be.addMessage("La date de fin est obligatoire.\n");
         }
         
-        if (request.getParameter("rue").isEmpty()) {
+        if (request.getParameter("rue").isBlank()) {
         	be.addMessage("La rue est obligatoire.\n");
         }
         
-        if (request.getParameter("postal").isEmpty()) {
+        if (request.getParameter("postal").isBlank()) {
         	be.addMessage("Le code postal est obligatoire.\n");
         }
         
-        if (request.getParameter("ville").isEmpty()) {
+        if (request.getParameter("ville").isBlank()) {
         	be.addMessage("La ville est obligatoire.\n");
         }
         
