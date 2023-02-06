@@ -18,7 +18,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
-
+	private static final String SELECT_ARTICLE = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e "
+			+ "					INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
+			+ "					INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
+			+ "					INNER JOIN RETRAITS r ON a.no_article = r.no_article"
+			+ "					INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie"
+			+ "					WHERE no_article=?";
     @Override
 	public List<Categorie> selectCategories() throws BusinessException {
 
@@ -100,7 +105,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		}
 
-
+	public Article afficherArticle(int idArticle) throws BusinessException {
+		Article artRetourne = new Article();
+		
+		
+		
+		return artRetourne;
+		
+	}
 }
 
 
