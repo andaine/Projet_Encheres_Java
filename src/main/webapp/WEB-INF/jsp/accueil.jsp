@@ -26,21 +26,19 @@
 		<div>
 			<c:if test="${userConnecte!=null }">
 				<nav id="navConnecte">
-					<ul>
-						<li><a
-							href="${pageContext.request.contextPath}/ServletConnecteAchats"
-							name="lienEncheres" id="lienEncheres">Enchères</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/ServletNouvelleVente"
-							name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
-								article</a> <!--  TODO ServletNouvelleVente --></li>
-						<li><a
-							href="${pageContext.request.contextPath}/ServletMonProfil?id=${userConnecte.getNoUtilisateur()}"
-							name="lienMonProfil" id="lienMonProfil">Mon profil</a></li>
-						<li><a
-							href="${pageContext.request.contextPath}/ServletDeconnexion"
-							name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a></li>
-					</ul>
+
+					<a href="${pageContext.request.contextPath}/ServletConnecteAchats"
+						name="lienEncheres" id="lienEncheres">Enchères</a> <a
+						href="${pageContext.request.contextPath}/ServletNouvelleVente"
+						name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
+						article</a>
+					<!--  TODO ServletNouvelleVente -->
+					<a
+						href="${pageContext.request.contextPath}/ServletMonProfil?id=${userConnecte.getNoUtilisateur()}"
+						name="lienMonProfil" id="lienMonProfil">Mon profil</a> <a
+						href="${pageContext.request.contextPath}/ServletDeconnexion"
+						name="lienDeconnexion" id="lienDeconnexion">Déconnexion</a>
+
 				</nav>
 			</c:if>
 			<c:if test="${userConnecte==null}">
@@ -65,11 +63,13 @@
 			action="${pageContext.request.contextPath}/ServletAccueil"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 
-			<div class=rechCat>
+			<div class="rechCat">
 				<!--  FILTRE CHAMP DE TEXTE -->
 				<input type="text" name="textFiltreArticle" id="textFiltreArticle"
 					placeholder="Le nom de l'article contient">
+			</div>
 
+			<div class="rechCat">
 				<!-- SELECTEUR DE CATEGORIES  -->
 				<label for="selectCategorie" id="labelCategorie">Catégories
 					:</label> <select name="selectCategorie" id="selectCategorie">
@@ -83,7 +83,7 @@
 			</div>
 
 
-			<div>
+			<div class="rech">
 				<!--  RECHERCHER -->
 				<input type="submit" id="boutonRechercher" value="Rechercher">
 				<br> <br>

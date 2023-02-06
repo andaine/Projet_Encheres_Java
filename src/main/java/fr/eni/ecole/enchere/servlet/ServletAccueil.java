@@ -69,7 +69,7 @@ public class ServletAccueil extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("dopost - servlet accueil");
+		System.out.println("dopost - servlet accueil !!!");
 
 		req.setCharacterEncoding("UTF-8");
 		EnchereManager mgr = new EnchereManager();
