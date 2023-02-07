@@ -40,20 +40,19 @@
 		</div>
 		<div>
 			<label for="retrait" id="labelRetrait">Retrait :</label>
-			${infoArt.getRetraitVendeur().toString()}
+			${infoArt.getRetraitVendeur().getRue()}<br>
+			${infoArt.getRetraitVendeur().getCodePostal()} ${infoArt.getRetraitVendeur().getVille()}
 		</div>
 		<div>
 			<label for="vendeur" id="labelVendeur">Vendeur :</label>
 			${infoArt.getUserV().getPseudo()}
 		</div>
 			
-
-
-		<%-- <form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">>
+		<%-- <form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">
 			<section>
 			<label for="input_proposition">Ma proposition :</label>
-			<input type="number" id="proposition" name="proposition" step="50" min="${meilleureEnchère+1}" max="${creditsRestants}">
-			<input type="text" id="encherir" name="encherir" value="Enchérir"/>			
+			<input type="number" id="prixPropose" name="prixPropose" step="50" min="${infoArt.getPrixInitial()}" max="${infoArt.getUserA().getCredit()}" value="${infoArt.getPrixInitial()}">
+			<input type="submit" id="encherir" name="encherir" value="Enchérir"/>			
 			</section>	
 		</form> --%>
 

@@ -21,11 +21,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
-	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, u2.pseudo pseudoAcheteur, a.prix_vente, a.prix_initial, a.date_fin_enchere, u.pseudo pseudoVendeur, r.rue, r.ville, r.code_postal "
-			+ "FROM UTILISATEURS u INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = u.no_utilisateur "
+	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, ua.pseudo pseudoAcheteur, ua.credit creditAcheteur, a.prix_vente, a.prix_initial, a.date_fin_enchere, uv.pseudo pseudoVendeur, r.rue, r.ville, r.code_postal "
+			+ "FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
 								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
-								+ "INNER JOIN UTILISATEURS u2 ON u2.no_utilisateur = e.no_utilisateur "
+								+ "INNER JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
 								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
 								+ "WHERE a.no_article=?";
 	
@@ -110,6 +110,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		}
 
+	
 	@Override
 	public Article afficherArticle(int idArticle) throws BusinessException {
 		
@@ -132,7 +133,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}else {
 					meilOffre = rs.getInt("montant_enchere"); 
 				}
-				Utilisateur userA = new Utilisateur(rs.getString("pseudoAcheteur"));
+				Utilisateur userA = new Utilisateur(rs.getString("pseudoAcheteur"),rs.getInt("creditAcheteur"));
 				int miseAPrix = rs.getInt("prix_initial");
 				LocalDate finEnch = rs.getDate("date_fin_enchere").toLocalDate();
 				Retrait retrait = new Retrait(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"));

@@ -31,6 +31,12 @@ public class Utilisateur {
 		super();
 		this.pseudo = pseudo;
 	}
+	
+	public Utilisateur(String pseudo,int credit) {
+		super();
+		this.pseudo = pseudo;
+		this.credit = credit;
+	}
 
 
 	public int getNoUtilisateur() {
