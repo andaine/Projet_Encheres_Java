@@ -3,6 +3,8 @@ package fr.eni.ecole.enchere.bll;
 import java.util.Iterator;
 import java.util.List;
 
+import fr.eni.ecole.enchere.bo.Article;
+import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.bo.Enchere;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.EnchereDAO;
@@ -24,9 +26,9 @@ public class EnchereManager {
 		}
 		return mgr;
 	}
-	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException{
+	public List<Enchere> afficherEncheres(int userId, String categorie, String article) throws BusinessException{
 		
-		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, nomArticle);
+		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, article);
 		return listeEncheres;
 	}
 	

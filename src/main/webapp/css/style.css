@@ -14,7 +14,6 @@ p {
 	flex: 1;
 }
 
-
 .menu .pageTitle {
 	text-align: center;
 	font-weight: bold;
@@ -29,12 +28,6 @@ p {
 	margin: 2rem;
 	flex: 1;
 }
-
-
-/* #test2 {
-	width : 60vw;
-}
- */
 
 .content form .input {
 	display: flex;
@@ -55,7 +48,9 @@ p {
 	flex-basis: 35%;
 }
 
-
+/*  .content form .labelProfil  p {	
+float : right;
+} */
 .infoUser form .labelProfil .info {
 	float: right;
 }
@@ -127,15 +122,6 @@ form>.labelProfil {
 	font-weight: bold;
 }
 
-#btnModifier  {
-	 display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#btnModifier form input[type="submit"] {
-	padding : 1em 1em 1em 1em;
-}
 /* -------------------------------------------------- */
 
 /* css connexion */
@@ -214,3 +200,4 @@ grid-row-gap: 0px;
 	padding: 2rem;
 	background-color: white;
 }
+
