@@ -26,6 +26,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
+	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
 
 	private boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
 				mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees = false, ventesTerminees = false;
@@ -162,5 +163,26 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		}
 
 		return listeEncheres;
+	}
+
+	@Override
+	public void insertEnchere (Enchere enchere, int idArticle) throws BusinessException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
+			pstmt.setInt(1, (enchere.getNoUser()));
+			pstmt.setInt(2, idArticle);
+			pstmt.setDate(3, java.sql.Date.valueOf(enchere.getDateEnchere()));
+			pstmt.setInt(4, (enchere.getMontantEnchere()));
+
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - insertion de l'enchère impossible");
+			throw be;
+
+		}
 	}
 }
