@@ -48,13 +48,14 @@
 			${infoArt.getUserV().getPseudo()}
 		</div>
 			
-		<%-- <form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">
+		<form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">
 			<section>
 			<label for="input_proposition">Ma proposition :</label>
 			<input type="number" id="prixPropose" name="prixPropose" step="50" min="${infoArt.getPrixInitial()}" max="${infoArt.getUserA().getCredit()}" value="${infoArt.getPrixInitial()}">
 			<input type="submit" id="encherir" name="encherir" value="Enchérir"/>			
+			<input type="hidden" value="${infoArt.getNoArticle()}" id="noArticle" name="noArticle">
 			</section>	
-		</form> --%>
+		</form>
 
 	</section>
 </body>

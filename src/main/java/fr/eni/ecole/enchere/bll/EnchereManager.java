@@ -32,4 +32,7 @@ public class EnchereManager {
 		return listeEncheres;
 	}
 	
+	public void insererEnchere (Enchere enchere, int idArticle) throws BusinessException {
+		enchereDAO.insertEnchere(enchere, idArticle);
+	}
 }

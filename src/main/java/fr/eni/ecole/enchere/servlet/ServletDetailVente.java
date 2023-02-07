@@ -1,6 +1,7 @@
 package fr.eni.ecole.enchere.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.enchere.bll.ArticleManager;
+import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Article;
+import fr.eni.ecole.enchere.bo.Enchere;
+import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 /**
@@ -48,7 +53,20 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int prixPropose  = Integer.parseInt(request.getParameter("prixPropose")) ;
+		int noArticle  = Integer.parseInt(request.getParameter("noArticle")) ;
+		HttpSession session = request.getSession();
+		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
+		int idUserConnecte = userConnecte.getNoUtilisateur();
 		
+		EnchereManager em = EnchereManager.getInstance();
+		Enchere enchere = new Enchere(LocalDate.now(), prixPropose, idUserConnecte, noArticle);
+	
+		try {
+			em.insererEnchere(enchere, prixPropose);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// TODO Auto-generated method stub
 		doGet(request, response);
