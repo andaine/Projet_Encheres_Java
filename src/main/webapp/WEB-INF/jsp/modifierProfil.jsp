@@ -20,16 +20,20 @@
 	</p> 
 	
 	
-	
-	<header>
-		<h1 id="ENI">ENI-Encheres</h1>
-		<h1>Mon Profil</h1>
-		
-	</header>
+		<div class="menu">
+			<div></div>
+			<div>
+			<h1 class="pageTitle">Mon Profil</h1>
+			</div>
+			<div></div>
+		</div>
 
-	<section id="sectionInfos">
+		
+	<div class="contentModifier">
+	<div></div>
+	<div>
 	<form method ="post" action="<%=request.getContextPath()%>/ServletUpdateUtilisateurs?id=${userConnecte.getNoUtilisateur()}">
-		<div id="divL">
+		<div>
 		
 			<ul>
 				<li>
@@ -61,7 +65,7 @@
 	
 		</div>
 	
-		<div id="divR">
+		<div>
 			<ul>
 				<li>
 					<label for="nomModifier" id="labelNomModifier">Nom : </label>
@@ -95,7 +99,9 @@
 		<!-- TODO servlet modifier profil -->
 		<input type="submit" id="enregistrerProfil" name="enregistrerProfil" value="Enregistrer" >
 	</form>
-	</section>
+	</div>
+	<div></div>
+	</div>
 
 	
 		

@@ -14,6 +14,7 @@ p {
 	flex: 1;
 }
 
+
 .menu .pageTitle {
 	text-align: center;
 	font-weight: bold;
@@ -28,6 +29,12 @@ p {
 	margin: 2rem;
 	flex: 1;
 }
+
+
+/* #test2 {
+	width : 60vw;
+}
+ */
 
 .content form .input {
 	display: flex;
@@ -48,9 +55,7 @@ p {
 	flex-basis: 35%;
 }
 
-/*  .content form .labelProfil  p {	
-float : right;
-} */
+
 .infoUser form .labelProfil .info {
 	float: right;
 }
@@ -122,6 +127,15 @@ form>.labelProfil {
 	font-weight: bold;
 }
 
+#btnModifier  {
+	 display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnModifier form input[type="submit"] {
+	padding : 1em 1em 1em 1em;
+}
 /* -------------------------------------------------- */
 
 /* css connexion */
@@ -130,3 +144,61 @@ form>.labelProfil {
 	width: 100%;
 }
 
+
+
+/*----------------------------------  */
+
+/* modifier profil  */
+
+.contentModifier {
+	display: flex;
+	flex-direction: row;
+}
+
+.contentModifier :nth-child(1) {
+	width : 60%;
+}
+
+.contentModifier>div {
+	margin: 2rem;
+	flex: 1;
+}
+
+
+.contentModifier form .input {
+	display: flex;
+	margin: 0.5rem 0;
+}
+
+.contentModifier form .actions {
+	margin-top: 0.5rem;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.contentModifier form textarea {
+	resize: vertical;
+}
+
+.contentModifier form .input label {
+	flex-basis: 35%;
+}
+
+
+.infoUser form .labelProfil .info {
+	float: right;
+}
+
+.content form label::after {
+	content: ' :';
+}
+
+.contentModifier form input[type="submit"] {
+	padding: 1.5rem;
+	background-color: white;
+}
+
+.contentModifier form input[type="button"] {
+	padding: 2rem;
+	background-color: white;
+}
