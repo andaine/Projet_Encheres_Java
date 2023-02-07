@@ -71,7 +71,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					pstmt = con.prepareStatement(requete);
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
-					//pstmt = con.prepareStatement(requete);
 					
 
 					if (requete.contains("?")) {
