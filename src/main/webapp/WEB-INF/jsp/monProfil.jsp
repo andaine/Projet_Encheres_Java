@@ -25,7 +25,7 @@
 	
 	</div>
 	
-	<div class="content">
+	<div class="infoUser">
 		
 		<div></div>
 	<div>
@@ -33,38 +33,38 @@
 		
 			<div class="labelProfil">
 				<label for="pseudo" id="labelPseudo">Pseudo</label>
-				${infoVendeur.getPseudo()}
+				<span class="info"> ${infoVendeur.getPseudo()} </span>
 			</div>
 			<div class="labelProfil">
 				<label for="nom" id="labelNom">Nom</label> 
-				${infoVendeur.getNom()}
+				<span class="info">${infoVendeur.getNom()}</span>
 			</div>
 			<div class="labelProfil">
 				<label for="prenom" id="labelPrenom">Prenom</label>
-				 ${infoVendeur.getPrenom()}
+				<span class="info">${infoVendeur.getPrenom()}</span>
 				
 			</div>
 			<div class="labelProfil">
 				<label for="email" id="labelEmail">Email</label> 
-				${infoVendeur.getEmail()}
+				<span class="info">${infoVendeur.getEmail()}</span>
 				
 			</div >
 			<div class="labelProfil">
 				<label for="telephone" id="labelTelephone">Téléphone</label> 
-				${infoVendeur.getTelephone()}
+				<span class="info">${infoVendeur.getTelephone()}</span>
 			</div>
 			<div class="labelProfil">
 				<label for="rue" id="labelRue">Rue</label>
-				${infoVendeur.getRue()} 
+				<span class="info">${infoVendeur.getRue()} </span>
 			
 			</div>
 			<div class="labelProfil">
 				<label for="codePostal" id="labelCodePostal">Code postal</label> 
-				${infoVendeur.getCodePostal()}
+				<span class="info">${infoVendeur.getCodePostal()}</span>
 			</div>
 			<div class="labelProfil">
 				<label for="ville" id="labelVille">Ville</label> 
-				${infoVendeur.getVille()}
+				<span class="info">${infoVendeur.getVille()}</span>
 			</div>						
 	
 	<div class="actions">
