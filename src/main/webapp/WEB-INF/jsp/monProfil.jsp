@@ -68,9 +68,9 @@
 			</div>						
 	
 	<div class="actions">
-	<c:if test="">
+	<%-- <c:if test=""> --%>
 						<input type="submit" name="Modifier" value="Modifier" /> 			
-		</c:if>
+		<%-- </c:if> --%>
 	</div>
 	
 	
