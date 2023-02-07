@@ -46,8 +46,8 @@
 					</select>
 				</div>
 				<div class="input">
-					<label for="photo">Photo de l'article</label> <input type="file"
-						accept="image/*" id="photo" name="photo"
+					<label for="photo">Photo de l'article</label> 
+					<input type="file" accept="image/*" id="photo" name="photo"
 						placeholder="Envoyer une image">
 				</div>
 				<div class="input">
@@ -86,7 +86,8 @@
 				
 				<div class="actions">
 						<input type="submit" name="enregistrer" value="Enregistrer" /> 
-						<input type="submit" name="annuler" value="Annuler" />
+						<%-- <input type="button" onclick="${pageContext.request.contextPath}/ServletAccueil" value="Accueil" /> --%>
+						<a href="${pageContext.request.contextPath}/ServletAccueil" class="button"><input type="button" value="Accueil" /></a>
 				</div>
 			</form>
 		</div>

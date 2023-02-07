@@ -26,11 +26,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
-
-
-	Pattern p = Pattern.compile("\\?");
-	Matcher m;
-	int count = 0;
+	
+	private int count = 0;
 
 
 	@Override
@@ -43,7 +40,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			// ACCUEIL DEFAUT
-			if (userId == 0 && categorie == null && nomArticle == null) {
+			if (categorie == null && nomArticle == null) {
 				System.out.println("DEFAUT\n");
 				System.out.println("userId : " + userId);
 				System.out.println("categorie : " + categorie);
@@ -54,6 +51,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			} else {
 				PreparedStatement pstmt = con.prepareStatement(requete);
 
+		
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
 					pstmt = con.prepareStatement(requete);
@@ -74,11 +72,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
 					//pstmt = con.prepareStatement(requete);
-					m = p.matcher(requete);
+					
 
-					if (m.find()) {
+					if (requete.contains("?")) {
 						count++;
 					}
+					System.out.println("count = " + count);
 					pstmt.setString(count, categorie);
 					System.out.println(categorie);
 					System.out.println("count = " + count);
@@ -103,10 +102,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
-					//pstmt = con.prepareStatement(requete);
-					m = p.matcher(requete);
+					
 
-					if (m.find()) {
+					if (requete.contains("?")) {
 						count++;
 					}
 					pstmt.setString(count, "%" + nomArticle + "%");
