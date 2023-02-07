@@ -1,15 +1,9 @@
 package fr.eni.ecole.enchere.bll;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
 import fr.eni.ecole.enchere.bo.Article;
 import fr.eni.ecole.enchere.bo.Categorie;
-import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.ArticleDAO;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -96,11 +90,5 @@ public class ArticleManager {
         }
 	}
 
-	
-	public LocalDate convretirVersLocalDate(Date dateAconvertir) {
-	    return dateAconvertir.toInstant()
-	      .atZone(ZoneId.systemDefault())
-	      .toLocalDate();
-	}
 }
 
