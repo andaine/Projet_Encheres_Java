@@ -37,7 +37,7 @@
 		<div id="colonneMilieu">
 
 			<form method="post"
-				action="<%=request.getContextPath()%>/ServletUpdateUtilisateurs?id=${userConnecte.getNoUtilisateur()}">
+				action="${pageContext.request.contextPath}/ServletUpdateUtilisateurs?id=${userConnecte.getNoUtilisateur()}">
 				<div id="separateurMilieu">
 					<div>
 

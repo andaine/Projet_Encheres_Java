@@ -29,6 +29,7 @@ public class ServletDelete extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
 		System.out.println((userConnecte.getMotDePasse()) + (request.getParameter("mdpActuel")));
+		System.out.println(request.getAttribute("prenomModifier"));
 		
 		if(request.getParameter("mdpActuel") != userConnecte.getMotDePasse()) {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");

@@ -47,10 +47,10 @@ public class ServletCreateAccount extends HttpServlet {
 		String codePostal = request.getParameter("cp");
 		String ville = request.getParameter("ville");
 		String motDePasse = request.getParameter("motDePasse");
-		
+		int credit = 100;
 		try {
 
-			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse);
+			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit);
 
 			UserManager em = UserManager.getInstance();
 

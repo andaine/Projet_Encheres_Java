@@ -33,6 +33,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 
 	
 		HttpSession session = request.getSession();
+		Utilisateur userEnCours = (Utilisateur) session.getAttribute("userConnecte");
 		
 		System.out.println("dopost - servlet update");
 
@@ -48,9 +49,8 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		String motDePasseConfirmer = request.getParameter("mdpConfirmer");
 		String motDePasseNouveau = request.getParameter("mdpNouveau");
 		int id = Integer.parseInt(request.getParameter("id"));
+		int credit = userEnCours.getCredit();
 		
-		
-//		Utilisateur userMdp = (Utilisateur) session.getAttribute("userConnecte");
 //		String mdpBDD = userMdp.getMotDePasse();
 		
 		
@@ -64,7 +64,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		
 		
 //		if (request.getParameter("mdpActuel").equals(mdpBDD)) {
-			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel);
+			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel, credit);
 			UserManager em = UserManager.getInstance();
 			try {
 				em.updateUtilisateur(userConnecte);
@@ -75,7 +75,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 				rd.forward(request, response);
 			}
 	
-		RequestDispatcher rd = request.getRequestDispatcher("/ser");
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccueil");
 		rd.forward(request, response);
 	}
 
