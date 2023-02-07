@@ -18,7 +18,8 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e "
+	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, "
+			+ "u.pseudo, a.nom_article, c.libelle FROM Encheres e "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
@@ -27,9 +28,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 	
-	private int count = 0;
-
-
+	private List<Integer> nombreFiltres;
+	private int index;
+	private boolean filtreCategorie, filtreArticle, filtreAchats, encheresOuvertes, mesEncheres, mesEncheresRemportees, mesVentesEnCours, ventesNonDebutees, ventesTerminees;
+	
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
 
@@ -41,52 +43,29 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			// ACCUEIL DEFAUT
 			if (categorie == null && nomArticle == null) {
-				System.out.println("DEFAUT\n");
-				System.out.println("userId : " + userId);
-				System.out.println("categorie : " + categorie);
-				System.out.println("nom article : " + nomArticle);
-				System.out.println("-------------------------------------------------------\n");
+
 				Statement stmt = con.createStatement();
 				rs = stmt.executeQuery(requete);
 			} else {
-				PreparedStatement pstmt = con.prepareStatement(requete);
-
-		
+						
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
-					pstmt = con.prepareStatement(requete);
-
-					System.out.println("-------------------------------------------------------\n");
-					System.out.println("CATEGORIE CHOISIE - ARTICLE VIDE");
-					System.out.println("userId : " + userId);
-					System.out.println("categorie : " + categorie);
-					System.out.println("nom article : " + nomArticle);
-
+					
 					if (requete.contains("WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
 					}
-					requete += FILTRE_CATEGORIE;
-
-					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");
-					//pstmt = con.prepareStatement(requete);
 					
-
-					if (requete.contains("?")) {
-						count++;
-					}
-					System.out.println("count = " + count);
-					pstmt.setString(count, categorie);
-					System.out.println(categorie);
-					System.out.println("count = " + count);
-
+					requete += FILTRE_CATEGORIE;
+					filtreCategorie = true;
+				       
+				    System.out.println(requete);    
+					
 				}
 
 				// CHOIX ARTICLE
-				if (!nomArticle.isEmpty()) {
-					pstmt = con.prepareStatement(requete);
+				if (!nomArticle.isEmpty()) {				
 
 					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
 					System.out.println("userId : " + userId);
@@ -99,21 +78,23 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_NOM_ARTICLE;
+					filtreArticle = true;
 
-					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");
+					System.out.println(requete);
 					
-
-					if (requete.contains("?")) {
-						count++;
-					}
-					pstmt.setString(count, "%" + nomArticle + "%");
-					System.out.println("count = " + count);
+				
 
 				}
 
 				// TODO CHECKBOX DE L'ENFER
 
+				
+				
+				PreparedStatement pstmt = con.prepareStatement(requete);
+				
+				
+				
+				
 				rs = pstmt.executeQuery();
 
 			}
