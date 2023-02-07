@@ -151,13 +151,25 @@ form>.labelProfil {
 /* modifier profil  */
 
 .contentModifier {
-	display: flex;
-	flex-direction: row;
+display: grid;
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: 1fr;
+grid-column-gap: 5px;
+grid-row-gap: px;
 }
 
-.contentModifier :nth-child(1) {
-	width : 60%;
+#colonneMilieu {
+	 grid-column-start: 2;
 }
+
+#separateurMilieu {
+	display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px; 
+}
+
 
 .contentModifier>div {
 	margin: 2rem;
