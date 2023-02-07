@@ -28,11 +28,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 	
 	private int count = 0;
-
+	
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
 
+//		afficher enchère
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;

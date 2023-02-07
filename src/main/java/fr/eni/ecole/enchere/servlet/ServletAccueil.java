@@ -26,7 +26,7 @@ import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 /**
- * Servlet implementation class ServletAccueil
+ * Servlet implementation class : ServletAccueil
  */
 @WebServlet("/ServletAccueil")
 public class ServletAccueil extends HttpServlet {
