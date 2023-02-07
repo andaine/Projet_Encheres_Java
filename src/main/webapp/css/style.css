@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+p {
+	display: inline;
+}
+
 /* css nouvelle vente */
 .menu {
 	display: flex;
@@ -44,9 +48,11 @@
 	flex-basis: 35%;
 }
 
-.content form .labelProfil label {
-	flex-basis: 35%;
-	font-weight: bold;
+/*  .content form .labelProfil  p {	
+float : right;
+} */
+.infoUser form .labelProfil .info {
+	float: right;
 }
 
 .content form label::after {
@@ -58,8 +64,11 @@
 	background-color: white;
 }
 
+.content form input[type="button"] {
+	padding: 2rem;
+	background-color: white;
+}
 /* ------------------------------------------------------------------------- */
-
 header {
 	display: flex;
 	flex-direction: row;
@@ -75,17 +84,49 @@ h2 {
 	text-align: center;
 }
 
-#filtres>div{
+#filtres>div {
 	display: flex;
 	flex-direction: row;
 }
 
+/* css Mon profil */
 
 
+.infoUser form label::after {
+	content: ' :';
+}
 
+.infoUser>div {
+	margin: 2rem;
+	flex: 1;
+}
 
+form>.labelProfil {
+	flex: 1;
+}
 
+.infoUser {
+	display: flex;
+	flex-direction: row;
+}
 
+.infoUser form {
+	border: solid black 0.2em;
+	padding: 3px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
 
+.infoUser form .labelProfil label {
+	flex-basis: 35%;
+	font-weight: bold;
+}
 
+/* -------------------------------------------------- */
+
+/* css connexion */
+
+#creerCompte {
+	width: 100%;
+}
 
