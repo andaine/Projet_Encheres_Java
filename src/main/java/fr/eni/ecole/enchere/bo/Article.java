@@ -14,7 +14,7 @@ public class Article {
 	private LocalDate dateFinEncheres;
 	private int prixInitial;
 	private int prixVente;
-	private int noCategorie;
+	private Categorie categorie;
 	private Utilisateur user;
 	private String etatVente;
 	private List<Enchere> enchereListe;
@@ -34,41 +34,24 @@ public class Article {
 		super();
 	}
 	
-	public Article(int noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, int prixInitial, int prixVente, String etatVente, List<Enchere> enchereListe) {
+	public Article(int noArticle, String nomArticle, String description, Categorie categorie, int prixInitial,
+			LocalDate dateFinEncheres, int prixVente, List<Enchere> enchereListe, Retrait retraitVendeur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
+		this.categorie = categorie;
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.enchereListe = enchereListe;
-	}
-
-
-	
-
-	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixInitial, int prixVente, String etatVente, List<Enchere> enchereListe) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.enchereListe = enchereListe;
+		this.setRetraitVendeur(retraitVendeur);
 	}
 
 
 
-
 	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			int prixInitial, int prixVente, int noCategorie, String etatVente,
+			int prixInitial, int prixVente, Categorie categorie, String etatVente,
 			 Retrait retraitVendeur) {
 		super();
 		this.nomArticle = nomArticle;
@@ -77,7 +60,7 @@ public class Article {
 		this.dateFinEncheres = dateFinEncheres;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
-		this.noCategorie = noCategorie;
+		this.categorie = categorie;
 
 		this.etatVente = etatVente;
 		this.setRetraitVendeur(retraitVendeur);
@@ -190,15 +173,15 @@ public class Article {
 		this.noArticle = noArticle;
 	}
 
-	
 
-	public int getNoCategorie() {
-		return noCategorie;
+	public Categorie getCategorie() {
+		return categorie;
 	}
 
-	public void setNoCategorie(int noCategorie) {
-		this.noCategorie = noCategorie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
+
 
 	public Retrait getRetraitVendeur() {
 		return retraitVendeur;
