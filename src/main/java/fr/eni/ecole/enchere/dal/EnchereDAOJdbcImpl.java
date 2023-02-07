@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import fr.eni.ecole.enchere.bo.Article;
+import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.bo.Enchere;
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -19,7 +21,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, "
-			+ "u.pseudo, a.nom_article, c.libelle FROM Encheres e "
+			+ "u.pseudo, a.nom_article, c.libelle, a.etat_vente FROM Encheres e "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
@@ -27,13 +29,16 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
+	private static final String FILTRE_ETAT_VENTE = "a.etat_vente=?";
+	private static final String REQUETE_DEFAUT = SELECT_ALL_ENCHERES + " WHERE a.etat_vente= 'EC'";
 	
 	private List<Integer> nombreFiltres;
 	private int index;
-	private boolean filtreCategorie, filtreArticle, filtreAchats, encheresOuvertes, mesEncheres, mesEncheresRemportees, mesVentesEnCours, ventesNonDebutees, ventesTerminees;
+	private boolean filtreCategorie, filtreArticle, filtreAchats, encheresOuvertes, mesEncheres, mesEncheresRemportees, mesVentesEnCours, 
+					ventesNonDebutees, ventesTerminees;
 	
 	@Override
-	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
+	public List<Enchere> afficherEncheres(int userId, Categorie categorie, Article article) throws BusinessException {
 
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
@@ -42,14 +47,16 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			// ACCUEIL DEFAUT
-			if (categorie == null && nomArticle == null) {
+			if (categorie.getLibelle() == null && article.getNomArticle() == null) {
 
+				
+				requete = REQUETE_DEFAUT;
 				Statement stmt = con.createStatement();
 				rs = stmt.executeQuery(requete);
 			} else {
 						
 				// CHOIX CATEGORIE
-				if (!categorie.equals(CATEGORIE_DEFAUT)) {
+				if (!categorie.getLibelle().equals(CATEGORIE_DEFAUT)) {
 					
 					if (requete.contains("WHERE")) {
 						requete += " AND ";
@@ -65,12 +72,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				}
 
 				// CHOIX ARTICLE
-				if (!nomArticle.isEmpty()) {				
+				if (!article.getNomArticle().isEmpty()) {				
 
 					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
 					System.out.println("userId : " + userId);
 					System.out.println("categorie : " + categorie);
-					System.out.println("nom article : " + nomArticle);
+					System.out.println("nom article : " + article.getNomArticle());
 
 					if (requete.contains("WHERE")) {
 						requete += " AND ";
