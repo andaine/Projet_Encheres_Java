@@ -79,8 +79,8 @@ public class ServletNouvelleVente extends HttpServlet {
 		String categorieChoisie = request.getParameter("categorie");
 		request.setAttribute("categorieChoisie", categorieChoisie);
 		ArticleManager am = ArticleManager.getInstance();
+		
 		try {
-			validerArticle(request);
 			
 			Retrait retraitVendeur = new Retrait(rue, codePostal, ville);
 			
@@ -112,76 +112,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccueil");
 		rd.forward(request, response);
 	}
-	
-	
-	protected void validerArticle(HttpServletRequest request) throws BusinessException {
-		
-		BusinessException be = new BusinessException();
-	
-		
-
-		 LocalDate dateDebut = LocalDate.parse(request.getParameter("debut"));
-		 LocalDate dateFin = LocalDate.parse(request.getParameter("fin"));
-	
-	
-		if (dateDebut.isBefore(LocalDate.now()) || dateFin.isBefore(LocalDate.now())) {
-			be.addMessage("la date est antérieur à la date du jour");
-		}
-		
-		
-		 if (dateDebut.isAfter(dateFin)) {
-			 be.addMessage("la date de début ne doit pas être ultérieur à la date de fin");
-		 }
-		
-		
-		if (request.getParameter("article").isBlank() ) {
-			be.addMessage("Le nom de l'article est obligatoire.\n");
-        }
-
-        if (request.getParameter("description").isBlank()) {
-        	be.addMessage("La description est obligatoire.\n");
-        }
-       
-        
-        if (request.getParameter("prix").isEmpty()) {
-        	be.addMessage("Le prix doit être obligatoire.\n");
-        }
-        
-        if (request.getParameter("debut").isEmpty()) {
-        	be.addMessage("La date de début est obligatoire.\n");
-        }
-        
-        if (request.getParameter("fin").isEmpty()) {
-        	be.addMessage("La date de fin est obligatoire.\n");
-        }
-        
-        if (request.getParameter("rue").isBlank()) {
-        	be.addMessage("La rue est obligatoire.\n");
-        }
-        
-        if (request.getParameter("postal").isBlank()) {
-        	be.addMessage("Le code postal est obligatoire.\n");
-        }
-        
-        if (request.getParameter("ville").isBlank()) {
-        	be.addMessage("La ville est obligatoire.\n");
-        }
-        
-//      
-        
-       System.out.println("servlet valider user");
-     
-        if(!be.getListeMessage().isEmpty()) {
-        
-        	throw be;
-        	
-        }
-	}
 
 	
-	public LocalDate convretirVersLocalDate(Date dateAconvertir) {
-	    return dateAconvertir.toInstant()
-	      .atZone(ZoneId.systemDefault())
-	      .toLocalDate();
-	}
 }
