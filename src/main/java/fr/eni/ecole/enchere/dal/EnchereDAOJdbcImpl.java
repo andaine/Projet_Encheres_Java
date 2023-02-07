@@ -28,11 +28,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 	
 	private int count = 0;
-
+	
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
 
+//		afficher enchère
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
@@ -54,7 +55,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
-					
+					pstmt = con.prepareStatement(requete);
 
 					System.out.println("-------------------------------------------------------\n");
 					System.out.println("CATEGORIE CHOISIE - ARTICLE VIDE");
@@ -68,7 +69,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_CATEGORIE;
-					pstmt = con.prepareStatement(requete);
+
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
 					
@@ -85,7 +86,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 				// CHOIX ARTICLE
 				if (!nomArticle.isEmpty()) {
-					
+					pstmt = con.prepareStatement(requete);
 
 					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
 					System.out.println("userId : " + userId);
@@ -98,7 +99,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_NOM_ARTICLE;
-					pstmt = con.prepareStatement(requete);
+
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
 					

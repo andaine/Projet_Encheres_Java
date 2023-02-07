@@ -130,3 +130,74 @@ form>.labelProfil {
 	width: 100%;
 }
 
+
+
+/*----------------------------------  */
+
+/* modifier profil  */
+
+.contentModifier {
+display: grid;
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: 1fr;
+grid-column-gap: 5px;
+grid-row-gap: px;
+}
+
+#colonneMilieu {
+	 grid-column-start: 2;
+}
+
+#separateurMilieu {
+	display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px; 
+}
+
+
+.contentModifier>div {
+	margin: 2rem;
+	flex: 1;
+}
+
+
+.contentModifier form .input {
+	display: flex;
+	margin: 0.5rem 0;
+}
+
+.contentModifier form .actions {
+	margin-top: 0.5rem;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.contentModifier form textarea {
+	resize: vertical;
+}
+
+.contentModifier form .input label {
+	flex-basis: 35%;
+}
+
+
+.infoUser form .labelProfil .info {
+	float: right;
+}
+
+.content form label::after {
+	content: ' :';
+}
+
+.contentModifier form input[type="submit"] {
+	padding: 1.5rem;
+	background-color: white;
+}
+
+.contentModifier form input[type="button"] {
+	padding: 2rem;
+	background-color: white;
+}
+

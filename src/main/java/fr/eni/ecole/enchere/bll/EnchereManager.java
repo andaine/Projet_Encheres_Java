@@ -26,7 +26,7 @@ public class EnchereManager {
 		}
 		return mgr;
 	}
-	public List<Enchere> afficherEncheres(int userId, Categorie categorie, Article article) throws BusinessException{
+	public List<Enchere> afficherEncheres(int userId, String categorie, String article) throws BusinessException{
 		
 		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, article);
 		return listeEncheres;
