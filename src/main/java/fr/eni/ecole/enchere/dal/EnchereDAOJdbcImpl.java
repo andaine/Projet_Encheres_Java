@@ -26,9 +26,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
-	
+
 	private int count = 0;
-	
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
@@ -52,10 +51,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			} else {
 				PreparedStatement pstmt = con.prepareStatement(requete);
 
-		
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
-					pstmt = con.prepareStatement(requete);
+					
 
 					System.out.println("-------------------------------------------------------\n");
 					System.out.println("CATEGORIE CHOISIE - ARTICLE VIDE");
@@ -69,11 +67,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_CATEGORIE;
-
+					pstmt = con.prepareStatement(requete);
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
-					//pstmt = con.prepareStatement(requete);
-					
 
 					if (requete.contains("?")) {
 						count++;
@@ -82,13 +78,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					pstmt.setString(count, categorie);
 					System.out.println(categorie);
 					System.out.println("count = " + count);
-
+					count = 0;
 				}
 
 				// CHOIX ARTICLE
 				if (!nomArticle.isEmpty()) {
-					pstmt = con.prepareStatement(requete);
-
+					
 					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
 					System.out.println("userId : " + userId);
 					System.out.println("categorie : " + categorie);
@@ -100,17 +95,20 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_NOM_ARTICLE;
+					pstmt = con.prepareStatement(requete);
 
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
-					
 
 					if (requete.contains("?")) {
 						count++;
+						if(requete.contains("AND")) {
+							count++;
+						}
 					}
 					pstmt.setString(count, "%" + nomArticle + "%");
 					System.out.println("count = " + count);
-
+					count = 0;
 				}
 
 				// TODO CHECKBOX DE L'ENFER

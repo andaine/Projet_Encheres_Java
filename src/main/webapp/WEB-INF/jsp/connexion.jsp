@@ -45,7 +45,7 @@
 		<input type="submit" value="Connexion" id="connexion" name="ServletConnexion"/>
 	
 		<label for="input_nom">Se souvenir de moi</label>
-		<input type="checkbox" id="seSouvenir" name="seSouvenir">
+		<input type="checkbox" id="seSouvenir" name="seSouvenir" unchecked>
 		<a href="<%=request.getContextPath()%>/ServletLogin">Mot de passe oublié</a>
 		</section>
 		
