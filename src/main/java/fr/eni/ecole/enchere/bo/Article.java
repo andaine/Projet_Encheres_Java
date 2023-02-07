@@ -15,7 +15,8 @@ public class Article {
 	private int prixInitial;
 	private int prixVente;
 	private Categorie categorie;
-	private Utilisateur user;
+	private Utilisateur userA;
+	private Utilisateur userV;
 	private String etatVente;
 	private List<Enchere> enchereListe;
 	private Retrait retraitVendeur;
@@ -28,8 +29,8 @@ public class Article {
 	
 	
 	//constructeur utilisé dans DAL Articles pour afficher detailsVente
-	public Article(int noArticle, String nomArticle, String description, LocalDate dateFinEncheres, int prixInitial, int prixVente, Categorie categorie, Utilisateur user,
-			Retrait retraitVendeur) {
+	public Article(int noArticle, String nomArticle, String description, LocalDate dateFinEncheres, int prixInitial, int prixVente, 
+			Categorie categorie, Utilisateur userV, Utilisateur userA, Retrait retraitVendeur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -38,7 +39,8 @@ public class Article {
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.categorie = categorie;
-		this.user = user;
+		this.userA = userA;
+		this.userV = userV;
 		this.retraitVendeur = retraitVendeur;
 	}
 
@@ -200,14 +202,28 @@ public class Article {
 	public void setRetraitVendeur(Retrait retraitVendeur) {
 		this.retraitVendeur = retraitVendeur;
 	}
-	
-	public Utilisateur getUser() {
-		return user;
+
+
+	public Utilisateur getUserA() {
+		return userA;
 	}
 
-	public void setUser(Utilisateur user) {
-		this.user = user;
+
+	public void setUserA(Utilisateur userA) {
+		this.userA = userA;
 	}
+
+
+	public Utilisateur getUserV() {
+		return userV;
+	}
+
+
+	public void setUserV(Utilisateur userV) {
+		this.userV = userV;
+	}
+	
+	
 }
 
 

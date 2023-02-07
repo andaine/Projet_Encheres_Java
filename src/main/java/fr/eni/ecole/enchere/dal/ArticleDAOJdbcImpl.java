@@ -12,6 +12,7 @@ import java.util.List;
 import fr.eni.ecole.enchere.bo.Article;
 import fr.eni.ecole.enchere.bo.Categorie;
 import fr.eni.ecole.enchere.bo.Retrait;
+import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class ArticleDAOJdbcImpl implements ArticleDAO {
@@ -20,10 +21,11 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 	private static final String CREATE_ARTICLE = "INSERT INTO Articles_Vendus (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente)"
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
-	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, a.prix_initial, a.date_fin_enchere, a.no_utilisateur, u.pseudo, r.rue, r.ville, r.code_postal"
+	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, u2.pseudo pseudoAcheteur, a.prix_vente, a.prix_initial, a.date_fin_enchere, u.pseudo pseudoVendeur, r.rue, r.ville, r.code_postal "
 			+ "FROM UTILISATEURS u INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = u.no_utilisateur "
 								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
+								+ "INNER JOIN UTILISATEURS u2 ON u2.no_utilisateur = e.no_utilisateur "
 								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
 								+ "WHERE a.no_article=?";
 	
@@ -108,41 +110,43 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			}
 		}
 
+	@Override
 	public Article afficherArticle(int idArticle) throws BusinessException {
 		
+		Article artRetourne = new Article();
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pstmt = cnx.prepareStatement(SELECT_ARTICLE);
 			pstmt.setInt(1, idArticle);
 
 			ResultSet rs = pstmt.executeQuery();
-			Article artRetourne = new Article();
 		
 			if (rs.next()) {
 				int noArt = rs.getInt("no_article");
 				String nomArt = rs.getString("nom_article");
 				String descrArt = rs.getString("description");
-				Categorie catArt = new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"));
+				Categorie catArt = new Categorie(rs.getString("libelle"));
 				int meilOffre = 0;
 				if(artRetourne.getEtatVente()=="VD") {
 					meilOffre = rs.getInt("prix_vente");
 				}else {
 					meilOffre = rs.getInt("montant_enchere"); 
 				}
+				Utilisateur userA = new Utilisateur(rs.getString("pseudoAcheteur"));
 				int miseAPrix = rs.getInt("prix_initial");
 				LocalDate finEnch = rs.getDate("date_fin_enchere").toLocalDate();
 				Retrait retrait = new Retrait(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"));
-				String pseudoVendeur = rs.getString("pseudo");
+				Utilisateur userV = new Utilisateur(rs.getString("pseudoVendeur"));
 				
-				//Article artRetourne = new Article(noArt,nomArt,descrArt,catArt,meilOffre,miseAPrix,finEnch,retrait,pseudoVendeur);
+				artRetourne = new Article(noArt,nomArt,descrArt,finEnch,miseAPrix,meilOffre,catArt,userV,userA,retrait);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			BusinessException be = new BusinessException();
-			be.addMessage("DAL exception - insertion de l'article impossible");
+			be.addMessage("DAL exception - accès à l'article impossible");
 			throw be;
 		}
-		return null;
-
+		return artRetourne;
 	}
 }

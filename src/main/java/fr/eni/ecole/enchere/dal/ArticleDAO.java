@@ -12,5 +12,7 @@ public interface ArticleDAO {
 
 	public void ajouterVente(Article article, int id) throws BusinessException;
 	
+	public Article afficherArticle(int idArticle) throws BusinessException;
+	
 
 }

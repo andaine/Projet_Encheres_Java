@@ -17,30 +17,45 @@
 	<h2>Détail vente</h2>
 
 	<section id="sectionDetailVente">
-		<div>${nomDuProduit}
-			<label for="nom" id="labelNom">Description :</label></div>
-		<div>${descriptionDuProduit}
-			<label for="categorie" id="labelCategorie">Categorie :</label></div> 
-		<div>${categorieDuProduit}
-			<label for="meilOffre" id="labelMeilOffre">Meilleure offre :</label></div>
-		<div>${nb de points et enchereur}
-			<label for="miseAPrix" id="labelMiseAPrix">Mise à prix</label></div>
-		<div>${miseAPrix}
-			<label for="finEnchere" id="finEnchere">Fin de l'enchère :</label></div>
-		<div>${finEnchere(date)}
-			<label for="retrait" id="labelRetrait">Retrait :</label></div>
-		<div>${adresseREtrait}
-			<label for="vendeur" id="labelVendeur">Vendeur :</label></div>
-				${vendeur}
+		<div>${infoArt.getNomArticle()}</div>
+		<div>
+			<label for="nom" id="labelNom">Description :</label>
+			${infoArt.getDescription()}
+		</div>	
+		<div>
+			<label for="categorie" id="labelCategorie">Categorie :</label>
+			${infoArt.getCategorie().getLibelle()}
+		</div> 
+		<div>
+			<label for="meilOffre" id="labelMeilOffre">Meilleure offre :</label>
+			${infoArt.getPrixVente()} pts par ${infoArt.getUserA().getPseudo()}
+		</div>
+		<div>
+			<label for="miseAPrix" id="labelMiseAPrix">Mise à prix :</label>
+			${infoArt.getPrixInitial()} points
+		</div>
+		<div>
+			<label for="finEnchere" id="finEnchere">Fin de l'enchère :</label>
+			${infoArt.getDateFinEncheres()}
+		</div>
+		<div>
+			<label for="retrait" id="labelRetrait">Retrait :</label>
+			${infoArt.getRetraitVendeur().toString()}
+		</div>
+		<div>
+			<label for="vendeur" id="labelVendeur">Vendeur :</label>
+			${infoArt.getUserV().getPseudo()}
+		</div>
+			
 
 
-		<form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">>
+		<%-- <form method="post" action="<%=request.getContextPath()%>/ServletDetailVente">>
 			<section>
 			<label for="input_proposition">Ma proposition :</label>
 			<input type="number" id="proposition" name="proposition" step="50" min="${meilleureEnchère+1}" max="${creditsRestants}">
 			<input type="text" id="encherir" name="encherir" value="Enchérir"/>			
 			</section>	
-		</form>
+		</form> --%>
 
 	</section>
 </body>
