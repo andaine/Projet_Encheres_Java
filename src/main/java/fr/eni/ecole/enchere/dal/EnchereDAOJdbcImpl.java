@@ -27,7 +27,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 
-	private int count = 0;
+	private boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
+				mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees = false, ventesTerminees = false;
+	
+	
+	
+	private int count = 1;
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
@@ -49,8 +54,14 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				Statement stmt = con.createStatement();
 				rs = stmt.executeQuery(requete);
 			} else {
-				PreparedStatement pstmt = con.prepareStatement(requete);
-
+				
+				//CATEGORIE TOUTES
+				if(categorie.equals(CATEGORIE_DEFAUT)) {
+					Statement stmt = con.createStatement();
+					rs = stmt.executeQuery(requete);				
+				}
+		
+				
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
 					
@@ -67,18 +78,15 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " WHERE ";
 					}
 					requete += FILTRE_CATEGORIE;
-					pstmt = con.prepareStatement(requete);
+					filtreCategorie = true;
 					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");
-
-					if (requete.contains("?")) {
-						count++;
-					}
+					System.out.println("\n-------------------------------------------------------\n");			
 					System.out.println("count = " + count);
-					pstmt.setString(count, categorie);
 					System.out.println(categorie);
-					System.out.println("count = " + count);
-					count = 0;
+					System.out.println("count = " + count);				
+								
+					
+					
 				}
 
 				// CHOIX ARTICLE
@@ -94,26 +102,42 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
+					
 					requete += FILTRE_NOM_ARTICLE;
-					pstmt = con.prepareStatement(requete);
+					filtreNomArticle = true;
 
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
-
-					if (requete.contains("?")) {
-						count++;
-						if(requete.contains("AND")) {
-							count++;
-						}
-					}
-					pstmt.setString(count, "%" + nomArticle + "%");
 					System.out.println("count = " + count);
-					count = 0;
+					
 				}
+				
+				
+				
 
+				
+				//definir ?
+				PreparedStatement pstmt = con.prepareStatement(requete);
+				if(filtreCategorie == true) {
+					pstmt.setString(count, categorie);
+					count++;
+				}
+				if(filtreNomArticle == true) {
+					pstmt.setString(count, "%" + nomArticle + "%");
+					count++;
+				}
 				// TODO CHECKBOX DE L'ENFER
-
+				if(filtreAchats) {
+					
+				}
+				
+				
+				
+				
+				
 				rs = pstmt.executeQuery();
+				
+				count = 1;
 
 			}
 			while (rs.next()) {

@@ -89,6 +89,10 @@ public class ServletAccueil extends HttpServlet {
 		// recup le champ de texte
 		String textFieldResult = req.getParameter("textFiltreArticle");
 		System.out.println("test = article : " + textFieldResult);
+		
+		//recup le radiobouton
+		String rbAchats = req.getParameter("achats");
+		System.out.println("radio bouton = " + rbAchats);
 
 		try {
 			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult);

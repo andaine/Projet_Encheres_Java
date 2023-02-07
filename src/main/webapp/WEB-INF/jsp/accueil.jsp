@@ -82,6 +82,50 @@
 				</select>
 			</div>
 
+			<!--   RADIO BUTTON ACHATS/VENTES  -->
+
+			<c:if test="${userConnecte!=null }">
+				<section id="sectionAchatVente">
+					<div id="divAchat">
+						<input type="radio" id="achats" name="radioButton" value="Achats"
+							checked /> <label for="achats">Achats</label>
+						<ul>
+							<li><input type="checkbox" id="encheresOuvertes"
+								name="encheresOuvertes"> <label for="encheresOuvertes">enchères
+									ouvertes</label></li>
+							<li><input type="checkbox" id="mesEncheres"
+								name="mesEncheres"> <label for="mesEncheres">mes
+									enchères</label></li>
+							<li><input type="checkbox" id="encheresRemportes"
+								name="encheresRemportes"> <label for="encheresRemportes">mes
+									enchères remportées</label></li>
+						</ul>
+					</div>
+					<div id="divVente">
+						<input type="radio" id="ventes" name="radioButton" /> <label
+							for="ventes">Mes ventes</label>
+						<ul>
+							<li><input type="checkbox" id="ventesEnCours"
+								name="ventesEnCours"> <label for="ventesEnCours">mes
+									ventes en cours</label></li>
+							<li><input type="checkbox" id="ventesNonDebutees"
+								name="ventesNonDebutees"> <label for="ventesNonDebutees">ventes
+									non débutées</label></li>
+							<li><input type="checkbox" id="ventesTerminees"
+								name="ventesTerminees"> <label for="ventesTerminees">ventes
+									terminées</label></li>
+						</ul>
+					</div>
+				</section>
+
+
+
+			</c:if>
+
+
+
+
+
 
 			<div class="rech">
 				<!--  RECHERCHER -->
