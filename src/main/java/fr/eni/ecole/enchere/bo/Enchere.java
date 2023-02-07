@@ -5,15 +5,7 @@ import java.time.LocalDate;
 public class Enchere {
 
 	private LocalDate dateEnchere;
-	private int montantEnchere;	
-	private Utilisateur user;
-	private Article article;
-	private Categorie categorie;
-	
-	
-	
-	
-	
+	private int montantEnchere;
 	private int noUser;
 	private int noArticle;
 	private String nomArticle;
@@ -21,14 +13,6 @@ public class Enchere {
 	private String nomCategorie;
 
 
-	public Enchere(LocalDate dateEnchere, int montantEnchere, Utilisateur user, Article article, Categorie categorie) {
-		super();
-		this.dateEnchere = dateEnchere;
-		this.montantEnchere = montantEnchere;
-		this.user = new Utilisateur();
-		this.article = new Article();
-		this.categorie = new Categorie();		
-	}
 
 	public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle, String nomArticle,
 			String pseudoUser, String nomCategorie) {
