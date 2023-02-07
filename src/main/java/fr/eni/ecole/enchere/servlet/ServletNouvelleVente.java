@@ -75,7 +75,7 @@ public class ServletNouvelleVente extends HttpServlet {
 	
 		String codePostal = request.getParameter("postal");
 		String ville = request.getParameter("ville");
-		
+		Categorie cat = new Categorie(noCategorie, null);
 		String categorieChoisie = request.getParameter("categorie");
 		request.setAttribute("categorieChoisie", categorieChoisie);
 		ArticleManager am = ArticleManager.getInstance();
@@ -84,7 +84,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			
 			Retrait retraitVendeur = new Retrait(rue, codePostal, ville);
 			
-			Article art = new Article(article, description, debutVente, finVente, prix, prix, noCategorie, "CR", retraitVendeur);
+			Article art = new Article(article, description, debutVente, finVente, prix, prix, cat, "CR", retraitVendeur);
 			System.out.println(art);
 			System.out.println(retraitVendeur);
 			HttpSession session = request.getSession();
