@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/style.css">
@@ -22,7 +21,10 @@
 	</header>
 
 
-<h1>ENI-Enchères</h1>
+	<div id="titreConnexion">
+		<h1>Connexion</h1>
+	</div>
+	
 	<p style="color:red"><c:forEach var="be" items="${listeErreur}">
 		${be}
 	</c:forEach></p>
