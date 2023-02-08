@@ -40,7 +40,7 @@ public class ServletDetailVente extends HttpServlet {
 			request.setAttribute("infoArt", infoArt);	
 			
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
+			// TODO Ajouter business exception
 			e.printStackTrace();
 		}
 		
@@ -68,8 +68,8 @@ public class ServletDetailVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		rd.forward(request, response);
 	}
 
 }

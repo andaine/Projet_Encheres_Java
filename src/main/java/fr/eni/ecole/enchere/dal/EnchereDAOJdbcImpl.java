@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import fr.eni.ecole.enchere.bo.Enchere;
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
@@ -27,17 +29,19 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
+	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 
-	private boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
+
+	public static boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
 				mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees = false, ventesTerminees = false;
-	
-	
-	
+
+
 	private int count = 1;
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
 
+		boolean filtreCategorie = false;
 //		afficher enchère
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
@@ -45,6 +49,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
+			
+			
 			// ACCUEIL DEFAUT
 			if (categorie == null && nomArticle == null) {
 				System.out.println("DEFAUT\n");
@@ -55,17 +61,16 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				Statement stmt = con.createStatement();
 				rs = stmt.executeQuery(requete);
 			} else {
-				
-				//CATEGORIE TOUTES
-				if(categorie.equals(CATEGORIE_DEFAUT)) {
+
+				// CATEGORIE TOUTES
+				if (categorie.equals(CATEGORIE_DEFAUT)) {
 					Statement stmt = con.createStatement();
-					rs = stmt.executeQuery(requete);				
+					rs = stmt.executeQuery(requete);
+
 				}
-		
-				
+
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
-					
 
 					System.out.println("-------------------------------------------------------\n");
 					System.out.println("CATEGORIE CHOISIE - ARTICLE VIDE");
@@ -78,21 +83,20 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
+					System.out.println("filtre erreur 2");
 					requete += FILTRE_CATEGORIE;
 					filtreCategorie = true;
 					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");			
+					System.out.println("\n-------------------------------------------------------\n");
 					System.out.println("count = " + count);
 					System.out.println(categorie);
-					System.out.println("count = " + count);				
-								
-					
-					
+					System.out.println("count = " + count);
+
 				}
 
 				// CHOIX ARTICLE
 				if (!nomArticle.isEmpty()) {
-					
+
 					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
 					System.out.println("userId : " + userId);
 					System.out.println("categorie : " + categorie);
@@ -103,37 +107,34 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
-					
+
 					requete += FILTRE_NOM_ARTICLE;
 					filtreNomArticle = true;
 
 					System.out.println("requete = " + requete);
 					System.out.println("\n-------------------------------------------------------\n");
 					System.out.println("count = " + count);
-					
+
 				}
-							
-				//definir ?
+
+				// definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
 				if(filtreCategorie == true) {
+					System.out.println("erreur filtre 3");
 					pstmt.setString(count, categorie);
 					count++;
 				}
-				if(filtreNomArticle == true) {
+				if (filtreNomArticle == true) {
 					pstmt.setString(count, "%" + nomArticle + "%");
 					count++;
 				}
 				// TODO CHECKBOX DE L'ENFER
-				if(filtreAchats) {
-					
+				if (filtreAchats) {
+
 				}
-				
-				
-				
-				
-				
+
 				rs = pstmt.executeQuery();
-				
+
 				count = 1;
 
 			}
@@ -162,9 +163,11 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	}
 
 	@Override
-	public void insertEnchere (Enchere enchere, int idArticle) throws BusinessException {
-		try (Connection cnx = ConnectionProvider.getConnection()) {
-
+	public void insertEnchere(Enchere enchere, int idArticle) throws BusinessException {
+		Connection cnx=null;
+		try  {
+			cnx = ConnectionProvider.getConnection();
+			System.out.println("dal " + idArticle);
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
 			pstmt.setInt(1, (enchere.getNoUser()));
 			pstmt.setInt(2, idArticle);
@@ -172,12 +175,28 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			pstmt.setInt(4, (enchere.getMontantEnchere()));
 
 			pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
+
+		} catch (SQLException e ) {
+			try {
+				cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE_ENCHERE);
+				pstmt.setInt(1, (enchere.getNoUser()));
+				pstmt.setDate(2, java.sql.Date.valueOf(enchere.getDateEnchere()));
+				pstmt.setInt(3, (enchere.getMontantEnchere()));
+				pstmt.setInt(4, (idArticle));
+
+				pstmt.executeUpdate();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				BusinessException be = new BusinessException();
+				be.addMessage("DAL exception - mise à jour de l'article impossible");
+				throw be;
+			}
+
+			/*e.printStackTrace();
 			BusinessException be = new BusinessException();
-			be.addMessage("DAL exception - insertion de l'enchère impossible");
-			throw be;
+			be.addMessage("DAL exception - insertion de l'enchère ou mise à jour de l'article impossible");
+			throw be;*/
 
 		}
 	}
