@@ -92,8 +92,8 @@
 			<c:if test="${userConnecte!=null }">
 				<section id="sectionAchatVente">
 					<div id="divAchat">
-						<input type="radio" id="achats" name="radioButton" value="Achats"
-							checked /> <label for="achats">Achats</label>
+						<input type="radio" id="achats" name="radioButton"
+							checked /> <label for="labelAchats">Achats</label>
 						<ul>
 							<li><input type="checkbox" id="encheresOuvertes"
 								name="encheresOuvertes"> <label for="encheresOuvertes">enchères
