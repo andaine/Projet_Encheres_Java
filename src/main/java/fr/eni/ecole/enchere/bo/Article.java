@@ -1,6 +1,7 @@
 package fr.eni.ecole.enchere.bo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.zone.ZoneRulesException;
 import java.util.List;
 
@@ -10,8 +11,8 @@ public class Article {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalDate dateFinEncheres;
+	private LocalDateTime dateDebutEncheres;
+	private LocalDateTime dateFinEncheres;
 	private int prixInitial;
 	private int prixVente;
 	private Categorie categorie;
@@ -29,7 +30,7 @@ public class Article {
 	
 	
 	//constructeur utilisé dans DAL Articles pour afficher detailsVente
-	public Article(int noArticle, String nomArticle, String description, LocalDate dateFinEncheres, int prixInitial, int prixVente, 
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime dateFinEncheres, int prixInitial, int prixVente, 
 			Categorie categorie, Utilisateur userV, Utilisateur userA, Retrait retraitVendeur) {
 		super();
 		this.noArticle = noArticle;
@@ -47,7 +48,7 @@ public class Article {
 
 
 	public Article(int noArticle, String nomArticle, String description, Categorie categorie, int prixInitial,
-			LocalDate dateFinEncheres, int prixVente, List<Enchere> enchereListe, Retrait retraitVendeur) {
+			LocalDateTime dateFinEncheres, int prixVente, List<Enchere> enchereListe, Retrait retraitVendeur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -62,7 +63,7 @@ public class Article {
 
 
 
-	public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+	public Article(String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int prixInitial, int prixVente, Categorie categorie, String etatVente,
 			 Retrait retraitVendeur) {
 		super();
@@ -115,25 +116,25 @@ public class Article {
 	
 
 
-	public LocalDate getDateDebutEncheres() {
+	public LocalDateTime getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 	
 
 
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+	public void setDateDebutEncheres(LocalDateTime dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 
 	
 
-	public LocalDate getDateFinEncheres() {
+	public LocalDateTime getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 	
 
 
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 	

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,8 +71,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				PreparedStatement pstmt = cnx.prepareStatement(CREATE_ARTICLE, PreparedStatement.RETURN_GENERATED_KEYS);
 				pstmt.setString(1, (article.getNomArticle()));
 				pstmt.setString(2, (article.getDescription()));
-				pstmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
-				pstmt.setDate(4, java.sql.Date.valueOf(article.getDateFinEncheres()));
+				pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDateDebutEncheres()));
+				pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getDateFinEncheres()));
 				pstmt.setInt(5, article.getPrixInitial());
 	
 				pstmt.setInt(6, idUtilisateur);
@@ -135,7 +136,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 				}
 				Utilisateur userA = new Utilisateur(rs.getString("pseudoAcheteur"),rs.getInt("creditAcheteur"));
 				int miseAPrix = rs.getInt("prix_initial");
-				LocalDate finEnch = rs.getDate("date_fin_enchere").toLocalDate();
+				LocalDateTime  finEnch = rs.getTimestamp("date_fin_enchere").toLocalDateTime();
 				Retrait retrait = new Retrait(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"));
 				Utilisateur userV = new Utilisateur(rs.getString("pseudoVendeur"));
 				

@@ -1,6 +1,7 @@
 package fr.eni.ecole.enchere.bll;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import fr.eni.ecole.enchere.bo.Article;
 import fr.eni.ecole.enchere.bo.Categorie;
@@ -44,8 +45,8 @@ public class ArticleManager {
 
 		BusinessException be = new BusinessException();
 
-		if (article.getDateDebutEncheres().isBefore(LocalDate.now())
-				|| article.getDateFinEncheres().isBefore(LocalDate.now())) {
+		if (article.getDateDebutEncheres().isBefore(LocalDateTime.now())
+				|| article.getDateFinEncheres().isBefore(LocalDateTime.now())) {
 			be.addMessage("la date est antérieur à la date du jour");
 		}
 

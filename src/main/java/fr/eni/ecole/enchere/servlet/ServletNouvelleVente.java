@@ -3,6 +3,7 @@ package fr.eni.ecole.enchere.servlet;
 import java.io.IOException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -67,8 +68,8 @@ public class ServletNouvelleVente extends HttpServlet {
 		String description = request.getParameter("description");
 		int noCategorie = Integer.parseInt(request.getParameter("categorie")) ;
 		int prix  = Integer.parseInt(request.getParameter("prix")) ;
-		LocalDate debutVente = LocalDate.parse(request.getParameter("debut"), DateTimeFormatter.ISO_DATE);
-		LocalDate finVente = LocalDate.parse(request.getParameter("fin"), DateTimeFormatter.ISO_DATE);
+		LocalDateTime debutVente = LocalDateTime.parse(request.getParameter("debut"));
+		LocalDateTime finVente = LocalDateTime.parse(request.getParameter("fin"));
 		System.out.println(request.getParameter("debut"));
 		
 		String rue = request.getParameter("rue");
