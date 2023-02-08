@@ -92,42 +92,6 @@ h2 {
 }
 
 
-/* css Mon profil */
-
-/*
-.infoUser form label::after {
-	content: ' :';
-}
-
-.infoUser>div {
-	margin: 2rem;
-	flex: 1;
-}
-
-form>.labelProfil {
-	flex: 1;
-}
-
-.infoUser {
-	display: flex;
-	flex-direction: row;
-}
-
-.infoUser form {
-	border: solid black 0.2em;
-	padding: 3px;
-	margin-left: 10%;
-	margin-right: 10%;
-}
-
-.infoUser form .labelProfil label {
-	flex-basis: 35%;
-	font-weight: bold;
-}
-*/
-
-
-
 /* -------------------------------------------------- */
 
 /* css connexion */
@@ -136,7 +100,10 @@ form>.labelProfil {
 	width: 100%;
 }
 
-
+#titreConnexion{
+	display:flex;
+	justify-content: center;
+}
 
 /*----------------------------------  */
 
@@ -283,7 +250,10 @@ ul{
 }
  
  
-/* css Mon profil */
+/* css Mon profil -----------------------------------------------------------------------*/
+
+
+
 
 #titre{
 	margin:5%;
@@ -358,5 +328,18 @@ ul{
    width: 50%;
 }
 	
+		
+/* css create account -----------------------------------------------------------------------*/
 	
+	
+#lotBtnModifier{
+	margin:5%;
+	display:flex;
+	justify-content:center;
+	
+}
+.boutonsCreateAccount{
+	margin-left:10%
+}
+
 	
