@@ -18,6 +18,7 @@ public class Utilisateur {
 	private boolean administrateur;
 	private List<Enchere> listEnchere;
 	private List<Article> listArticleVendus;
+
 	
 	
 	public Utilisateur(String pseudo, String motDePasse) {
@@ -25,7 +26,7 @@ public class Utilisateur {
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
 	}
-	
+
 
 	public Utilisateur(String pseudo) {
 		super();

@@ -58,6 +58,11 @@ public class UserManager {
 
 	}
 	
+	public void updateCredit(Utilisateur user) throws BusinessException {
+				
+		userDAO.updateCreditUser(user);
+	}
+	
 	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
 	
 		BusinessException be = new BusinessException();

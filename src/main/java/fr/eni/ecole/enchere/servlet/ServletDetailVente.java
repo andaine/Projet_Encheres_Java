@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.ecole.enchere.bll.ArticleManager;
 import fr.eni.ecole.enchere.bll.EnchereManager;
+import fr.eni.ecole.enchere.bll.UserManager;
 import fr.eni.ecole.enchere.bo.Article;
 import fr.eni.ecole.enchere.bo.Enchere;
 import fr.eni.ecole.enchere.bo.Utilisateur;
@@ -52,6 +53,7 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//insertion enchère
 		int prixPropose  = Integer.parseInt(request.getParameter("prixPropose")) ;
 		int noArticle  = Integer.parseInt(request.getParameter("noArticle")) ;
 		HttpSession session = request.getSession();
@@ -60,11 +62,18 @@ public class ServletDetailVente extends HttpServlet {
 		
 		EnchereManager em = EnchereManager.getInstance();
 		Enchere enchere = new Enchere(LocalDate.now(), prixPropose, idUserConnecte, noArticle);
+		
+		//update crédits user
+		UserManager um = UserManager.getInstance();
+		int newCreditUser = userConnecte.getCredit()- prixPropose;
+		System.out.println("crédituser" + newCreditUser);
+		userConnecte.setCredit(newCreditUser);
 	
 		try {
 			em.insererEnchere(enchere, noArticle);
+			um.updateCredit(userConnecte);
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
+			// TODO BusinessException
 			e.printStackTrace();
 		}
 		

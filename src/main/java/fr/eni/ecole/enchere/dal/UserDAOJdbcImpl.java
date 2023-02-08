@@ -20,7 +20,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String DELETE_ENCHERE = " DELETE ENCHERES FROM ARTICLES_VENDUS a INNER JOIN ENCHERES e ON e.no_article = a.no_article "
 			+ "WHERE a.no_utilisateur = ?;";
 	private static final String UPDATE_USER = "UPDATE Utilisateurs SET pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, code_postal=?, ville=?, mot_de_passe=? WHERE no_utilisateur=?";
-	private static final String UPDATE_MDP = "SELECT * FROM Utilisateurs where no_utilisateur=?";
+	private static final String CHECK_MDP = "SELECT * FROM Utilisateurs where no_utilisateur=?";
+	private static final String UPDATE_CREDIT_USER = "UPDATE Utilisateurs SET credit=? WHERE no_utilisateur = ?";
 
 	public Utilisateur connexion(String pseudo, String pwd) throws BusinessException {
 
@@ -143,7 +144,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			String mdpBDD = null;
-			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_MDP);
+			PreparedStatement pstmt = cnx.prepareStatement(CHECK_MDP);
 
 			pstmt.setInt(1, userUpdate.getNoUtilisateur());
 
@@ -151,11 +152,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 			if (rs.next()) {
 				mdpBDD = rs.getString("mot_de_passe");
 			}
-			
-			
+
 			pstmt = cnx.prepareStatement(UPDATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			
 			if (userUpdate.getMotDePasse().equals(mdpBDD)) {
 
 				pstmt.setString(1, userUpdate.getPseudo());
@@ -172,8 +171,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 				pstmt.setInt(10, userUpdate.getNoUtilisateur());
 
 				pstmt.executeUpdate();
-			} 
-			
+			}
+
 			rs.close();
 			pstmt.close();
 
@@ -219,4 +218,24 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 		return user;
 	}
+
+	@Override
+	public void updateCreditUser(Utilisateur user) throws BusinessException {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_CREDIT_USER);
+
+			pstmt.setInt(1, user.getCredit());
+			
+			pstmt.setInt(2, user.getNoUtilisateur());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("La mise à jour des crédit de l'acheteur a généré une erreur dans jdbcImpl");
+			throw be;
+		}
+			
+		}
 }
