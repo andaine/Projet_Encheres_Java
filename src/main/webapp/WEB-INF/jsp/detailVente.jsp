@@ -53,10 +53,23 @@
 
 
 			<label for="retrait" id="labelRetrait">Retrait :</label>
-			<p id="adresseRetrait">${infoArt.getRetraitVendeur().getRue()}<br />
+			<p id="adresseRetrait">
+		<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
+				${infoArt.getRetraitVendeur().getRue()}<br />
 				${infoArt.getRetraitVendeur().getCodePostal()}
 				${infoArt.getRetraitVendeur().getVille()}
+			</c:if>
+			<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()==null}">
+				${infoArt.getUserV().getRue()}<br />
+				${infoArt.getUserV().getCodePostal()}
+				${infoArt.getUserV().getVille()}
+			</c:if> --%>
+				${infoArt.getRetraitVendeur().getRue()}<br />
+				${infoArt.getRetraitVendeur().getCodePostal()}
+				${infoArt.getRetraitVendeur().getVille()}
+			
 			</p>
+		
 
 
 			<label for="vendeur" id="labelVendeur">Vendeur :</label>
