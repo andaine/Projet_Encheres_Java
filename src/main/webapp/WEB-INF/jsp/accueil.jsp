@@ -92,7 +92,7 @@
 			<c:if test="${userConnecte!=null }">
 				<section id="sectionAchatVente">
 					<div id="divAchat">
-						<input type="radio" id="achats" name="radioButton"
+						<input type="radio" id="achats" name="radioButton" value="radioAchat"
 							checked /> <label for="labelAchats">Achats</label>
 						<ul>
 							<li><input type="checkbox" id="encheresOuvertes"
@@ -107,7 +107,7 @@
 						</ul>
 					</div>
 					<div id="divVente">
-						<input type="radio" id="ventes" name="radioButton" /> <label
+						<input type="radio" id="ventes" name="radioButton" value="radioVente" /> <label
 							for="ventes">Mes ventes</label>
 						<ul>
 							<li><input type="checkbox" id="ventesEnCours"

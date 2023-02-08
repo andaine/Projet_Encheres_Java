@@ -26,13 +26,19 @@ public class EnchereManager {
 		}
 		return mgr;
 	}
-	public List<Enchere> afficherEncheres(int userId, String categorie, String article) throws BusinessException{
+	public List<Enchere> afficherEncheres(int userId, String categorie, String article, boolean choixRadiobutton, List<Boolean> listCheckBox) throws BusinessException{
 		
-		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, article);
+		List<Enchere> listeEncheres = enchereDAO.afficherEncheres(userId, categorie, article, choixRadiobutton, listCheckBox);
 		return listeEncheres;
 	}
 	
 	public void insererEnchere (Enchere enchere, int idArticle) throws BusinessException {
 		enchereDAO.insertEnchere(enchere, idArticle);
+	}
+	
+	public List<Enchere> afficherAllEncheres(int userId, String categorie, String article) throws BusinessException {
+		List<Enchere> listeEncheres = enchereDAO.afficherAllEncheres(userId, categorie, article);
+		return listeEncheres;
+		
 	}
 }

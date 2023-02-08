@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +44,7 @@ public class ServletAccueil extends HttpServlet {
 		EnchereManager mgr = EnchereManager.getInstance();
 
 		try {
-			List<Enchere> listeEncheres = mgr.afficherEncheres(0, null, null);
+			List<Enchere> listeEncheres = mgr.afficherAllEncheres(0, null, null);
 			request.setAttribute("listeEncheres", listeEncheres);
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -91,11 +92,63 @@ public class ServletAccueil extends HttpServlet {
 		System.out.println("test = article : " + textFieldResult);
 		
 		//recup le radiobouton
-		String rbAchats = req.getParameter("achats");
-		System.out.println("radio bouton = " + rbAchats);
-
+		boolean radioButton = true;	
+		String rbAchats = null;
+		if (req.getParameter("radioButton") != null) {
+			 rbAchats =  req.getParameter("radioButton");			
+			 if (rbAchats.equals("radioVente")) {
+				 radioButton = false;
+			 }
+		}
+		System.out.println(rbAchats);
+		System.out.println( "/" + req.getParameter("radioButton") + "/"+ " filtreRadioButton");
+		System.out.println(radioButton);
+//		if (rbAchats == "false") {
+//			radioButton = false;
+//		} 
+		
+		//recup checkbox
+		List<Boolean> listCheckbox = new ArrayList<>();
+		String Cb1;
+		String Cb2;
+		String Cb3;
+		if (radioButton == true){
+			 Cb1 = req.getParameter("encheresOuvertes");
+			 Cb2 = req.getParameter("mesEncheres");		
+			 Cb3 = req.getParameter("encheresRemportes");
+		} else {
+			Cb1 = req.getParameter("ventesEnCours");
+			 Cb2 = req.getParameter("ventesNonDebutees");		
+			 Cb3 = req.getParameter("ventesTerminees");
+		}
+		
+		
+		Boolean Cb1Boolean = false;
+		Boolean Cb2Boolean = false;
+		Boolean Cb3Boolean = false;
+		
+		if (Cb1 != null) {
+			Cb1Boolean = true;
+		}
+		if (Cb2 != null) {
+			Cb2Boolean = true;
+		}
+		if (Cb3 != null) {
+			Cb3Boolean = true;
+		}
+		
+		listCheckbox.add(Cb1Boolean);
+		listCheckbox.add(Cb2Boolean);
+		listCheckbox.add(Cb3Boolean);
+		
+		System.out.println("---------------------------");
+		System.out.println(radioButton);
+		for (Boolean boolean1 : listCheckbox) {
+			System.out.println(boolean1);
+		}
+		System.out.println("---------------------------");
 		try {
-			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult);
+			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult, radioButton, listCheckbox);
 			req.setAttribute("listeEncheres", listeEncheresFiltres);
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block

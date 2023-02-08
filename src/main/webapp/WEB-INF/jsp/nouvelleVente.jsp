@@ -57,11 +57,11 @@
 				</div>
 
 				<div class="input">
-					<label for="debut">Début de l'enchère</label> <input type="date"
+					<label for="debut">Début de l'enchère</label> <input type="datetime-local"
 						id="debut" name="debut" value="${debut}" required />
 				</div>
 				<div class="input">
-					<label for="fin">Fin de l'enchère</label> <input type="date"
+					<label for="fin">Fin de l'enchère</label> <input type="datetime-local"
 						id="fin" name="fin" value="${fin}"  required/>
 				</div>
 			<fieldset id="retrait">

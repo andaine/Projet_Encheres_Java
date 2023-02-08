@@ -38,10 +38,11 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private int count = 1;
 
-	@Override
-	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
+	
+	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle, boolean choixRadiobutton, List<Boolean> listCheckBox) throws BusinessException {
 
 		boolean filtreCategorie = false;
+		boolean filtreNomArticle = false;
 //		afficher enchère
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
@@ -129,8 +130,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					count++;
 				}
 				// TODO CHECKBOX DE L'ENFER
-				if (filtreAchats) {
-
+				if (null == null) {
+					
 				}
 
 				rs = pstmt.executeQuery();
@@ -200,4 +201,102 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		}
 	}
+
+	public List<Enchere> afficherAllEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
+
+		boolean filtreCategorie = false;
+		boolean filtreNomArticle = false;
+//		afficher enchère
+		String requete = SELECT_ALL_ENCHERES;
+		List<Enchere> listeEncheres = new ArrayList<>();
+		ResultSet rs;
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			
+			
+			// ACCUEIL DEFAUT
+			if (categorie == null && nomArticle == null) {
+
+				Statement stmt = con.createStatement();
+				rs = stmt.executeQuery(requete);
+			} else {
+
+				// CATEGORIE TOUTES
+				if (categorie.equals(CATEGORIE_DEFAUT)) {
+					Statement stmt = con.createStatement();
+					rs = stmt.executeQuery(requete);
+
+				}
+
+				// CHOIX CATEGORIE
+				if (!categorie.equals(CATEGORIE_DEFAUT)) {
+
+
+					if (requete.contains("WHERE")) {
+						requete += " AND ";
+					} else {
+						requete += " WHERE ";
+					}
+					System.out.println("filtre erreur 2");
+					requete += FILTRE_CATEGORIE;
+					filtreCategorie = true;
+					
+
+				}
+
+				// CHOIX ARTICLE
+				if (!nomArticle.isEmpty()) {
+
+					if (requete.contains("WHERE")) {
+						requete += " AND ";
+					} else {
+						requete += " WHERE ";
+					}
+
+					requete += FILTRE_NOM_ARTICLE;
+					filtreNomArticle = true;
+
+				}
+
+				// definir ?
+				PreparedStatement pstmt = con.prepareStatement(requete);
+				if(filtreCategorie == true) {
+					pstmt.setString(count, categorie);
+					count++;
+				}
+				if (filtreNomArticle == true) {
+					pstmt.setString(count, "%" + nomArticle + "%");
+					count++;
+				}
+				// TODO CHECKBOX DE L'ENFER
+				if (null == null) {
+					
+				}
+
+				rs = pstmt.executeQuery();
+
+				count = 1;
+
+			}
+			while (rs.next()) {
+				Enchere enchere = new Enchere(rs.getDate("date_fin_enchere").toLocalDate(),
+						rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"),
+						rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
+
+				listeEncheres.add(enchere);
+
+			}
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			BusinessException be = new BusinessException();
+			be.addMessage("DAL exception - Impossible d'afficher la liste des enchères");
+			throw be;
+		}
+
+		return listeEncheres;
+	}
+
 }
