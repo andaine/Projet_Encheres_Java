@@ -16,10 +16,8 @@
 		${be} <br>
 	</c:forEach></p>
 	
-	<div class="menu">
-		<div>ENI-Enchères</div>
-		<div class="pageTitle">Nouvelle vente</div>
-		<div></div>
+	<div id=titreNouvelleVente>
+		<h1>Nouvelle vente</h1>
 	</div>
 	<div class="content">
 		<div>

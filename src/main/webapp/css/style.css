@@ -70,6 +70,12 @@ p {
 	padding: 2rem;
 	background-color: white;
 }
+
+#titreNouvelleVente{
+	display:flex;
+	justify-content: center;
+}
+
 /* ------------------------------------------------------------------------- */
 header {
 	display: flex;
@@ -341,5 +347,63 @@ ul{
 .boutonsCreateAccount{
 	margin-left:10%
 }
+
+/*css detailVente ------------------------------------------------------------------------------------*/
+
+#titreDetailVente{
+	display: flex;
+	justify-content: center;
+}
+
+#detailVente{
+	display: flex;
+	justify-content: center;
+}
+
+#divDetailVente{
+	display:grid;
+   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr;   
+   gap: 1% 1%;
+   height: 100%;  
+   width: 30%;
+   grid-template-areas: 
+  "1l 1r"
+  "2l 2r"
+  "3l 3r"
+  "4l 4r"
+  "5l 5r"
+  "6l 6r"
+  "7l 7r"
+  "8l 8r"
+  "9l 9r";
+}
+
+#nomArticle{
+	grid-area:1l;
+}
+#truc{
+	grid-area:1r;
+}
+#labelDesciption{
+	grid-area:2l;
+}
+#description{
+	grid-area:2r;
+}
+#labelCategorie{grid-area:3l}
+#categorieVente{grid-area:3r}
+#labelMeilOffre{grid-area:4l}
+#meilleureOffre{grid-area:4r}
+#labelMiseAPrix{grid-area:5l}
+#miseAPrixVente{grid-area:5r}
+#finEnchere{grid-area:6l}
+#dateFinEnchere{grid-area:6r}
+#labelRetrait{grid-area:7l}
+#adresseRetrait{grid-area:7r}
+#labelVendeur{grid-area:8l}
+#vendeurRetrait{grid-area:8r}
+#labelFormProposition{grid-area:9l}
+#prixPropose{grid-area:9r}
 
 	
