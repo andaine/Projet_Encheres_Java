@@ -54,10 +54,10 @@ public class ServletCreateAccount extends HttpServlet {
 
 			UserManager em = UserManager.getInstance();
 
-			HttpSession session = request.getSession();
-			session.setAttribute("userConnecte", user);
 			
 			em.insererUtilisateur(user);
+			HttpSession session = request.getSession();
+			session.setAttribute("userConnecte", user);
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
 			

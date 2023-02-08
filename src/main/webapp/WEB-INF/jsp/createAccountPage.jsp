@@ -26,55 +26,6 @@
 		<div></div>
 	</div>
 
-	<form method="post" action="<%=request.getContextPath()%>/ServletCreateAccount">
-		<section>
-			<label for="input_pseudo">Pseudo :</label>
-			<input type="text" id="pseudo" name="pseudo" value="${pseudo}"/>
-			<label for="input_nom">Nom :</label>
-			<input type="text" id="nom" name="nom" value="${nom}"/>
-		</section>
-		
-		<section>
-			<label for="input_prenom">Prénom :</label>
-			<input type="text" id="prenom" name="prenom" value="${prenom}"/>
-			<label for="input_email">Email :</label>
-			<input type="text" id="email" name="email" value="${email}"/>
-		</section>
-		
-		<section>
-			<label for="input_telephone">Téléphone :</label>
-			<input type="text" id="telephone" name="telephone" value="${telephone}"/>
-			<label for="input_rue">Rue :</label>
-			<input type="text" id="rue" name="rue" value="${rue}"/>
-		</section>
-		
-		<section>
-			<label for="input_cp">Code Postal :</label>
-			<input type="text" id="cp" name="cp" value="${cp}"/>
-			<label for="input_ville">Ville :</label>
-			<input type="text" id="ville" name="ville" value="${ville}"/>
-		</section>
-		
-		<section>
-			<label for="input_nom">Mot de passe :</label>
-			<input type="password" id="motDePasse" name="motDePasse"/>
-			<label for="input_nom">Confirmation :</label>
-			<input type="password" id="confirmation" name="confirmation"/>
-		</section>		
-		
-		<section>
-		<input type="submit" value="Créer" id="creer" name="creer"/>
-		</section>
-		
-	</form>
-	
-	<form method="post" action="<%=request.getContextPath()%>/ServletAccueil"> 
-	
-		<input type="submit" value="Annuler" id="annuler" name="annuler"/>
-	
-	</form>
----------------------------------------------------------
-
  <div class="contentModifier">
 		<div id="colonneMilieu">
 
@@ -83,28 +34,27 @@
 					<div>
 
 						<div class="input">
-							<label for="pseudoModifier" id="labelPseudoModifier">Pseudo
-								: </label> <input id="pseudoModifier" name="pseudoModifier" type="text"
+							<label for="input_pseudo">Pseudo
+								: </label> <input id="pseudo" name="pseudo" type="text"
 								value="${pseudo}">
 						</div>
 						<div class="input">
-							<label for="prenomModifier" id="labelPrenomModifier">Prénom
-								: </label> <input id="prenomModifier" name="prenomModifier" type="text"
-								value="${nom}">
-						</div>
-						<div class="input">
-							<label for="telModifier" id="labelTelModifier">Téléphone
-								: </label> <input id="telModifier" name="telModifier" type="text"
+							<label for="input_prenom">Prénom
+								: </label> <input id="prenom" name="prenom" type="text"
 								value="${prenom}">
 						</div>
 						<div class="input">
-							<label for="codePModifier" id="labelCodePModifier">Code
-								postal : </label> <input id="codePModifier" name="codePModifier"
-								type="text" value="${cp}">
+							<label for="input_telephone">Téléphone
+								: </label> <input id="telephone" name="telephone" type="text"
+								value="${telephone}">
 						</div>
 						<div class="input">
-							<label for="mdpActuel" id="labelMdpActuel">Mot de passe
-								 : </label> <input id="motDePasse" name="motDePasse" type="text">
+							<label for="input_cp">Code postal : </label> 
+							<input id="cp" name="cp" type="text" value="${cp}">
+						</div>
+						<div class="input">
+							<label for="input_motDePasse">Mot de passe
+								 : </label> <input id="motDePasse" name="motDePasse" type="password">
 						</div>
 						
 
@@ -114,29 +64,29 @@
 
 
 						<div class="input">
-							<label for="nomModifier" id="labelNomModifier">Nom </label> <input
-								id="nomModifier" name="nomModifier" type="text"
+							<label for="input_nom">Nom </label> <input
+								id="nom" name="nom" type="text"
 								value="${nom}">
 						</div>
 
 						<div class="input">
-							<label for="emailModifier" id="labelEmailModifier">Email
-								: </label> <input id="emailModifier" name="emailModifier" type="text"
+							<label for="input_email">Email
+								: </label> <input id="email" name="email" type="text"
 								value="${email}">
 						</div>
 						<div class="input">
-							<label for="rueModifier" id="labelRueModifier">Rue : </label> <input
-								id="rueModifier" name="rueModifier" type="text"
+							<label for="input_rue">Rue : </label> <input
+								id="rue" name="rue" type="text"
 								 value="${rue}">
 						</div>
 						<div class="input">
-							<label for="villeModifier" id="labelVilleModifier">Ville
-								: </label> <input id="villeModifier" name="villeModifier" type="text"
+							<label for="input_ville">Ville
+								: </label> <input id="ville" name="ville" type="text"
 								value="${ville}">
 						</div>
 						<div class="input">
-							<label for="mdpConfirmer" id="labelMdpConfirmer">Confirmation
-								: </label> <input id="mdpConfirmer" name="mdpConfirmer" type="text">
+							<label for="input_mdpConfirmation">Confirmation
+								: </label> <input id="confirmation" name="confirmation" type="password">
 						</div>
 
 					</div>
