@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP modifier profil</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html"%>

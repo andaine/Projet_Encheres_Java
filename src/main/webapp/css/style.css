@@ -207,4 +207,59 @@ grid-row-gap: 0px;
 	background-color: white;
 }
 
+ /*   ------------------------------------------------------------------------------------------- --*/
+ 
+ /* CSS jsp accueil */
+ 
+ #afficherEncheres{
+ 	display:flex;
+ 	flex-wrap:wrap;
+ 
+ }
+ 
+ .divEnchere{
+ 	margin:5%;
+ 	
+ }
+ 
+#filtres{
+	margin:5%;
+	display:grid;
+}
+#formAfficherEncheres{	
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 0.2fr 0.2fr 0.2fr 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "top_l top-r"
+    "mt_l mt_r"
+    "mb_l mb_r"
+    "bot_l bot_r"; 
+}
+	
+#titreFiltres{
+	grid-area: top_l;
+	margin:1%
+}	
+#filtreArticle{
+	grid-area:mt_l;
+	margin:1%;
+}	
+#categories{
+	grid-area:mb_l;
+	margin:1%;
+}
+#sectionAchatVente{
+	grid-area:bot_l;
+}	
+#boutonRechercher{
+	grid-area:mt_r;	
+	
+	
+}
+
+ 
+ 
+ 
  

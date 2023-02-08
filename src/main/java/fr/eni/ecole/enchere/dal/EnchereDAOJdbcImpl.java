@@ -31,15 +31,17 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 
-	private boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false,
-			mesEncheres = false, mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees = false,
-			ventesTerminees = false;
+
+	public static boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
+				mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees = false, ventesTerminees = false;
+
 
 	private int count = 1;
 
 	@Override
 	public List<Enchere> afficherEncheres(int userId, String categorie, String nomArticle) throws BusinessException {
 
+		boolean filtreCategorie = false;
 //		afficher enchère
 		String requete = SELECT_ALL_ENCHERES;
 		List<Enchere> listeEncheres = new ArrayList<>();
@@ -47,6 +49,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
+			
+			
 			// ACCUEIL DEFAUT
 			if (categorie == null && nomArticle == null) {
 				System.out.println("DEFAUT\n");
@@ -62,6 +66,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				if (categorie.equals(CATEGORIE_DEFAUT)) {
 					Statement stmt = con.createStatement();
 					rs = stmt.executeQuery(requete);
+
 				}
 
 				// CHOIX CATEGORIE
@@ -78,6 +83,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
+					System.out.println("filtre erreur 2");
 					requete += FILTRE_CATEGORIE;
 					filtreCategorie = true;
 					System.out.println("requete = " + requete);
@@ -113,7 +119,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 				// definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
-				if (filtreCategorie == true) {
+				if(filtreCategorie == true) {
+					System.out.println("erreur filtre 3");
 					pstmt.setString(count, categorie);
 					count++;
 				}
