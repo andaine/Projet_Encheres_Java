@@ -122,11 +122,6 @@
 
 			</c:if>
 
-
-
-
-
-
 			<div class="rech">
 				<!--  RECHERCHER -->
 				<input type="submit" id="boutonRechercher" value="Rechercher">
@@ -141,11 +136,24 @@
 	<section id="afficherEncheres">
 		<c:forEach var="e" items="${listeEncheres}">
 			<div id="divEnchere">
-				<p>${e.getNomArticle() }</p>
+			
+				<c:if test="${userConnecte!=null }">
+					<a href="${pageContext.request.contextPath}/ServletDetailVente?id=${e.getNoArticle() }" id="${e.getNoArticle() }">
+					${e.getNomArticle() }</a>
+				</c:if>
+				<c:if test="${userConnecte==null }">
+					<p>${e.getNomArticle() }</p>
+				</c:if>
+				
 				<p>Prix : ${e.getMontantEnchere()}</p>
 				<p>Fin de l'enchère : ${e.getDateEnchere()}</p>
 				<br>
-				<p>Vendeur : ${e.getPseudoUser() }</p>
+				<c:if test="${userConnecte!=null }">
+				<a href="${pageContext.request.contextPath}/ServletMonProfil?id=${e.getNoUser() }" id="${e.getNoUser() }">Vendeur : ${e.getPseudoUser() }</a>
+				</c:if>
+				<c:if test="${userConnecte==null }">
+					<p>Vendeur : ${e.getPseudoUser() }</p>					
+				</c:if>
 			</div>
 		</c:forEach>
 

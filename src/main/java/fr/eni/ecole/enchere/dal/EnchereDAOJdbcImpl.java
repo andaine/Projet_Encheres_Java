@@ -112,11 +112,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("count = " + count);
 					
 				}
-				
-				
-				
-
-				
+							
 				//definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
 				if(filtreCategorie == true) {
