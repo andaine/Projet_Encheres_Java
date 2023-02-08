@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 
 
 <!DOCTYPE html>
@@ -11,8 +12,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Connexion</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 	
