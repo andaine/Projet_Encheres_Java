@@ -28,8 +28,7 @@
 			<c:if test="${userConnecte!=null }">
 				<nav id="navConnecte">
 
-					<a href="${pageContext.request.contextPath}/ServletConnecteAchats"
-						name="lienEncheres" id="lienEncheres">Enchères</a> <a
+					 <a
 						href="${pageContext.request.contextPath}/ServletNouvelleVente"
 						name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a>
