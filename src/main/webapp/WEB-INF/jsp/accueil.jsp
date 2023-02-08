@@ -128,7 +128,7 @@
 
 			</c:if>
 
-			<div class="rech" id="boutonRechercher">
+			<div class="rech" id="rechercher">
 				<!--  RECHERCHER -->
 				<input type="submit" id="boutonRechercher" value="Rechercher">
 				<br> <br>
