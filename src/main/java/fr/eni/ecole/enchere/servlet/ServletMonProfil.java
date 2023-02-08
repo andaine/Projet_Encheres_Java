@@ -29,10 +29,12 @@ public class ServletMonProfil extends HttpServlet {
 		int idProfil =  Integer.parseInt(request.getParameter("id")) ;
 		UserManager user = UserManager.getInstance();
 		Utilisateur infoVendeur;
+		
 		try {
 			infoVendeur = user.afficherUtilisateur(idProfil);
-			System.out.println(infoVendeur.getPseudo());
+
 			request.setAttribute("infoVendeur", infoVendeur);
+			request.setAttribute("idVendeur", idProfil);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
