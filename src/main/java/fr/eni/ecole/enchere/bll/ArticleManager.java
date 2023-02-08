@@ -45,40 +45,41 @@ public class ArticleManager {
 
 		BusinessException be = new BusinessException();
 
-		if (article.getDateDebutEncheres().isBefore(LocalDateTime.now())
-				|| article.getDateFinEncheres().isBefore(LocalDateTime.now())) {
-			be.addMessage("la date est antérieur à la date du jour");
+		if (article.getDateDebutEncheres().isBefore(LocalDateTime.now())) {
+			be.addMessage("La date de début d'enchère est antérieure à la date du jour.");
+		}
+		
+		if (article.getDateFinEncheres().isBefore(LocalDateTime.now())) {
+			be.addMessage("La date de fin d'enchère est antérieure à la date du jour.");
 		}
 
 		if (article.getDateDebutEncheres().isAfter(article.getDateFinEncheres())) {
-			be.addMessage("la date de début ne doit pas être ultérieur à la date de fin");
+			be.addMessage("La date de début d'enchère ne doit pas être postérieure à la date de fin.");
 		}
 
 		if (article.getNomArticle().isBlank()) {
-			be.addMessage("Le nom de l'article est obligatoire.\n");
+			be.addMessage("Le nom de l'article est obligatoire.");
 		}
 
 		if (article.getDescription().isBlank()) {
-			be.addMessage("La description est obligatoire.\n");
+			be.addMessage("La description est obligatoire.");
 		}
 
 		if (article.getPrixInitial() <= 0) {
-			be.addMessage("Le prix doit être obligatoire.\n");
+			be.addMessage("Le prix doit être obligatoire.");
 		}
 
 		if (article.getRetraitVendeur().getRue().isBlank()) {
-			be.addMessage("La rue est obligatoire.\n");
+			be.addMessage("La rue est obligatoire.");
 		}
 
 		if (article.getRetraitVendeur().getCodePostal().isBlank()) {
-			be.addMessage("Le code postal est obligatoire.\n");
+			be.addMessage("Le code postal est obligatoire.");
 		}
 
 		if (article.getRetraitVendeur().getVille().isBlank()) {
-			be.addMessage("La ville est obligatoire.\n");
+			be.addMessage("La ville est obligatoire.");
 		}
-
-//      
 
 		System.out.println("servlet valider user");
 

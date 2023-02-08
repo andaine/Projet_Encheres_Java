@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 <meta charset="UTF-8">
-<title>nouvelle Vente</title>
+<title>Enchères ENI - Nouvelle Vente</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html"%>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="input">
 					<label for="prix">Mise à prix</label> <input type="number" min="0"
-						id="prix" name="prix" step="50"
+						id="prix" name="prix" step="1"
 						placeholder="prix de vente initial" value="${prix}" required />
 				</div>
 
