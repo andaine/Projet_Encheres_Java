@@ -27,7 +27,7 @@
 
 
 			<div class="border" id="nomArticle">
-				<p>${infoArt.getNomArticle()}</p>
+				<h3>${infoArt.getNomArticle()}</h3>
 			</div>
 
 			<div class="border" id="labelDesciption">
