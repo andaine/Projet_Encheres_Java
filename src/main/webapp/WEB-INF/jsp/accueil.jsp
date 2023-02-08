@@ -6,8 +6,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/style.css">
+
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,6 +16,8 @@
 <head>
 <meta charset="UTF-8">
 <title>JSP Accueil</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 
@@ -57,19 +58,24 @@
 
 	<h2 id="titreListe">Liste des enchères</h2>
 
-	<h3 id="titreFiltres">Filtres :</h3>
+	
 	<section id="filtres">
+	
+	
+	
 		<form method="post"
 			action="${pageContext.request.contextPath}/ServletAccueil"
 			name="formAfficherEncheres" id="formAfficherEncheres">
 
-			<div class="rechCat">
+			<h3 id="titreFiltres">Filtres :</h3>
+
+			<div class="rechCat" id="filtreArticle">
 				<!--  FILTRE CHAMP DE TEXTE -->
 				<input type="text" name="textFiltreArticle" id="textFiltreArticle"
 					placeholder="Le nom de l'article contient">
 			</div>
 
-			<div class="rechCat">
+			<div class="rechCat" id="categories">
 				<!-- SELECTEUR DE CATEGORIES  -->
 				<label for="selectCategorie" id="labelCategorie">Catégories
 					:</label> <select name="selectCategorie" id="selectCategorie">
@@ -122,7 +128,7 @@
 
 			</c:if>
 
-			<div class="rech">
+			<div class="rech" id="boutonRechercher">
 				<!--  RECHERCHER -->
 				<input type="submit" id="boutonRechercher" value="Rechercher">
 				<br> <br>
@@ -135,25 +141,37 @@
 
 	<section id="afficherEncheres">
 		<c:forEach var="e" items="${listeEncheres}">
-			<div id="divEnchere">
-			
-				<c:if test="${userConnecte!=null }">
-					<a href="${pageContext.request.contextPath}/ServletDetailVente?id=${e.getNoArticle() }" id="${e.getNoArticle() }">
-					${e.getNomArticle() }</a>
-				</c:if>
-				<c:if test="${userConnecte==null }">
-					<p>${e.getNomArticle() }</p>
-				</c:if>
-				
-				<p>Prix : ${e.getMontantEnchere()}</p>
-				<p>Fin de l'enchère : ${e.getDateEnchere()}</p>
-				<br>
-				<c:if test="${userConnecte!=null }">
-				<a href="${pageContext.request.contextPath}/ServletMonProfil?id=${e.getNoUser() }" id="${e.getNoUser() }">Vendeur : ${e.getPseudoUser() }</a>
-				</c:if>
-				<c:if test="${userConnecte==null }">
-					<p>Vendeur : ${e.getPseudoUser() }</p>					
-				</c:if>
+
+			<div class="divEnchere">
+				<fieldset class="fsEnchere">
+					<c:if test="${userConnecte!=null }">
+						<a
+							href="${pageContext.request.contextPath}/ServletDetailVente?id=${e.getNoArticle() }"
+							id="${e.getNoArticle() }"> ${e.getNomArticle() }
+						</a>
+						<br>
+					</c:if>
+					<c:if test="${userConnecte==null }">
+						<p>${e.getNomArticle() }</p>
+						<br>
+					</c:if>
+
+					<p>Prix : ${e.getMontantEnchere()}</p>
+					<br>
+					<p>Fin de l'enchère : ${e.getDateEnchere()}</p>
+					<br>
+					<c:if test="${userConnecte!=null }">
+						<a
+							href="${pageContext.request.contextPath}/ServletMonProfil?id=${e.getNoUser() }"
+							id="${e.getNoUser() }">Vendeur : ${e.getPseudoUser() }
+						</a>
+						<br>
+					</c:if>
+					<c:if test="${userConnecte==null }">
+						<p>Vendeur : ${e.getPseudoUser() }</p>
+						<br>
+					</c:if>
+				</fieldset>
 			</div>
 		</c:forEach>
 

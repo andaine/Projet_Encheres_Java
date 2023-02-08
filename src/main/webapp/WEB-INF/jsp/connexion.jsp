@@ -4,14 +4,15 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/style.css">
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Connexion</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 	
@@ -45,7 +46,7 @@
 		<input type="submit" value="Connexion" id="connexion" name="ServletConnexion"/>
 	
 		<label for="input_nom">Se souvenir de moi</label>
-		<input type="checkbox" id="seSouvenir" name="seSouvenir" unchecked>
+		<input type="checkbox" id="seSouvenir" name="seSouvenir">
 		<a href="<%=request.getContextPath()%>/ServletLogin">Mot de passe oublié</a>
 		</section>
 		
