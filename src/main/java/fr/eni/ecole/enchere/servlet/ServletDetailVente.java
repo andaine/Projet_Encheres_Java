@@ -63,7 +63,7 @@ public class ServletDetailVente extends HttpServlet {
 		EnchereManager em = EnchereManager.getInstance();
 		Enchere enchere = new Enchere(LocalDate.now(), prixPropose, idUserConnecte, noArticle);
 		
-		//update crédits user
+		//update dé-crédits user
 		UserManager um = UserManager.getInstance();
 		int newCreditUser = userConnecte.getCredit()- prixPropose;
 		System.out.println("crédituser" + newCreditUser);
