@@ -23,38 +23,64 @@
 
 		<div id="divDetailVente">
 
-			<p id="nomArticle">${infoArt.getNomArticle()}</p>
-			<p id="truc" >fzefiazefbezf</p>
-
-
-			<label for="nomArticle" id="labelDesciption">Description :</label>
-			<p id="description">${infoArt.getDescription()}</p>
 
 
 
-			<label for="categorie" id="labelCategorie">Categorie :</label>
-			<p id="categorieVente">${infoArt.getCategorie().getLibelle()}</p>
+			<div class="border" id="nomArticle">
+				<h3>${infoArt.getNomArticle()}</h3>
+			</div>
 
+			<div class="border" id="labelDesciption">
+				<label for="nomArticle">Description :</label>
+			</div>
 
+			<div class="border" id="description">
+				<p>${infoArt.getDescription()}</p>
+			</div>
 
-			<label for="meilOffre" id="labelMeilOffre">Meilleure offre :</label>
-			<p id="meilleureOffre">${infoArt.getPrixVente()}pts par
-				${infoArt.getUserA().getPseudo()}</p>
+			<div class="border" id="labelCategorie">
+				<label for="categorie">Categorie :</label>
+			</div>
 
+			<div class="border" id="categorieVente">
+				<p>${infoArt.getCategorie().getLibelle()}</p>
+			</div>
 
+			<div class="border" id="labelMeilOffre">
+				<label for="meilOffre">Meilleure offre :</label>
+			</div>
 
-			<label for="miseAPrix" id="labelMiseAPrix">Mise à prix :</label>
-			<p id="miseAPrixVente">${infoArt.getPrixInitial()}points</p>
+			<div class="border" id="meilleureOffre">
+				<p>${infoArt.getPrixVente()}pts par
+					${infoArt.getUserA().getPseudo()}</p>
+			</div>
 
+			<div class="border" id="labelMiseAPrix">
+				<label for="miseAPrix">Mise à prix :</label>
+			</div>
 
-			<label for="finEnchere" id="finEnchere">Fin de l'enchère :</label>
-			<p id="dateFinEnchere">${infoArt.getDateFinEncheres()}</p>
+			<div class="border" id="miseAPrixVente">
+				<p>${infoArt.getPrixInitial()} points</p>
+			</div>
 
+			<div class="border" id="finEnchere">
+				<label for="finEnchere">Fin de l'enchère :</label>
+			</div>
 
+			<div class="border" id="dateFinEnchere">
+				<p>${infoArt.getDateFinEncheres()}</p>
+			</div>
 
-			<label for="retrait" id="labelRetrait">Retrait :</label>
-			<p id="adresseRetrait">
-		<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
+			<div class="border" id="labelRetrait">
+				<label for="retrait">Retrait :</label>
+			</div>
+
+			<div class="border" id="adresseRetrait">
+				<p>${infoArt.getRetraitVendeur().getRue()}<br />
+					${infoArt.getRetraitVendeur().getCodePostal()}<br>
+					${infoArt.getRetraitVendeur().getVille()}
+				</p>
+			<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
 				${infoArt.getRetraitVendeur().getRue()}<br />
 				${infoArt.getRetraitVendeur().getCodePostal()}
 				${infoArt.getRetraitVendeur().getVille()}
@@ -64,29 +90,34 @@
 				${infoArt.getUserV().getCodePostal()}
 				${infoArt.getUserV().getVille()}
 			</c:if> --%>
-				${infoArt.getRetraitVendeur().getRue()}<br />
-				${infoArt.getRetraitVendeur().getCodePostal()}
-				${infoArt.getRetraitVendeur().getVille()}
-			
-			</p>
-		
+			</div>
 
-
-			<label for="vendeur" id="labelVendeur">Vendeur :</label>
-			<p id="vendeurRetrait">${infoArt.getUserV().getPseudo()}</p>
-
+			<div class="border" id="labelVendeur">
+				<label for="vendeur">Vendeur :</label>
+			</div>
+			<div class="border" id="vendeurRetrait">
+				<p>${infoArt.getUserV().getPseudo()}</p>
+			</div>
 
 			<form method="post"
 				action="${pageContext.request.contextPath}/ServletDetailVente">
-				<section>
-					<label for="input_proposition" id="labelFormProposition">Ma proposition :</label> <input
-						type="number" id="prixPropose" name="prixPropose" step="1"
-						min="${infoArt.getPrixVente()}"
-						max="${infoArt.getUserA().getCredit()}"
-						value="${infoArt.getPrixVente()}"> <input type="submit"
-						id="encherir" name="encherir" value="Enchérir" /> <input
-						type="hidden" value="${infoArt.getNoArticle()}" id="noArticle"
-						name="noArticle">
+				<section class="border" id="formulaire">
+				
+					<p id="labelFormProposition">
+						Ma proposition :   
+					</p>				
+					
+					
+						<input type="number" id="prixPropose" name="prixPropose" step="1"
+							min="${infoArt.getPrixVente()}"
+							max="${infoArt.getUserA().getCredit()}"
+							value="${infoArt.getPrixVente()}">
+					
+					<input type="submit" id="encherir" name="encherir" value="Enchérir" />
+					
+									
+					<input type="hidden" value="${infoArt.getNoArticle()}"
+						id="noArticle" name="noArticle">
 				</section>
 			</form>
 

@@ -24,6 +24,13 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
 			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
+	private static final String SELECT_ARTICLE = "SELECT *"
+			+ "FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
+								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
+								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
+								+ "INNER JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
+								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article ";
+	
 	private static final String FILTRE_USER = "e.no_utilisateur= ?";
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
@@ -44,7 +51,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		boolean filtreCategorie = false;
 		boolean filtreNomArticle = false;
 //		afficher enchère
-		String requete = SELECT_ALL_ENCHERES;
+		String requete = SELECT_ARTICLE;
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
 
@@ -79,11 +86,15 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("WHERE")) {
+					if (requete.contains("AND")) {
+						requete += " OR ";
+					} else if (requete.contains("WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
 					}
+					
+					
 					System.out.println("filtre erreur 2");
 					requete += FILTRE_CATEGORIE;
 					filtreCategorie = true;
@@ -103,11 +114,14 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("WHERE")) {
+					if (requete.contains("AND")) {
+						requete += " OR ";
+					} else if (requete.contains("WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
 					}
+					
 
 					requete += FILTRE_NOM_ARTICLE;
 					filtreNomArticle = true;
@@ -121,35 +135,42 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				//Choix CheckBoxe + radiobutton
 				// TODO CHECKBOX DE L'ENFER
 				if (choixRadiobutton == true) {
-					if (requete.contains("WHERE")) { requete += " AND "; } else { requete += " WHERE ";}
+					if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
 					requete += "NOT a.no_utilisateur=" + userId;
 					if (listCheckBox.get(0) == true) {
-						requete += " AND etat_vente=EC";
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
+						requete += " etat_vente='EC'";
 					} 
 					if (listCheckBox.get(1) == true) {
-						requete += " AND e.no_utilisateur=" + userId;
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
+						requete += " e.no_utilisateur=" + userId;
 					}
 					if(listCheckBox.get(2) == true) {
-						requete += " AND e.no_utilisateur=" + userId + " AND etat_vente=VD";
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE";}
+						requete += " e.no_utilisateur=" + userId + " OR etat_vente='VD'";
 					}
 				} else if (choixRadiobutton == false) {
-					if (requete.contains("WHERE")) { requete += " AND "; } else { requete += " WHERE ";}
+					if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
 					requete += "a.no_utilisateur=" + userId;
 					if (listCheckBox.get(0) == true) {
-						requete += " AND etat_vente=EC";
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
+						requete += " etat_vente='EC'";
 					}
 					if (listCheckBox.get(1) == true) {
-						requete += " AND etat_vente=CR";
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE" ;}
+						requete += " etat_vente='CR'";
 					}
 					if(listCheckBox.get(2) == true) {
-						requete += " AND etat_vente=VD";
+						if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
+						requete += " etat_vente='VD'";
 					}
 				}
+				
+				System.out.println("###########" + requete + "#####################");
 
 				// definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
 				if(filtreCategorie == true) {
-					System.out.println("erreur filtre 3");
 					pstmt.setString(count, categorie);
 					count++;
 				}
@@ -169,6 +190,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
 
 				listeEncheres.add(enchere);
+				System.out.println(enchere);
 
 			}
 			System.out.println("liste encheres = \n");

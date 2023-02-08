@@ -103,8 +103,11 @@ public class Enchere {
 
 	@Override
 	public String toString() {
-		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + "]";
+		return "Enchere [dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere + ", noUser=" + noUser
+				+ ", noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", pseudoUser=" + pseudoUser
+				+ ", nomCategorie=" + nomCategorie + "]";
 	}
 
 	
+
 }
