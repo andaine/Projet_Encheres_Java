@@ -117,6 +117,34 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("count = " + count);
 
 				}
+				
+				//Choix CheckBoxe + radiobutton
+				// TODO CHECKBOX DE L'ENFER
+				if (choixRadiobutton == true) {
+					if (requete.contains("WHERE")) { requete += " AND "; } else { requete += " WHERE ";}
+					requete += "NOT a.no_utilisateur=" + userId;
+					if (listCheckBox.get(0) == true) {
+						requete += " AND etat_vente=EC";
+					} 
+					if (listCheckBox.get(1) == true) {
+						requete += " AND e.no_utilisateur=" + userId;
+					}
+					if(listCheckBox.get(2) == true) {
+						requete += " AND e.no_utilisateur=" + userId + " AND etat_vente=VD";
+					}
+				} else if (choixRadiobutton == false) {
+					if (requete.contains("WHERE")) { requete += " AND "; } else { requete += " WHERE ";}
+					requete += "a.no_utilisateur=" + userId;
+					if (listCheckBox.get(0) == true) {
+						requete += " AND etat_vente=EC";
+					}
+					if (listCheckBox.get(1) == true) {
+						requete += " AND etat_vente=CR";
+					}
+					if(listCheckBox.get(2) == true) {
+						requete += " AND etat_vente=VD";
+					}
+				}
 
 				// definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
@@ -129,11 +157,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					pstmt.setString(count, "%" + nomArticle + "%");
 					count++;
 				}
-				// TODO CHECKBOX DE L'ENFER
-				if (null == null) {
-					
-				}
-
+			
 				rs = pstmt.executeQuery();
 
 				count = 1;
