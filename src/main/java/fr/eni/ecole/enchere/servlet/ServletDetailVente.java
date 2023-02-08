@@ -32,10 +32,10 @@ public class ServletDetailVente extends HttpServlet {
 		
 		ArticleManager am = ArticleManager.getInstance();
 		
-		//int idArticle=Integer.parseInt(request.getParameter("id"));
+		int idArticle=Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			Article infoArt = am.afficherArticle(4);
+			Article infoArt = am.afficherArticle(idArticle);
 			System.out.println(infoArt.getNomArticle());
 			request.setAttribute("infoArt", infoArt);	
 			
@@ -62,7 +62,7 @@ public class ServletDetailVente extends HttpServlet {
 		Enchere enchere = new Enchere(LocalDate.now(), prixPropose, idUserConnecte, noArticle);
 	
 		try {
-			em.insererEnchere(enchere, prixPropose);
+			em.insererEnchere(enchere, noArticle);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
