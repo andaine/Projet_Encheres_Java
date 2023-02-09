@@ -39,7 +39,7 @@
 					<label for="categorie">Catégorie</label> <select id="categorie"
 						name="categorie" required>
 						<c:forEach var="cat" items="${categorie}">
-							<option value="${cat.noCategorie}" ${cat.libelle.equals(categorieChoisie) ? 'selected':''}> ${cat.libelle}</option>
+							<option value="${cat.noCategorie}" ${cat.noCategorie.equals(categorieChoisie) ? 'selected':''}> ${cat.libelle}</option>
 						</c:forEach>
 					</select>
 				</div>

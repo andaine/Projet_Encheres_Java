@@ -78,8 +78,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		String codePostal = request.getParameter("postal");
 		String ville = request.getParameter("ville");
 		Categorie cat = new Categorie(noCategorie, null);
-		String categorieChoisie = request.getParameter("categorie");
-		request.setAttribute("categorieChoisie", categorieChoisie);
+		request.setAttribute("categorieChoisie", noCategorie);
 		ArticleManager am = ArticleManager.getInstance();
 		
 		try {
