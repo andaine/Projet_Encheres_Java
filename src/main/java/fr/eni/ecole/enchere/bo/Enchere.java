@@ -16,20 +16,14 @@ public class Enchere {
 
 	public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle, String nomArticle,
 			String pseudoUser, String nomCategorie) {
-		super();
-		this.dateEnchere = dateEnchere;
-		this.montantEnchere = montantEnchere;
-		this.noUser = noUser;
-		this.noArticle = noArticle;
+		this(dateEnchere, montantEnchere, noUser, noArticle);
 		this.nomArticle = nomArticle;
 		this.pseudoUser = pseudoUser;
 		this.nomCategorie = nomCategorie;
 	}
 
 	public Enchere(LocalDate dateEnchere, int montantEnchere, int noUser, int noArticle) {
-		super();
-		this.dateEnchere = dateEnchere;
-		this.montantEnchere = montantEnchere;
+		this(dateEnchere, montantEnchere);
 		this.noUser = noUser;
 		this.noArticle = noArticle;
 	}
