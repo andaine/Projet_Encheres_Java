@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import fr.eni.ecole.enchere.bll.EnchereManager;
 import fr.eni.ecole.enchere.bo.Enchere;
@@ -22,9 +20,7 @@ import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 import fr.eni.ecole.enchere.bll.ArticleManager;
-import fr.eni.ecole.enchere.bll.UserManager;
 import fr.eni.ecole.enchere.bo.Categorie;
-import fr.eni.ecole.enchere.exception.BusinessException;
 
 /**
  * Servlet implementation class ServletAccueil
@@ -39,7 +35,6 @@ public class ServletAccueil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doget - servlet accueil\n");
 
 		EnchereManager mgr = EnchereManager.getInstance();
 
@@ -86,11 +81,9 @@ public class ServletAccueil extends HttpServlet {
 		// recup catégorie choisie
 		String categorieChoisie = req.getParameter("selectCategorie");
 		req.setAttribute("categorieChoisie", categorieChoisie);
-		System.out.println("test = categorie : " + categorieChoisie);
 
 		// recup le champ de texte
 		String textFieldResult = req.getParameter("textFiltreArticle");
-		System.out.println("test = article : " + textFieldResult);
 		
 		//recup le radiobouton
 		boolean radioButton = true;	
@@ -102,16 +95,6 @@ public class ServletAccueil extends HttpServlet {
 			 }
 		}
 		
-		
-		
-		
-		
-		System.out.println(rbAchats);
-		System.out.println( "/" + req.getParameter("radioButton") + "/"+ " filtreRadioButton");
-		System.out.println(radioButton);
-//		if (rbAchats == "false") {
-//			radioButton = false;
-//		} 
 		
 		//recup checkbox
 		List<Boolean> listCheckbox = new ArrayList<>();
@@ -150,16 +133,8 @@ public class ServletAccueil extends HttpServlet {
 		
 		try {
 			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult, radioButton, listCheckbox);
-			
-			System.out.println("333333333333333333333333333");
-			for (Enchere enchere : listeEncheresFiltres) {
-				System.out.println(enchere);
-			}
-			System.out.println("333333333333333333333333333");
-
 			req.setAttribute("listeEncheres", listeEncheresFiltres);
 		} catch (BusinessException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 

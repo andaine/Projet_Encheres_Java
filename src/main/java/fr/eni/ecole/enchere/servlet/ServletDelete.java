@@ -36,7 +36,6 @@ public class ServletDelete extends HttpServlet {
 				mgr.supprimerUtilisateur(id);
 				session.setAttribute("userConnecte", null);
 			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");

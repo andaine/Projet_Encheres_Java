@@ -24,6 +24,7 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
 		rd.forward(request, response);
 	}
@@ -35,7 +36,6 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur userEnCours = (Utilisateur) session.getAttribute("userConnecte");
 		
-		System.out.println("dopost - servlet update");
 
 		String pseudo = request.getParameter("pseudoModifier");
 		String nom = request.getParameter("nomModifier");
@@ -51,16 +51,13 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		String motDePasseNouveau = request.getParameter("mdpNouveau");
 		int id = Integer.parseInt(request.getParameter("id"));
 		int credit = userEnCours.getCredit();
-	
-//		String mdpBDD = userMdp.getMotDePasse();
-		
+			
 		
 		if (motDePasseConfirmer.equals(motDePasseNouveau) && !motDePasseConfirmer.isEmpty() && !motDePasseNouveau.isEmpty()) {	
 			motDePasseActuel = request.getParameter("mdpNouveau");
 		} 
 		
 			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel, credit);
-			System.out.println(userConnecte);
 			UserManager um = UserManager.getInstance();
 			try {
 				um.updateUtilisateur(userConnecte, motDePasseTemporaire, userEnCours, motDePasseConfirmer, motDePasseNouveau);

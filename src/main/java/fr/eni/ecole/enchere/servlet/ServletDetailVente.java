@@ -42,7 +42,6 @@ public class ServletDetailVente extends HttpServlet {
 			request.setAttribute("infoArt", infoArt);	
 			
 		} catch (BusinessException e) {
-			// TODO Ajouter business exception
 			e.printStackTrace();
 		}
 		
@@ -54,6 +53,7 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		//insertion enchère
 		request.setCharacterEncoding("UTF-8");
 		int prixPropose  = Integer.parseInt(request.getParameter("prixPropose")) ;
@@ -74,7 +74,6 @@ public class ServletDetailVente extends HttpServlet {
 			em.insererEnchere(enchere, noArticle);
 			um.updateCredit(userConnecte);
 		} catch (BusinessException e) {
-			// TODO BusinessException
 			e.printStackTrace();
 		}
 		
