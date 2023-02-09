@@ -26,21 +26,15 @@ public class ServletDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
-		System.out.println((userConnecte.getMotDePasse()) + (request.getParameter("mdpActuel")));
-		System.out.println(request.getAttribute("prenomModifier"));
-		
-		if(request.getParameter("mdpActuel") != userConnecte.getMotDePasse()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
-			rd.forward(request, response);
-		} else {
+
 			String idStr = request.getParameter("id");
 			System.out.println("test servlet delete " + idStr);
 			int id = Integer.parseInt(idStr);
 			UserManager mgr = UserManager.getInstance();
 			try {
+				HttpSession session = request.getSession();
 				mgr.supprimerUtilisateur(id);
+				session.setAttribute("userConnecte", null);
 			} catch (BusinessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,7 +42,5 @@ public class ServletDelete extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
 		}
-
-	}
 
 }
