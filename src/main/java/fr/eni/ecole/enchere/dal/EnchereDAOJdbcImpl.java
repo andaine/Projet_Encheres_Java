@@ -79,7 +79,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("WHERE")) {
+					if (requete.contains(" WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
@@ -104,7 +104,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("WHERE")) {
+					if (requete.contains(" WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
