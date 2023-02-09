@@ -65,11 +65,11 @@
 						</div>
 						<div class="input">
 							<label for="mdpActuel" id="labelMdpActuel">Mot de passe
-								actuel : </label> <input id="mdpActuel" name="mdpActuel" type="text">
+								actuel : </label> <input id="mdpActuel" name="mdpActuel" type="password">
 						</div>
 						<div class="input">
 							<label for="mdpNouveau" id="labelMdpNouveau">Nouveau mot
-								de passe : </label> <input id="mdpNouveau" name="mdpNouveau" type="text">
+								de passe : </label> <input id="mdpNouveau" name="mdpNouveau" type="password">
 						</div>
 
 					</div>
@@ -100,7 +100,7 @@
 						</div>
 						<div class="input">
 							<label for="mdpConfirmer" id="labelMdpConfirmer">Confirmation
-								: </label> <input id="mdpConfirmer" name="mdpConfirmer" type="text">
+								: </label> <input id="mdpConfirmer" name="mdpConfirmer" type="password">
 						</div>
 
 						<div id="divCredit">
