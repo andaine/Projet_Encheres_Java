@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>Enchères ENI - Nouvelle Vente</title>
 </head>

@@ -15,6 +15,15 @@
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html"%>
 
+	<p>
+
+		<c:forEach var="be" items="${listeErreur}">
+			<div style="color: red">${be}
+				<br>
+			</div>
+		</c:forEach>
+	</p>
+
 	<div id="titreDetailVente">
 		<h1>Détail vente</h1>
 	</div>
@@ -51,7 +60,7 @@
 			</div>
 
 			<div class="border" id="meilleureOffre">
-				<p>${infoArt.getPrixVente()}pts par
+				<p>${infoArt.getPrixVente()}ptspar
 					${infoArt.getUserA().getPseudo()}</p>
 			</div>
 
@@ -60,7 +69,7 @@
 			</div>
 
 			<div class="border" id="miseAPrixVente">
-				<p>${infoArt.getPrixInitial()} points</p>
+				<p>${infoArt.getPrixInitial()}points</p>
 			</div>
 
 			<div class="border" id="finEnchere">
@@ -80,7 +89,7 @@
 					${infoArt.getRetraitVendeur().getCodePostal()}
 					${infoArt.getRetraitVendeur().getVille()}
 				</p>
-			<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
+				<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
 				${infoArt.getRetraitVendeur().getRue()}<br />
 				${infoArt.getRetraitVendeur().getCodePostal()}
 				${infoArt.getRetraitVendeur().getVille()}
@@ -102,22 +111,17 @@
 			<form method="post"
 				action="${pageContext.request.contextPath}/ServletDetailVente">
 				<section class="border" id="formulaire">
-				
-					<p id="labelFormProposition">
-						Ma proposition :   
-					</p>				
-					
-					
-						<input type="number" id="prixPropose" name="prixPropose" step="1"
-							min="${infoArt.getPrixVente()}"
-							max="${infoArt.getUserA().getCredit()}"
-							value="${infoArt.getPrixVente()}">
-					
-					<input type="submit" id="encherir" name="encherir" value="Enchérir" />
-					
-									
-					<input type="hidden" value="${infoArt.getNoArticle()}"
-						id="noArticle" name="noArticle">
+
+					<p id="labelFormProposition">Ma proposition :</p>
+
+
+					<input type="number" id="prixPropose" name="prixPropose" step="1"
+						min="${infoArt.getPrixVente()}"
+						max="${infoArt.getUserA().getCredit()}"
+						value="${infoArt.getPrixVente()}"> <input type="submit"
+						id="encherir" name="encherir" value="Enchérir" /> <input
+						type="hidden" value="${infoArt.getNoArticle()}" id="noArticle"
+						name="noArticle">
 				</section>
 			</form>
 

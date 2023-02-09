@@ -34,7 +34,7 @@
 	
 	<div>
 	
-	<form method="post" action="<%=request.getContextPath()%>/ServletLogin">
+	<form method="post" action="${pageContext.request.contextPath}/ServletLogin">
 		<div class="input">
 			<label for="input_nom">Identifiant</label>
 			<input type="text" id="identifiant" name="identifiant" required/>
@@ -50,11 +50,11 @@
 	
 		<label for="input_nom">Se souvenir de moi</label>
 		<input type="checkbox" id="seSouvenir" name="seSouvenir">
-		<a href="<%=request.getContextPath()%>/ServletLogin">Mot de passe oublié</a>
+		<a href="${pageContext.request.contextPath}/ServletLogin">Mot de passe oublié</a>
 		</section>
 		
 	</form>
-	<form method="get" action="<%=request.getContextPath()%>/ServletCreateAccount"> 
+	<form method="get" action="${pageContext.request.contextPath}/ServletCreateAccount"> 
 			<input type="submit" id= "creerCompte" value="Créer un compte" />
 	</form>
 	</div>

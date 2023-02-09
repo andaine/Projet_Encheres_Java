@@ -23,13 +23,21 @@
 
 	<header>
 		<div><%@ include file="/WEB-INF/fragments/header.html"%></div>
+		
+<p>
+
+		<c:forEach var="be" items="${listeErreur}">
+			<div style="color: red">${be}
+				<br>
+			</div>
+		</c:forEach>
+	</p>
 
 		<div>
 			<c:if test="${userConnecte!=null }">
 				<nav id="navConnecte">
 
-					 <a
-						href="${pageContext.request.contextPath}/ServletNouvelleVente"
+					<a href="${pageContext.request.contextPath}/ServletNouvelleVente"
 						name="lienNouvelleVente" id="lienNouvelleVente">Vendre un
 						article</a>
 					<!--  TODO ServletNouvelleVente -->
@@ -57,11 +65,11 @@
 
 	<h2 id="titreListe">Liste des enchères</h2>
 
-	
+
 	<section id="filtres">
-	
-	
-	
+
+
+
 		<form method="post"
 			action="${pageContext.request.contextPath}/ServletAccueil"
 			name="formAfficherEncheres" id="formAfficherEncheres">
@@ -92,8 +100,8 @@
 			<c:if test="${userConnecte!=null }">
 				<section id="sectionAchatVente">
 					<div id="divAchat">
-						<input type="radio" id="achats" name="radioButton" value="radioAchat"
-							checked /> <label for="labelAchats">Achats</label>
+						<input type="radio" id="achats" name="radioButton"
+							value="radioAchat" checked /> <label for="labelAchats">Achats</label>
 						<ul>
 							<li><input type="checkbox" id="encheresOuvertes"
 								name="encheresOuvertes"> <label for="encheresOuvertes">enchères
@@ -107,8 +115,8 @@
 						</ul>
 					</div>
 					<div id="divVente">
-						<input type="radio" id="ventes" name="radioButton" value="radioVente" /> <label
-							for="ventes">Mes ventes</label>
+						<input type="radio" id="ventes" name="radioButton"
+							value="radioVente" /> <label for="ventes">Mes ventes</label>
 						<ul>
 							<li><input type="checkbox" id="ventesEnCours"
 								name="ventesEnCours"> <label for="ventesEnCours">mes
@@ -146,8 +154,7 @@
 					<c:if test="${userConnecte!=null }">
 						<a
 							href="${pageContext.request.contextPath}/ServletDetailVente?id=${e.getNoArticle() }"
-							id="${e.getNoArticle() }"> ${e.getNomArticle() }
-						</a>
+							id="${e.getNoArticle() }"> ${e.getNomArticle() } </a>
 						<br>
 					</c:if>
 					<c:if test="${userConnecte==null }">
@@ -162,8 +169,7 @@
 					<c:if test="${userConnecte!=null }">
 						<a
 							href="${pageContext.request.contextPath}/ServletMonProfil?id=${e.getNoUser() }"
-							id="${e.getNoUser() }">Vendeur : ${e.getPseudoUser() }
-						</a>
+							id="${e.getNoUser() }">Vendeur : ${e.getPseudoUser() } </a>
 						<br>
 					</c:if>
 					<c:if test="${userConnecte==null }">

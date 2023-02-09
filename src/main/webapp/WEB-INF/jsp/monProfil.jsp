@@ -11,12 +11,21 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/style.css">
+	href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>JSP mon profil</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/fragments/header.html"%>
+
+	<p>
+
+		<c:forEach var="be" items="${listeErreur}">
+			<div style="color: red">${be}
+				<br>
+			</div>
+		</c:forEach>
+	</p>
 
 	<div id="titre">
 	<h2 class="pageTitle">Profil</h2>
