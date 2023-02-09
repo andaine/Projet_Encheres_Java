@@ -22,9 +22,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 
 	private static final String SELECT_ARTICLE = "SELECT * FROM Articles_Vendus a "
-			+ "LEFT JOIN Encheres e ON  a.no_article = e.no_article "
-			+ "INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
-			+ "INNER JOIN Categories c ON a.no_categorie = c.no_categorie";
+			+" INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
+			+" INNER JOIN Categories c ON a.no_categorie = c.no_categorie "
+			+ " LEFT JOIN Encheres e ON  a.no_article = e.no_article "
+			+ " WHERE a.etat_vente!='CR'";
 	
 
 	private static final String FILTRE_USER = "e.no_utilisateur= ?";

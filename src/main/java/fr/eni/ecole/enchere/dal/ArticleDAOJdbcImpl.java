@@ -23,12 +23,12 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, 'CR')";
 	private static final String CREATE_RETRAITS_ARTICLE = "INSERT INTO Retraits (no_article, rue, code_postal, ville) VALUES (?,?,?,?)";
 	private static final String SELECT_ARTICLE = "SELECT a.no_article, a.nom_article, a.description, c.libelle, e.montant_enchere, ua.pseudo pseudoAcheteur, ua.credit creditAcheteur, a.prix_vente, a.prix_initial, a.date_fin_enchere, uv.pseudo pseudoVendeur, r.rue, r.ville, r.code_postal "
-			+ "FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
-								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
-								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
-								+ "LEFT JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
-								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
-								+ "WHERE a.no_article=?";
+			+ " FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
+								+ " INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
+								+ " LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
+								+ " LEFT JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
+								+ " LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
+								+ " WHERE a.no_article=?";
 	
 	
     @Override
