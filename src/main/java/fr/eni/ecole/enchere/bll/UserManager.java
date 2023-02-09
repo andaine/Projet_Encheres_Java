@@ -45,7 +45,7 @@ public class UserManager {
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
-		validerUtilisateur(user, null, null, null, null);
+		validerUtilisateur(user);
 		userDAO.insert(user);
 	}
 	
@@ -56,7 +56,7 @@ public class UserManager {
 	
 	public void updateUtilisateur(Utilisateur userUpdate, String motDePasseActuel, Utilisateur userEnCours, String motDePasseConfirmer, String motDePasseNouveau) throws BusinessException {
 		
-		validerUtilisateur(userUpdate, motDePasseActuel, userEnCours, motDePasseConfirmer, motDePasseNouveau);
+		validerUpdateUtilisateur(userUpdate, motDePasseActuel, userEnCours, motDePasseConfirmer, motDePasseNouveau);
 		userDAO.updateUser(userUpdate);
 
 	}
@@ -66,7 +66,7 @@ public class UserManager {
 		userDAO.updateCreditUser(user);
 	}
 	
-	private void validerUtilisateur(Utilisateur userAValider, String motDePasseActuel, Utilisateur userEnCours, String motDePasseConfirmer, String motDePasseNouveau) throws BusinessException {
+	private void validerUpdateUtilisateur(Utilisateur userAValider, String motDePasseActuel, Utilisateur userEnCours, String motDePasseConfirmer, String motDePasseNouveau) throws BusinessException {
 	
 		BusinessException be = new BusinessException();
 		
@@ -77,6 +77,60 @@ public class UserManager {
 		if(!userEnCours.getMotDePasse().equals(motDePasseActuel)) {
 			be.addMessage("le mot de passe actuel n'est pas le bon");
 		}
+		
+		if (isValidEmail(userAValider.getEmail()) == false ) {
+			be.addMessage("Le format de l'email n'est pas bon");
+		}
+		
+		if (userAValider.getPseudo().isBlank()) {
+			be.addMessage("Le pseudo est obligatoire.\n");
+        }
+
+        if (userAValider.getNom().isBlank()) {
+        	be.addMessage("Le nom est obligatoire.\n");
+        }
+        if (userAValider.getPrenom().isBlank()) {
+        	be.addMessage("Le prénom est obligatoire.\n");
+        }
+        
+        if (userAValider.getEmail().isBlank()) {
+        	be.addMessage("L'email est obligatoire.\n");
+        }
+        
+        if (userAValider.getTelephone().length()!=10) {
+        	be.addMessage("Le format du telephone est non valide.\n");
+        }
+        
+        if (userAValider.getRue().isBlank()) {
+        	be.addMessage("La rue est obligatoire.\n");
+        }
+        
+        if (userAValider.getCodePostal().isBlank()) {
+        	be.addMessage("Le code postal est obligatoire.\n");
+        }
+        
+        if (userAValider.getVille().isBlank()) {
+        	be.addMessage("La ville est obligatoire.\n");
+        }
+        
+        if (userAValider.getMotDePasse().isBlank()) {
+        	be.addMessage("Le mot de passe est obligatoire.\n");
+        }
+        
+       System.out.println("manager valider user");
+     
+        if(!be.getListeMessage().isEmpty()) {
+        
+        	throw be;
+        	
+        }
+	}
+
+	
+	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
+		
+		BusinessException be = new BusinessException();
+		
 		
 		if (isValidEmail(userAValider.getEmail()) == false ) {
 			be.addMessage("Le format de l'email n'est pas bon");
