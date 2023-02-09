@@ -68,7 +68,7 @@ public class UserManager {
 		BusinessException be = new BusinessException();
 		
 		if (isValidEmail(userAValider.getEmail()) == false ) {
-			be.addMessage("le format de l'email n'est pas bon");
+			be.addMessage("Le format de l'email n'est pas bon");
 		}
 		
 		if (userAValider.getPseudo().isBlank()) {

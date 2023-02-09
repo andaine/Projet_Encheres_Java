@@ -84,7 +84,7 @@
 				
 				<div class="actions">
 						<input type="submit" name="enregistrer" value="Enregistrer" /> 
-						<a href="${pageContext.request.contextPath}/ServletAccueil" class="button"><input type="button" value="Accueil" /></a>
+						<a href="${pageContext.request.contextPath}/ServletAccueil" class="button"><input type="button" value="Annuler" /></a>
 				</div>
 			</form>
 		</div>

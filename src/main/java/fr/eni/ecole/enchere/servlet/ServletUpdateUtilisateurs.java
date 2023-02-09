@@ -65,9 +65,9 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		
 //		if (request.getParameter("mdpActuel").equals(mdpBDD)) {
 			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel, credit);
-			UserManager em = UserManager.getInstance();
+			UserManager um = UserManager.getInstance();
 			try {
-				em.updateUtilisateur(userConnecte);
+				um.updateUtilisateur(userConnecte);
 				session.setAttribute("userConnecte", userConnecte);
 			} catch (BusinessException e) {
 				request.setAttribute("listeErreur", e.getListeMessage());
