@@ -20,15 +20,12 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String SELECT_ALL_ENCHERES = "SELECT a.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle "
-			+ "FROM Encheres e "
-			+ "INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie WHERE etat_vente='EC'";
-	private static final String SELECT_ARTICLE = "Select * from UTILISATEURS u "
-			+ "left join ENCHERES e on  u.no_utilisateur = e.no_utilisateur "
-			+ "inner join ARTICLES_VENDUS a on  a.no_utilisateur = u.no_utilisateur "
-			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie ";
+
+	private static final String SELECT_ARTICLE = "SELECT * FROM Articles_Vendus a "
+			+ "INNER JOIN Encheres e ON  a.no_article = e.no_article "
+			+ "INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
+			+ "INNER JOIN Categories c ON a.no_categorie = c.no_categorie";
+	
 
 	private static final String FILTRE_USER = "e.no_utilisateur= ?";
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
@@ -126,6 +123,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 				}
 
+				//USER CONNECTE
+				
 				// Choix CheckBox + radiobutton
 				if (choixRadiobutton == true) {
 					if (requete.contains("AND")) {
@@ -281,11 +280,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				throw be;
 			}
 
-			/*
-			 * e.printStackTrace(); BusinessException be = new BusinessException(); be.
-			 * addMessage("DAL exception - insertion de l'enchère ou mise à jour de l'article impossible"
-			 * ); throw be;
-			 */
+			
 
 		}
 	}
@@ -295,7 +290,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		boolean filtreCategorie = false;
 		boolean filtreNomArticle = false;
 //		afficher enchère
-		String requete = SELECT_ALL_ENCHERES;
+		String requete = SELECT_ARTICLE + " WHERE a.etat_vente='EC'";
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
 
