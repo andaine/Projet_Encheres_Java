@@ -2,6 +2,9 @@ package fr.eni.ecole.enchere.bll;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -42,7 +45,7 @@ public class UserManager {
 
 	public void insererUtilisateur(Utilisateur user) throws BusinessException {
 
-		validerUtilisateur(user);
+		validerUtilisateur(user, null, null, null, null);
 		userDAO.insert(user);
 	}
 	
@@ -51,9 +54,9 @@ public class UserManager {
 		userDAO.supprimerCompte(id);
 	}
 	
-	public void updateUtilisateur(Utilisateur userUpdate) throws BusinessException {
-
-		validerUtilisateur(userUpdate);
+	public void updateUtilisateur(Utilisateur userUpdate, String motDePasseActuel, Utilisateur userEnCours, String motDePasseConfirmer, String motDePasseNouveau) throws BusinessException {
+		
+		validerUtilisateur(userUpdate, motDePasseActuel, userEnCours, motDePasseConfirmer, motDePasseNouveau);
 		userDAO.updateUser(userUpdate);
 
 	}
@@ -63,9 +66,18 @@ public class UserManager {
 		userDAO.updateCreditUser(user);
 	}
 	
-	private void validerUtilisateur(Utilisateur userAValider) throws BusinessException {
+	private void validerUtilisateur(Utilisateur userAValider, String motDePasseActuel, Utilisateur userEnCours, String motDePasseConfirmer, String motDePasseNouveau) throws BusinessException {
 	
 		BusinessException be = new BusinessException();
+		if (motDePasseActuel != null) {
+			if(!motDePasseConfirmer.equals(motDePasseNouveau)) {
+				be.addMessage("les 2 mots de passe ne sont pas identiques");
+			}
+			if(!userEnCours.getMotDePasse().equals(motDePasseActuel)) {
+				be.addMessage("le mot de passe actuel n'est pas le bon");
+			}	
+		}
+		
 		
 		if (isValidEmail(userAValider.getEmail()) == false ) {
 			be.addMessage("Le format de l'email n'est pas bon");
@@ -114,6 +126,8 @@ public class UserManager {
         	
         }
 	}
+
+	
 	
 	private static boolean isValidEmail(String email) {
 			String regExp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";

@@ -45,37 +45,34 @@ public class ServletUpdateUtilisateurs extends HttpServlet {
 		String rue = request.getParameter("rueModifier");
 		String code_postal = request.getParameter("codePModifier");
 		String ville = request.getParameter("villeModifier");
+		String motDePasseTemporaire = request.getParameter("mdpActuel");
 		String motDePasseActuel = request.getParameter("mdpActuel");
 		String motDePasseConfirmer = request.getParameter("mdpConfirmer");
 		String motDePasseNouveau = request.getParameter("mdpNouveau");
 		int id = Integer.parseInt(request.getParameter("id"));
 		int credit = userEnCours.getCredit();
-		
+	
 //		String mdpBDD = userMdp.getMotDePasse();
 		
 		
 		if (motDePasseConfirmer.equals(motDePasseNouveau) && !motDePasseConfirmer.isEmpty() && !motDePasseNouveau.isEmpty()) {	
 			motDePasseActuel = request.getParameter("mdpNouveau");
-		} else if(!motDePasseConfirmer.equals(motDePasseNouveau)) {
-			BusinessException be = new BusinessException();
-			be.addMessage("les 2 mots de passe ne sont pas identiques");
-			request.setAttribute("listeErreur", be.getListeMessage());
-		}
+		} 
 		
-		
-//		if (request.getParameter("mdpActuel").equals(mdpBDD)) {
 			Utilisateur userConnecte = new Utilisateur(id, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, motDePasseActuel, credit);
+			System.out.println(userConnecte);
 			UserManager um = UserManager.getInstance();
 			try {
-				um.updateUtilisateur(userConnecte);
+				um.updateUtilisateur(userConnecte, motDePasseTemporaire, userEnCours, motDePasseConfirmer, motDePasseNouveau);
 				session.setAttribute("userConnecte", userConnecte);
 			} catch (BusinessException e) {
 				request.setAttribute("listeErreur", e.getListeMessage());
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/modifierProfil.jsp");
 				rd.forward(request, response);
 			}
+
 	
-		RequestDispatcher rd = request.getRequestDispatcher("/ServletAccueil");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
 	}
 

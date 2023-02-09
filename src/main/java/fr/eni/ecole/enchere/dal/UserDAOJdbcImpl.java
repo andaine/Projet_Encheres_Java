@@ -142,12 +142,14 @@ public class UserDAOJdbcImpl implements UserDAO {
 	@Override
 	public void updateUser(Utilisateur userUpdate) throws BusinessException {
 
+	
 		try (Connection cnx = ConnectionProvider.getConnection()) {
 			String mdpBDD = null;
 			PreparedStatement pstmt = cnx.prepareStatement(CHECK_MDP);
 
 			pstmt.setInt(1, userUpdate.getNoUtilisateur());
-
+			
+			
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				mdpBDD = rs.getString("mot_de_passe");
@@ -155,7 +157,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 			pstmt = cnx.prepareStatement(UPDATE_USER, PreparedStatement.RETURN_GENERATED_KEYS);
 
-			if (userUpdate.getMotDePasse().equals(mdpBDD)) {
+		
+			
 
 				pstmt.setString(1, userUpdate.getPseudo());
 				pstmt.setString(2, userUpdate.getNom());
@@ -169,9 +172,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 				pstmt.setString(9, userUpdate.getMotDePasse());
 
 				pstmt.setInt(10, userUpdate.getNoUtilisateur());
-
+				System.out.println(UPDATE_USER + "update user final");
 				pstmt.executeUpdate();
-			}
+			
 
 			rs.close();
 			pstmt.close();
