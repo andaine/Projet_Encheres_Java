@@ -1,10 +1,5 @@
 package fr.eni.ecole.enchere.bll;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.dal.DAOFactory;
 import fr.eni.ecole.enchere.dal.UserDAO;
@@ -118,7 +113,6 @@ public class UserManager {
         	be.addMessage("Le mot de passe est obligatoire.\n");
         }
         
-       System.out.println("manager valider user");
      
         if(!be.getListeMessage().isEmpty()) {
         

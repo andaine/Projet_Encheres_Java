@@ -78,6 +78,5 @@ public class ServletCreateAccount extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/createAccountPage.jsp");
 			rd.forward(request, response);
 		}
-		System.out.println("ServletCreate-doPost");
 	}
 }

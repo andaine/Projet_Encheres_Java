@@ -81,7 +81,6 @@ public class ArticleManager {
 			be.addMessage("La ville est obligatoire.");
 		}
 
-		System.out.println("servlet valider user");
 
 		if (!be.getListeMessage().isEmpty()) {
 

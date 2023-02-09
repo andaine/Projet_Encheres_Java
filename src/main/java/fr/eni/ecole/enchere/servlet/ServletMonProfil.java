@@ -20,10 +20,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 public class ServletMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-		
 
-	
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		request.setCharacterEncoding("UTF-8");
@@ -37,14 +34,9 @@ public class ServletMonProfil extends HttpServlet {
 			request.setAttribute("infoVendeur", infoVendeur);
 			request.setAttribute("idVendeur", idProfil);
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		
-		
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/monProfil.jsp");
 		rd.forward(request, response);
 	}

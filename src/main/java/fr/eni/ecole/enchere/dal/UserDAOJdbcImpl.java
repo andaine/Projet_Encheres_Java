@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
@@ -48,14 +46,14 @@ public class UserDAOJdbcImpl implements UserDAO {
 				user.setCodePostal(rs.getString("code_postal"));
 				user.setVille(rs.getString("ville"));
 				user.setCredit(rs.getInt("credit"));
+				
+				
 				if (rs.getByte("administrateur") == 0) {
 					user.setAdministrateur(false);
 				} else {
 					user.setAdministrateur(true);
 				}
 
-				System.out.println("connecté");
-				System.out.println(user.getEmail());
 			} else {
 				BusinessException businessException = new BusinessException();
 				businessException.addMessage("DAL exception - utilisateur inexistant");
@@ -70,7 +68,6 @@ public class UserDAOJdbcImpl implements UserDAO {
 		}
 
 		return user;
-
 	}
 
 	@Override
@@ -168,11 +165,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 				pstmt.setString(6, userUpdate.getRue());
 				pstmt.setString(7, userUpdate.getCodePostal());
 				pstmt.setString(8, userUpdate.getVille());
-
 				pstmt.setString(9, userUpdate.getMotDePasse());
-
 				pstmt.setInt(10, userUpdate.getNoUtilisateur());
-				System.out.println(UPDATE_USER + "update user final");
+				
 				pstmt.executeUpdate();
 			
 
@@ -228,9 +223,9 @@ public class UserDAOJdbcImpl implements UserDAO {
 			
 			PreparedStatement pstmt = cnx.prepareStatement(UPDATE_CREDIT_USER);
 
-			pstmt.setInt(1, user.getCredit());
-			
+			pstmt.setInt(1, user.getCredit());			
 			pstmt.setInt(2, user.getNoUtilisateur());
+			
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
