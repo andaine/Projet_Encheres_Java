@@ -5,38 +5,30 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-
 import fr.eni.ecole.enchere.bo.Enchere;
-import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SELECT_ARTICLE = "SELECT * FROM Articles_Vendus a "
-			+" INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
-			+" INNER JOIN Categories c ON a.no_categorie = c.no_categorie "
-			+ " LEFT JOIN Encheres e ON  a.no_article = e.no_article "
-			+ " WHERE a.etat_vente != 'CR'";
-	  
+			+ " INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
+			+ " INNER JOIN Categories c ON a.no_categorie = c.no_categorie "
+			+ " LEFT JOIN Encheres e ON  a.no_article = e.no_article " + " WHERE a.etat_vente != 'CR'";
 
-	private static final String FILTRE_USER = "e.no_utilisateur= ?";
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
 	private static final String FILTRE_NOM_ARTICLE = "a.nom_article LIKE ?";
 	private static final String CATEGORIE_DEFAUT = "Toutes";
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 
-	public static boolean filtreCategorie = false, filtreNomArticle = false, filtreAchats = false,
-			encheresOuvertes = false, mesEncheres = false, mesEncheresRemportees = false, mesVentesEnCours = false,
-			ventesNonDebutees = false, ventesTerminees = false;
+	/*
+	 * public static boolean filtreCategorie = false, filtreNomArticle = false,
+	 * filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
+	 * mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees =
+	 * false, ventesTerminees = false;
+	 */
 
 	private int count = 1;
 
@@ -45,7 +37,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		boolean filtreCategorie = false;
 		boolean filtreNomArticle = false;
-//		afficher enchère
 		String requete = SELECT_ARTICLE;
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
@@ -54,11 +45,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			// ACCUEIL DEFAUT
 			if (categorie == null && nomArticle == null) {
-				System.out.println("DEFAUT\n");
-				System.out.println("userId : " + userId);
-				System.out.println("categorie : " + categorie);
-				System.out.println("nom article : " + nomArticle);
-				System.out.println("-------------------------------------------------------\n");
 				Statement stmt = con.createStatement();
 				rs = stmt.executeQuery(requete);
 			} else {
@@ -73,36 +59,18 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				// CHOIX CATEGORIE
 				if (!categorie.equals(CATEGORIE_DEFAUT)) {
 
-					System.out.println("-------------------------------------------------------\n");
-					System.out.println("CATEGORIE CHOISIE - ARTICLE VIDE");
-					System.out.println("userId : " + userId);
-					System.out.println("categorie : " + categorie);
-					System.out.println("nom article : " + nomArticle);
-
 					if (requete.contains(" WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
 					}
 
-					System.out.println("filtre erreur 2");
 					requete += FILTRE_CATEGORIE;
 					filtreCategorie = true;
-					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println("count = " + count);
-					System.out.println(categorie);
-					System.out.println("count = " + count);
-
 				}
 
 				// CHOIX ARTICLE
 				if (!nomArticle.isEmpty()) {
-
-					System.out.println("CATEGORIE TOUTES - ARTICLE CHOISI\n -------------------------------------");
-					System.out.println("userId : " + userId);
-					System.out.println("categorie : " + categorie);
-					System.out.println("nom article : " + nomArticle);
 
 					if (requete.contains(" WHERE")) {
 						requete += " AND ";
@@ -113,129 +81,60 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					requete += FILTRE_NOM_ARTICLE;
 					filtreNomArticle = true;
 
-					System.out.println("requete = " + requete);
-					System.out.println("\n-------------------------------------------------------\n");
-					System.out.println("count = " + count);
-
 				}
 
-				//USER CONNECTE
-			/*	
-				// Choix CheckBox + radiobutton
-				if (choixRadiobutton == true) {
-					if (requete.contains("AND")) {
-						requete += " OR ";
-					} else if (requete.contains("WHERE")) {
-						requete += " AND ";
-					} else {
-						requete += " WHERE ";
-					}
-					requete += " a.no_utilisateur !=" + userId;
-					if (listCheckBox.get(0) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE ";
-						}
-						requete += " etat_vente='EC'";
-					}
-					if (listCheckBox.get(1) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE ";
-						}
-						requete += " e.no_utilisateur=" + userId;
-					}
-					if (listCheckBox.get(2) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE";
-						}
-						requete += " e.no_utilisateur=" + userId + " OR etat_vente='VD'";
-					}
-				} else if (choixRadiobutton == false) {
-					if (requete.contains("AND")) {
-						requete += " OR ";
-					} else if (requete.contains("WHERE")) {
-						requete += " AND ";
-					} else {
-						requete += " WHERE ";
-					}
-					requete += "a.no_utilisateur=" + userId;
-					if (listCheckBox.get(0) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE ";
-						}
-						requete += " etat_vente='EC'";
-					}
-					if (listCheckBox.get(1) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE";
-						}
-						requete += " etat_vente='CR'";
-					}
-					if (listCheckBox.get(2) == true) {
-						if (requete.contains("AND")) {
-							requete += " OR ";
-						} else if (requete.contains("WHERE")) {
-							requete += " AND ";
-						} else {
-							requete += " WHERE ";
-						}
-						requete += " etat_vente='VD'";
-					}
-				}
-			*/	
-				System.out.println("###########" + requete + "#####################");
-
+				// USER CONNECTE
+				/*
+				 * // Choix CheckBox + radiobutton if (choixRadiobutton == true) { if
+				 * (requete.contains("AND")) { requete += " OR "; } else if
+				 * (requete.contains("WHERE")) { requete += " AND "; } else { requete +=
+				 * " WHERE "; } requete += " a.no_utilisateur !=" + userId; if
+				 * (listCheckBox.get(0) == true) { if (requete.contains("AND")) { requete +=
+				 * " OR "; } else if (requete.contains("WHERE")) { requete += " AND "; } else {
+				 * requete += " WHERE "; } requete += " etat_vente='EC'"; } if
+				 * (listCheckBox.get(1) == true) { if (requete.contains("AND")) { requete +=
+				 * " OR "; } else if (requete.contains("WHERE")) { requete += " AND "; } else {
+				 * requete += " WHERE "; } requete += " e.no_utilisateur=" + userId; } if
+				 * (listCheckBox.get(2) == true) { if (requete.contains("AND")) { requete +=
+				 * " OR "; } else if (requete.contains("WHERE")) { requete += " AND "; } else {
+				 * requete += " WHERE"; } requete += " e.no_utilisateur=" + userId +
+				 * " OR etat_vente='VD'"; } } else if (choixRadiobutton == false) { if
+				 * (requete.contains("AND")) { requete += " OR "; } else if
+				 * (requete.contains("WHERE")) { requete += " AND "; } else { requete +=
+				 * " WHERE "; } requete += "a.no_utilisateur=" + userId; if (listCheckBox.get(0)
+				 * == true) { if (requete.contains("AND")) { requete += " OR "; } else if
+				 * (requete.contains("WHERE")) { requete += " AND "; } else { requete +=
+				 * " WHERE "; } requete += " etat_vente='EC'"; } if (listCheckBox.get(1) ==
+				 * true) { if (requete.contains("AND")) { requete += " OR "; } else if
+				 * (requete.contains("WHERE")) { requete += " AND "; } else { requete +=
+				 * " WHERE"; } requete += " etat_vente='CR'"; } if (listCheckBox.get(2) == true)
+				 * { if (requete.contains("AND")) { requete += " OR "; } else if
+				 * (requete.contains("WHERE")) { requete += " AND "; } else { requete +=
+				 * " WHERE "; } requete += " etat_vente='VD'"; } }
+				 */
 				// definir ?
 				PreparedStatement pstmt = con.prepareStatement(requete);
 				if (filtreCategorie == true) {
 					pstmt.setString(count, categorie);
 					count++;
-					System.out.println(filtreCategorie);
-					System.out.println(categorie + "**--------------------------------------");
 				}
 				if (filtreNomArticle == true) {
 					pstmt.setString(count, "%" + nomArticle + "%");
 					count++;
-					
 				}
 
 				rs = pstmt.executeQuery();
-
 				count = 1;
 
 			}
+
 			while (rs.next()) {
 				Enchere enchere = new Enchere(rs.getDate("date_fin_enchere").toLocalDate(),
 						rs.getInt("montant_enchere"), rs.getInt("no_utilisateur"), rs.getInt("no_article"),
 						rs.getString("nom_article"), rs.getString("pseudo"), rs.getString("libelle"));
 
 				listeEncheres.add(enchere);
-				System.out.println(enchere);
 
-			}
-			System.out.println("liste encheres = \n");
-			for (Enchere e : listeEncheres) {
-
-				System.out.println(e.getNomArticle());
 			}
 
 		} catch (SQLException e) {
@@ -253,7 +152,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		Connection cnx = null;
 		try {
 			cnx = ConnectionProvider.getConnection();
-			System.out.println("dal " + idArticle);
 			PreparedStatement pstmt = cnx.prepareStatement(INSERT_ENCHERE);
 			pstmt.setInt(1, (enchere.getNoUser()));
 			pstmt.setInt(2, idArticle);
@@ -279,8 +177,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				throw be;
 			}
 
-			
-
 		}
 	}
 
@@ -288,7 +184,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		boolean filtreCategorie = false;
 		boolean filtreNomArticle = false;
-//		afficher enchère
 		String requete = SELECT_ARTICLE + " AND a.etat_vente = 'EC'";
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
@@ -317,7 +212,6 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
-					System.out.println("filtre erreur 2");
 					requete += FILTRE_CATEGORIE;
 					filtreCategorie = true;
 
@@ -347,10 +241,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					pstmt.setString(count, "%" + nomArticle + "%");
 					count++;
 				}
-				
 
 				rs = pstmt.executeQuery();
-
 				count = 1;
 
 			}
