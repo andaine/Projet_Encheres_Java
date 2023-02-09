@@ -22,7 +22,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 
 	private static final String SELECT_ARTICLE = "SELECT * FROM Articles_Vendus a "
-			+ "INNER JOIN Encheres e ON  a.no_article = e.no_article "
+			+ "LEFT JOIN Encheres e ON  a.no_article = e.no_article "
 			+ "INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN Categories c ON a.no_categorie = c.no_categorie";
 	

@@ -52,7 +52,6 @@ p {
 	flex-basis: 35%;
 }
 
-
 .infoUser form .labelProfil .info {
 	float: right;
 }
@@ -71,8 +70,8 @@ p {
 	background-color: white;
 }
 
-#titreNouvelleVente{
-	display:flex;
+#titreNouvelleVente {
+	display: flex;
 	justify-content: center;
 }
 
@@ -97,44 +96,40 @@ h2 {
 	flex-direction: row;
 }
 
-
 /* -------------------------------------------------- */
 
 /* css connexion */
-
 #creerCompte {
 	width: 100%;
 }
 
-#titreConnexion{
-	display:flex;
+#titreConnexion {
+	display: flex;
 	justify-content: center;
 }
 
 /*----------------------------------  */
 
 /* modifier profil  */
-
 .contentModifier {
-display: grid;
-grid-template-columns: 1fr 3fr 1fr;
-grid-template-rows: 1fr;
-grid-column-gap: 5px;
-grid-row-gap: px;
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-rows: 1fr;
+	grid-column-gap: 5px;
+	grid-row-gap: px;
 }
 
 #colonneMilieu {
-	 grid-column-start: 2;
+	grid-column-start: 2;
 }
 
 #separateurMilieu {
 	display: grid;
-grid-template-columns: repeat(2, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px; 
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
 }
-
 
 .contentModifier>div {
 	margin: 2rem;
@@ -142,8 +137,8 @@ grid-row-gap: 0px;
 }
 
 #lotBtnModifier {
-	 display : flex; 
-	 justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #enregistrerProfil {
@@ -151,7 +146,7 @@ grid-row-gap: 0px;
 	margin-right: 1rem;
 }
 
- .contentModifier form .input {
+.contentModifier form .input {
 	display: flex;
 	margin: 0.5rem 0;
 }
@@ -170,10 +165,6 @@ grid-row-gap: 0px;
 	flex-basis: 35%;
 }
 
-
-
-
-
 .contentModifier form input[type="submit"] {
 	padding: 1.5rem;
 	background-color: white;
@@ -184,212 +175,242 @@ grid-row-gap: 0px;
 	background-color: white;
 }
 
- /*   ------------------------------------------------------------------------------------------- --*/
- 
- /* CSS jsp accueil */
- 
- #titreListe{
- 	font-size:250%;
- }
- 
- #afficherEncheres{
- 	display:flex;
- 	flex-wrap:wrap;
- 	margin: 5%;
- }
- 
- .divEnchere{
- 	margin:5%;
- 	
- }
- 
-#filtres{
-	margin:5%;
-	padding:1%;
-	display:grid;
-}
-#formAfficherEncheres{		
-  display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  grid-template-rows: 0.2fr 0.2fr 0.2fr 1fr; 
-  gap: 1% 5%; 
-  grid-template-areas: 
-    "top_l top-r"
-    "mt_l mt_r"
-    "mb_l mb_r"
-    "bot_l bot_r"; 
-  
-}
-	
-#titreFiltres{
-	grid-area: top_l;
-}	
-#textFiltreArticle{
-	width:50%;
-}
+/*   ------------------------------------------------------------------------------------------- --*/
 
-
-#filtreArticle{
-	grid-area:mt_l;
-}	
-#categories{
-	grid-area:mb_l;
-	margin:3% 0  3% 0;
-}
-#sectionAchatVente{
-	grid-area:bot_l;
-	display:flex;
-	justify-content:space-between;
-}	
-#rechercher{
-	grid-row: mt_r/bot_r;
-	display:flex;
-	justify-content: center;	
-}
-#boutonRechercher{
-	width:40%;
-	height:80%;
-}
- 
-ul{
-	 list-style:none;
-}
- 
- 
-/* css Mon profil -----------------------------------------------------------------------*/
-
-
-
-
-#titre{
-	margin:5%;
-}
-
-
-#pageTitle{
+/* CSS jsp accueil */
+#titreListe {
 	font-size: 250%;
 }
 
-.infoUser{
+#afficherEncheres {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 5%;
+}
+
+.divEnchere {
+	margin: 5%;
+}
+
+#filtres {
+	margin: 5%;
+	padding: 1%;
+	display: grid;
+}
+
+#formAfficherEncheres {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 0.2fr 0.2fr 0.2fr 1fr;
+	gap: 1% 5%;
+	grid-template-areas: "top_l top-r" "mt_l mt_r" "mb_l mb_r" "bot_l bot_r";
+}
+
+#titreFiltres {
+	grid-area: top_l;
+}
+
+#textFiltreArticle {
+	width: 50%;
+}
+
+#filtreArticle {
+	grid-area: mt_l;
+}
+
+#categories {
+	grid-area: mb_l;
+	margin: 3% 0 3% 0;
+}
+
+#sectionAchatVente {
+	grid-area: bot_l;
+	display: flex;
+	justify-content: space-between;
+}
+
+#rechercher {
+	grid-row: mt_r/bot_r;
 	display: flex;
 	justify-content: center;
-	
 }
 
-#formInfos{
-	display:grid;
-   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-   grid-template-columns: 1fr 1fr;   
-   gap: 4% 3%;
-   height: 100%;  
-   width: 30%;
-   grid-template-areas: 
-  "1l 1r"
-  "2l 2r"
-  "3l 3r"
-  "4l 4r"
-  "5l 5r"
-  "6l 6r"
-  "7l 7r"
-  "8l 8r"
-  "9l 9r";
-  
+#boutonRechercher {
+	width: 40%;
+	height: 80%;
 }
- 
-#labelPseudo{grid-area:1l;}
-#pseudo{grid-area:1r;}
-#labelNom{grid-area:2l;}
-#nom{grid-area:2r;}
-#labelPrenom{grid-area:3l;}
-#prenom{grid-area:3r;}
-#labelEmail{grid-area:4l;}
-#email{grid-area:4r;}
-#labelTelephone{grid-area:5l;}
-#telephone{grid-area:5r;}
-#labelRue{grid-area:6l;}
-#rue{grid-area:6r;}
-#labelCodePostal{grid-area:7l;}
-#codePostal{grid-area:7r;}
-#labelVille{grid-area:8l;}
-#ville{grid-area:8r;}
 
+ul {
+	list-style: none;
+}
 
+/* css Mon profil -----------------------------------------------------------------------*/
+#titre {
+	margin: 5%;
+}
+
+#pageTitle {
+	font-size: 250%;
+}
+
+.infoUser {
+	display: flex;
+	justify-content: center;
+}
+
+#formInfos {
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+	gap: 4% 3%;
+	height: 100%;
+	width: 30%;
+	grid-template-areas: "1l 1r" "2l 2r" "3l 3r" "4l 4r" "5l 5r" "6l 6r"
+		"7l 7r" "8l 8r" "9l 9r" "10l 10r";
+}
+
+#labelPseudo {
+	grid-area: 1l;
+}
+
+#pseudo {
+	grid-area: 1r;
+}
+
+#labelNom {
+	grid-area: 2l;
+}
+
+#nom {
+	grid-area: 2r;
+}
+
+#labelPrenom {
+	grid-area: 3l;
+}
+
+#prenom {
+	grid-area: 3r;
+}
+
+#labelEmail {
+	grid-area: 4l;
+}
+
+#email {
+	grid-area: 4r;
+}
+
+#labelTelephone {
+	grid-area: 5l;
+}
+
+#telephone {
+	grid-area: 5r;
+}
+
+#labelRue {
+	grid-area: 6l;
+}
+
+#rue {
+	grid-area: 6r;
+}
+
+#labelCodePostal {
+	grid-area: 7l;
+}
+
+#codePostal {
+	grid-area: 7r;
+}
+
+#labelVille {
+	grid-area: 8l;
+}
+
+#ville {
+	grid-area: 8r;
+}
+
+#labelCredit {
+	grid-area: 9l;
+}
+
+#credit {
+	grid-area: 9r;
+}
 
 .actions {
-	padding:2%;
-   grid-row-start: 9;
-   grid-column-start: 1;
-   grid-row-end: 10;
-   grid-column-end: 3; 
-   display: flex;
-   justify-content: center;
-   align-content: center;
+	padding: 2%;
+	grid-row-start: 10;
+	grid-column-start: 1;
+	grid-row-end: 11;
+	grid-column-end: 3;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
-.boxInfo{
-		text-align: center;
+.boxInfo {
+	text-align: center;
 }
-#boutonModif{
-	height: 200%;  
-   width: 50%;
+
+#boutonModif {
+	height: 200%;
+	width: 50%;
 }
-	
-		
+
 /* css create account -----------------------------------------------------------------------*/
-	
-	
-#lotBtnModifier{
-	margin:5%;
-	display:flex;
-	justify-content:center;
-	
+#lotBtnModifier {
+	margin: 5%;
+	display: flex;
+	justify-content: center;
 }
-.boutonsCreateAccount{
-	margin-left:10%
+
+.boutonsCreateAccount {
+	margin-left: 10%
 }
 
 /*css detailVente ------------------------------------------------------------------------------------*/
-
-#titreDetailVente{
+#titreDetailVente {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-#detailVente{
+#detailVente {
 	display: flex;
 	justify-content: center;
 }
-#divDetailVente{
-	 display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
-    justify-items: stretch;
-    align-items: stretch;
-	grid-gap:4%;
+
+#divDetailVente {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	justify-items: stretch;
+	align-items: stretch;
+	grid-gap: 4%;
+	border: black solid 1px;
+	padding: 1% 2% 0 2%;
 }
-/*
-.border{
-		border:black solid 1px;
-}
-*/
-#nomArticle{
-	grid-column:1/3;
+
+#nomArticle {
+	grid-column: 1/3;
 	display: flex;
 	justify-content: center;
 }
-#labelFormProposition{
-	grid-row:9;
-	grid-column:1/3;
+
+#labelFormProposition {
+	grid-row: 9;
+	grid-column: 1/3;
 	display: flex;
-	justify-content: center;	
+	justify-content: center;
 }
 
-#formulaire{
-	grid-row:10;
-	grid-column:1/3;
+#formulaire {
+	grid-row: 10;
+	grid-column: 1/3;
 	display: flex;
-	justify-content: center;	
+	justify-content: center;
 }
-
-	

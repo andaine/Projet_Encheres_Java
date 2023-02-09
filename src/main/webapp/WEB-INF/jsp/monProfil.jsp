@@ -64,8 +64,13 @@
 			
 				<label for="ville" id="labelVille">Ville :</label> 
 				<div class="boxInfo" id="ville">${infoVendeur.getVille()}</div>
-			
-
+				
+				
+				<c:if test="${userConnecte != null }">
+				<label for="credit" id="labelCredit">Crédit :</label>
+				<div class="boxInfo" id="credit">${userConnecte.getCredit()}</div>			
+				</c:if>
+				
 			<div class="actions">
 				<c:if
 					test="${idVendeur == userConnecte.getNoUtilisateur()}">

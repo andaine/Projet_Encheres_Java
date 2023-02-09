@@ -66,7 +66,6 @@ public class ServletDetailVente extends HttpServlet {
 		//update dé-crédits user
 		UserManager um = UserManager.getInstance();
 		int newCreditUser = userConnecte.getCredit()- prixPropose;
-		System.out.println("crédituser" + newCreditUser);
 		userConnecte.setCredit(newCreditUser);
 	
 		try {
