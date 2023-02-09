@@ -19,7 +19,6 @@ import fr.eni.ecole.enchere.bo.Utilisateur;
 import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
-	private int t;
 
 	private static final String SELECT_ARTICLE = "SELECT * FROM Articles_Vendus a "
 			+" INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
