@@ -20,16 +20,15 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String SELECT_ALL_ENCHERES = "SELECT e.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle FROM Encheres e "
+	private static final String SELECT_ALL_ENCHERES = "SELECT a.no_utilisateur, e.no_article, a.date_fin_enchere, e.montant_enchere, u.pseudo, a.nom_article, c.libelle "
+			+ "FROM Encheres e "
 			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur = u.no_utilisateur "
 			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article = a.no_article "
-			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie";
-	private static final String SELECT_ARTICLE = "SELECT *"
-			+ "FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
-								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
-								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
-								+ "INNER JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
-								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article ";
+			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie WHERE etat_vente='EC'";
+	private static final String SELECT_ARTICLE = "Select * from UTILISATEURS u "
+			+ "left join ENCHERES e on  u.no_utilisateur = e.no_utilisateur "
+			+ "inner join ARTICLES_VENDUS a on  a.no_utilisateur = u.no_utilisateur "
+			+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie ";
 	
 	private static final String FILTRE_USER = "e.no_utilisateur= ?";
 	private static final String FILTRE_CATEGORIE = "c.libelle= ?";
@@ -132,8 +131,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 				}
 				
-				//Choix CheckBoxe + radiobutton
-				// TODO CHECKBOX DE L'ENFER
+				//Choix CheckBox + radiobutton
 				if (choixRadiobutton == true) {
 					if (requete.contains("AND")) {requete += " OR ";} else if (requete.contains("WHERE")) {requete += " AND ";} else {requete += " WHERE ";}
 					requete += "NOT a.no_utilisateur=" + userId;
