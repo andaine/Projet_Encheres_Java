@@ -77,7 +77,7 @@
 
 			<div class="border" id="adresseRetrait">
 				<p>${infoArt.getRetraitVendeur().getRue()}<br />
-					${infoArt.getRetraitVendeur().getCodePostal()}<br>
+					${infoArt.getRetraitVendeur().getCodePostal()}
 					${infoArt.getRetraitVendeur().getVille()}
 				</p>
 			<%-- 	<c:if test= "${infoArt.getRetraitVendeur().getArticle().getNoArticle()!=null}">
