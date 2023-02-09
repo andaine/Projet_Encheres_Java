@@ -26,6 +26,7 @@ public class ServletMonProfil extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		request.setCharacterEncoding("UTF-8");
 		int idProfil =  Integer.parseInt(request.getParameter("id")) ;
 		UserManager user = UserManager.getInstance();
 		Utilisateur infoVendeur;

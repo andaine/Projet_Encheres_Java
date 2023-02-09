@@ -24,7 +24,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			+" INNER JOIN Utilisateurs u ON  a.no_utilisateur = u.no_utilisateur "
 			+" INNER JOIN Categories c ON a.no_categorie = c.no_categorie "
 			+ " LEFT JOIN Encheres e ON  a.no_article = e.no_article "
-			+ " WHERE a.etat_vente!='CR'";
+			+ " WHERE a.etat_vente != 'CR'";
 	  
 
 	private static final String FILTRE_USER = "e.no_utilisateur= ?";
@@ -134,7 +134,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					} else {
 						requete += " WHERE ";
 					}
-					requete += "NOT a.no_utilisateur=" + userId;
+					requete += " a.no_utilisateur !=" + userId;
 					if (listCheckBox.get(0) == true) {
 						if (requete.contains("AND")) {
 							requete += " OR ";
@@ -205,7 +205,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " etat_vente='VD'";
 					}
 				}
-
+				
 				System.out.println("###########" + requete + "#####################");
 
 				// definir ?
@@ -213,6 +213,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				if (filtreCategorie == true) {
 					pstmt.setString(count, categorie);
 					count++;
+					System.out.println(filtreCategorie);
+					System.out.println(categorie + "**--------------------------------------");
 				}
 				if (filtreNomArticle == true) {
 					pstmt.setString(count, "%" + nomArticle + "%");
@@ -290,7 +292,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		boolean filtreCategorie = false;
 		boolean filtreNomArticle = false;
 //		afficher enchère
-		String requete = SELECT_ARTICLE + " WHERE a.etat_vente='EC'";
+		String requete = SELECT_ARTICLE + " AND a.etat_vente = 'EC'";
 		List<Enchere> listeEncheres = new ArrayList<>();
 		ResultSet rs;
 

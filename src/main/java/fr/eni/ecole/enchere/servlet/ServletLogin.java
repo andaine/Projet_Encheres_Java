@@ -31,6 +31,7 @@ public class ServletLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("dopost - servlet login");
 
 		UserManager em = UserManager.getInstance();

@@ -30,7 +30,7 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		ArticleManager am = ArticleManager.getInstance();
 		
 		int idArticle=Integer.parseInt(request.getParameter("id"));
@@ -55,6 +55,7 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//insertion enchère
+		request.setCharacterEncoding("UTF-8");
 		int prixPropose  = Integer.parseInt(request.getParameter("prixPropose")) ;
 		int noArticle  = Integer.parseInt(request.getParameter("noArticle")) ;
 		HttpSession session = request.getSession();

@@ -72,6 +72,7 @@ public class ServletAccueil extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		req.setCharacterEncoding("UTF-8");		
 		EnchereManager mgr = EnchereManager.getInstance();
 		HttpSession session = req.getSession();
 		Utilisateur userConnecte = (Utilisateur) session.getAttribute("userConnecte");
