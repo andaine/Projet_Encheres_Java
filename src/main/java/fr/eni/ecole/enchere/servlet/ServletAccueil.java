@@ -141,14 +141,16 @@ public class ServletAccueil extends HttpServlet {
 		listCheckbox.add(Cb2Boolean);
 		listCheckbox.add(Cb3Boolean);
 		
-		System.out.println("---------------------------");
-		System.out.println(radioButton);
-		for (Boolean boolean1 : listCheckbox) {
-			System.out.println(boolean1);
-		}
-		System.out.println("---------------------------");
+		
 		try {
 			List<Enchere> listeEncheresFiltres = mgr.afficherEncheres(userId, categorieChoisie, textFieldResult, radioButton, listCheckbox);
+			
+			System.out.println("333333333333333333333333333");
+			for (Enchere enchere : listeEncheresFiltres) {
+				System.out.println(enchere);
+			}
+			System.out.println("333333333333333333333333333");
+
 			req.setAttribute("listeEncheres", listeEncheresFiltres);
 		} catch (BusinessException e1) {
 			// TODO Auto-generated catch block
