@@ -37,6 +37,7 @@ public class ServletDetailVente extends HttpServlet {
 		
 		try {
 			Article infoArt = am.afficherArticle(idArticle);
+			System.out.println("ID article = " + idArticle + "-----------------------------------------");
 			System.out.println(infoArt.getNomArticle());
 			request.setAttribute("infoArt", infoArt);	
 			

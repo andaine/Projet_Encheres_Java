@@ -81,7 +81,7 @@ public class ServletAccueil extends HttpServlet {
 		} else {
 			userId = userConnecte.getNoUtilisateur();
 		}
-
+		
 		// recup catégorie choisie
 		String categorieChoisie = req.getParameter("selectCategorie");
 		req.setAttribute("categorieChoisie", categorieChoisie);
@@ -100,6 +100,11 @@ public class ServletAccueil extends HttpServlet {
 				 radioButton = false;
 			 }
 		}
+		
+		
+		
+		
+		
 		System.out.println(rbAchats);
 		System.out.println( "/" + req.getParameter("radioButton") + "/"+ " filtreRadioButton");
 		System.out.println(radioButton);

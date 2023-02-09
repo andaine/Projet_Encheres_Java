@@ -26,7 +26,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
 			+ "FROM UTILISATEURS uv INNER JOIN ARTICLES_VENDUS a ON a.no_utilisateur = uv.no_utilisateur "
 								+ "INNER JOIN CATEGORIES c ON a.no_categorie = c.no_categorie "
 								+ "LEFT JOIN ENCHERES e ON e.no_article= a.no_article "
-								+ "INNER JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
+								+ "LEFT JOIN UTILISATEURS ua ON ua.no_utilisateur = e.no_utilisateur "
 								+ "LEFT JOIN RETRAITS r ON a.no_article = r.no_article "
 								+ "WHERE a.no_article=?";
 	
