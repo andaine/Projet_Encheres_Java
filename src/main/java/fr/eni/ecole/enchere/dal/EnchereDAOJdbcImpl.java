@@ -23,12 +23,12 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	private static final String INSERT_ENCHERE = "INSERT INTO ENCHERES VALUES (?,?,?,?)";
 	private static final String UPDATE_ENCHERE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 
-	/*
-	 * public static boolean filtreCategorie = false, filtreNomArticle = false,
-	 * filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
-	 * mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees =
-	 * false, ventesTerminees = false;
-	 */
+	
+	  public static boolean filtreCategorie = false, filtreNomArticle = false,
+	  filtreAchats = false, encheresOuvertes = false, mesEncheres = false,
+	  mesEncheresRemportees = false, mesVentesEnCours = false, ventesNonDebutees =
+	  false, ventesTerminees = false;
+	 
 
 	private int count = 1;
 
