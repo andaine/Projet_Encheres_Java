@@ -15,22 +15,18 @@ public class Categorie {
 
 	
 	public Categorie(int noCategorie, String libelle, List<Article> categorieArticle) {
-		super();
-		this.noCategorie = noCategorie;
-		this.libelle = libelle;
+		this(noCategorie, libelle);
 		this.categorieArticle = categorieArticle;
 	}
 
 
 	public Categorie(int noCategorie, String libelle) {
-		super();
 		this.noCategorie = noCategorie;
 		this.libelle = libelle;
 	}
 	
 	
 	public Categorie(String libelle) {
-		super();
 		this.libelle = libelle;
 	}
 

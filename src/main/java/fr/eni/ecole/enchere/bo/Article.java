@@ -1,8 +1,7 @@
 package fr.eni.ecole.enchere.bo;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.zone.ZoneRulesException;
 import java.util.List;
 
 
@@ -32,7 +31,6 @@ public class Article {
 	//constructeur utilisé dans DAL Articles pour afficher detailsVente
 	public Article(int noArticle, String nomArticle, String description, LocalDateTime dateFinEncheres, int prixInitial, int prixVente, 
 			Categorie categorie, Utilisateur userV, Utilisateur userA, Retrait retraitVendeur) {
-		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -46,27 +44,9 @@ public class Article {
 	}
 
 
-
-	public Article(int noArticle, String nomArticle, String description, Categorie categorie, int prixInitial,
-			LocalDateTime dateFinEncheres, int prixVente, List<Enchere> enchereListe, Retrait retraitVendeur) {
-		super();
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.categorie = categorie;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixInitial = prixInitial;
-		this.prixVente = prixVente;
-		this.enchereListe = enchereListe;
-		this.setRetraitVendeur(retraitVendeur);
-	}
-
-
-
 	public Article(String nomArticle, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int prixInitial, int prixVente, Categorie categorie, String etatVente,
 			 Retrait retraitVendeur) {
-		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;

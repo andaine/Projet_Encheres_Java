@@ -1,7 +1,5 @@
 package fr.eni.ecole.enchere.bo;
 
-import java.util.List;
-
 public class Utilisateur {
 
 	private int noUtilisateur;
@@ -16,29 +14,36 @@ public class Utilisateur {
 	private String motDePasse;
 	private int credit;
 	private boolean administrateur;
-	private List<Enchere> listEnchere;
-	private List<Article> listArticleVendus;
 
-	
-	
-	public Utilisateur(String pseudo, String motDePasse) {
-		super();
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, int credit) {
+		this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit);
+		this.noUtilisateur = noUtilisateur;
+
+	}
+
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
+			String codePostal, String ville, String motDePasse, int credit) {
 		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
 		this.motDePasse = motDePasse;
-	}
-
-
-	public Utilisateur(String pseudo) {
-		super();
-		this.pseudo = pseudo;
-	}
-	
-	public Utilisateur(String pseudo,int credit) {
-		super();
-		this.pseudo = pseudo;
 		this.credit = credit;
 	}
 
+	public Utilisateur(String pseudo, int credit) {
+		this(pseudo);
+		this.credit = credit;
+	}
+
+	public Utilisateur(String pseudo) {
+		this.pseudo = pseudo;
+	}
 
 	public int getNoUtilisateur() {
 		return noUtilisateur;
@@ -47,7 +52,7 @@ public class Utilisateur {
 	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
-	
+
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -136,110 +141,15 @@ public class Utilisateur {
 		this.administrateur = administrateur;
 	}
 
-
-	
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
-			List<Enchere> listEnchere, List<Article> listArticleVendus) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-		this.administrateur = administrateur;
-		this.listEnchere = listEnchere;
-		this.listArticleVendus = listArticleVendus;
-	}
-
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit, boolean administrateur,
-			List<Enchere> listEnchere, List<Article> listArticleVendus) {
-		super();
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-		this.administrateur = administrateur;
-		this.listEnchere = listEnchere;
-		this.listArticleVendus = listArticleVendus;
-	}
-	
-	
-	
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-	}
-
-	
-	
-	
-
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
-			String codePostal, String ville, String motDePasse, int credit) {
-		super();
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-	}
-
-
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, int credit) {
-		super();
-		this.noUtilisateur = noUtilisateur;
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-	
-	}
-
 	public Utilisateur() {
 		super();
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "Utilisateur [noUtilisateur=" + noUtilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
 				+ prenom + ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", codePostal="
 				+ codePostal + ", ville=" + ville + ", motDePasse=" + motDePasse + ", credit=" + credit
 				+ ", administrateur=" + administrateur + "]";
-	}	
+	}
 }
