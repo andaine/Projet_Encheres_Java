@@ -370,12 +370,10 @@ ul{
     justify-items: stretch;
     align-items: stretch;
 	grid-gap:4%;
+	border:black solid 1px;
+	padding:1% 2% 0 2%;
 }
-/*
-.border{
-		border:black solid 1px;
-}
-*/
+
 #nomArticle{
 	grid-column:1/3;
 	display: flex;

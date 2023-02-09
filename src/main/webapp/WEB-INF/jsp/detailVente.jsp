@@ -39,7 +39,7 @@
 			</div>
 
 			<div class="border" id="labelCategorie">
-				<label for="categorie">Categorie :</label>
+				<label for="categorie">Catégorie :</label>
 			</div>
 
 			<div class="border" id="categorieVente">
