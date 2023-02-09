@@ -79,9 +79,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("AND")) {
-						requete += " OR ";
-					} else if (requete.contains("WHERE")) {
+					if (requete.contains("WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
@@ -106,9 +104,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 					System.out.println("categorie : " + categorie);
 					System.out.println("nom article : " + nomArticle);
 
-					if (requete.contains("AND")) {
-						requete += " OR ";
-					} else if (requete.contains("WHERE")) {
+					if (requete.contains("WHERE")) {
 						requete += " AND ";
 					} else {
 						requete += " WHERE ";
@@ -124,7 +120,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				}
 
 				//USER CONNECTE
-				
+			/*	
 				// Choix CheckBox + radiobutton
 				if (choixRadiobutton == true) {
 					if (requete.contains("AND")) {
@@ -205,7 +201,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 						requete += " etat_vente='VD'";
 					}
 				}
-				
+			*/	
 				System.out.println("###########" + requete + "#####################");
 
 				// definir ?
@@ -219,6 +215,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				if (filtreNomArticle == true) {
 					pstmt.setString(count, "%" + nomArticle + "%");
 					count++;
+					
 				}
 
 				rs = pstmt.executeQuery();
