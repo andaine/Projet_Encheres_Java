@@ -18,7 +18,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 /**
  * Servlet implementation class ServletUpdateUtilisateurs
  */
-@WebServlet("/ServletUpdateUtilisateurs")
+@WebServlet("/ServletUpdateUtilisateurs") 
 public class ServletUpdateUtilisateurs extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

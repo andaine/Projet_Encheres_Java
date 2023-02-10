@@ -23,7 +23,7 @@ import fr.eni.ecole.enchere.exception.BusinessException;
 /**
  * Servlet implementation class ServletNouvelleVente
  */
-@WebServlet("/ServletNouvelleVente")
+@WebServlet("/ServletNouvelleVente") 
 public class ServletNouvelleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
