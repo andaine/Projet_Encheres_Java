@@ -60,7 +60,7 @@
 			</div>
 
 			<div class="border" id="meilleureOffre">
-				<p>${infoArt.getPrixVente()}ptspar
+				<p>${infoArt.getPrixVente()} pts par
 					${infoArt.getUserA().getPseudo()}</p>
 			</div>
 
@@ -69,7 +69,7 @@
 			</div>
 
 			<div class="border" id="miseAPrixVente">
-				<p>${infoArt.getPrixInitial()}points</p>
+				<p>${infoArt.getPrixInitial()} points</p>
 			</div>
 
 			<div class="border" id="finEnchere">
