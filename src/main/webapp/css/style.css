@@ -253,6 +253,10 @@ ul {
 	font-size: 250%;
 }
 
+#bodyProfil{
+	text-align: center;
+}
+
 .infoUser {
 	display: flex;
 	justify-content: center;
