@@ -1,4 +1,4 @@
-# eniD2WM147
+# Projet Enchères Java
 Projet enchères
 Projet réalisé par 3 étudiants de la formation Développeur Web et Web mobile, après 3 mois d'apprentissage de code.
 Objectif de l'application : se connecter à un site de vente en ligne afin d'enchérir sur des objets mis en vente par d'autres users
